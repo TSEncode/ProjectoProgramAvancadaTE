@@ -14,6 +14,6 @@
         <!-- Customize your theme here. -->
     </style>
     <style name="Theme.TravellOrganizer.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-
+        <item name="colorPrimary">@color/white</item>
     </style>
 </resources>
