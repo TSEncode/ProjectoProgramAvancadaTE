@@ -16,6 +16,11 @@ class DbOpenHelper (context : Context?) : SQLiteOpenHelper(context, NAME, null, 
         requireNotNull(db)
 
         CategoriesTable(db).create()
+        ItemsTable(db).create()
+        ListTable(db).create()
+        TravelsTable(db).create()
+        ListItemsTable(db).create()
+        ListTravelTable(db).create()
 
     }
 

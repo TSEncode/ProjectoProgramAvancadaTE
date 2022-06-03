@@ -14,7 +14,7 @@ class TravelsTable(db: SQLiteDatabase) : TableModel(db, NAME) {
                 "$FIELD_BUDGET FLOAT NOT NULL," +
                 "$FIELD_REAL_BUDGET FLOAT," +
                 "$FIELD_LOCAL TEXT NOT NULL," +
-                "$FIELD_DATE DATE NOT NULL," +
+                "$FIELD_DATE DATE NOT NULL" +
                 ")")
     }
 
