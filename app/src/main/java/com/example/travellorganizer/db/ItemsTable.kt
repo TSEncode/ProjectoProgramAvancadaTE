@@ -11,7 +11,6 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
         db.execSQL("CREATE TABLE $name " +
                 "(${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$FIELD_NAME TEXT NOT NULL," +
-                "$FIELD_QUANTITY INTEGER," +
                 "$FIELD_CATEGORY_ID INTEGER," +
                 "FOREIGN KEY($FIELD_CATEGORY_ID) REFERENCES $TABLE_REFERENCE(${BaseColumns._ID}) " +
                 ")")
@@ -21,7 +20,6 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
     companion object {
         const val NAME = "items"
         const val FIELD_NAME = "name"
-        const val FIELD_QUANTITY = "quantity"
         const val FIELD_CATEGORY_ID = "category_id"
         const val TABLE_REFERENCE = "categories"
     }

@@ -5,4 +5,11 @@
     <string name="title_dashboard">Viagens</string>
     <string name="title_notifications">Listas</string>
     <string name="navigation_item">Items</string>
+    <string name="itemAdd">Adicionar Novo Item</string>
+    <string name="add_item_button">Botão de Adicionar Item</string>
+    <string name="item_add_name">Nome do Item:</string>
+    <string name="add_item_title">ADICIONAR ITEM</string>
+    <string name="create_item">Criar</string>
+    <string name="add_item_name_placeholder">Coloque o nome do item</string>
+    <string name="add_item_name_label">Área para colocar o nome do item</string>
 </resources>

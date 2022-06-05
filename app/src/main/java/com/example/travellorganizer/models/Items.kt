@@ -9,7 +9,6 @@ data class Items(var name : String, var quantity : Int, var categoryId : Long?, 
         val values = ContentValues()
 
         values.put(ItemsTable.FIELD_NAME, name)
-        values.put(ItemsTable.FIELD_QUANTITY, quantity)
         values.put(ItemsTable.FIELD_CATEGORY_ID, categoryId)
 
         return values

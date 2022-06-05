@@ -4,4 +4,11 @@
     <string name="title_dashboard">Travells</string>
     <string name="title_notifications">Lists</string>
     <string name="navigation_item">Items</string>
+    <string name="itemAdd">Add New Item</string>
+    <string name="add_item_button">Add Item Button</string>
+    <string name="item_add_name">Item Name:</string>
+    <string name="add_item_title">ADD ITEM</string>
+    <string name="create_item">Create</string>
+    <string name="add_item_name_placeholder">Add Item Name</string>
+    <string name="add_item_name_label">Add item name label</string>
 </resources>

@@ -1,14 +1,21 @@
 package com.example.travellorganizer.ui.items
 
+import android.content.Intent
+import android.database.sqlite.SQLiteDatabase
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
-import com.example.travellorganizer.R
+import android.widget.Toast
 import com.example.travellorganizer.databinding.FragmentItemsBinding
+import com.example.travellorganizer.db.DbOpenHelper
+import com.example.travellorganizer.db.ItemsTable
+import com.example.travellorganizer.models.Items
+import java.lang.Exception
 
 
 class ItemsFragment : Fragment() {
@@ -30,16 +37,33 @@ class ItemsFragment : Fragment() {
         _binding = FragmentItemsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textItems
+        val textView: TextView = binding.addItems
         itemsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
+
+        val addButton: ImageButton = binding.toAddItemButton
+
+        addButton.setOnClickListener(View.OnClickListener { toAddItem() })
+
+
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+    private fun toAddItem(){
+
+        activity?.let {
+            val intent = Intent(it, AddItem::class.java)
+            it.startActivity(intent)
+        }
+
+    }
+
 
 }
