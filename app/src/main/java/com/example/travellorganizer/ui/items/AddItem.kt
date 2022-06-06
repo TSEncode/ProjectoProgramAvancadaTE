@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.travellorganizer.R
@@ -20,11 +21,11 @@ class AddItem : AppCompatActivity() {
 
         val itemName: String = findViewById<EditText>(R.id.itemNameValue).text.toString()
         val addButton = findViewById<Button>(R.id.addItem)
-
+        val name = findViewById<TextView>(R.id.itemNameTextView)
 
         addButton.setOnClickListener {
-            insertItems(itemName, null)
-
+            //insertItems(itemName, null)
+            name.text = itemName
         }
 
     }
