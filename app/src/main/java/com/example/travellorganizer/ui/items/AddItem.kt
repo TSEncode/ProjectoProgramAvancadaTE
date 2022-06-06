@@ -24,15 +24,19 @@ class AddItem : AppCompatActivity() {
         //no evente de click pasamos o valor do edit text para ser guardado, utiliza-se a função insertItems para inserir os valores
         addButton.setOnClickListener {
             //guardamos o conteudo do editText
-            val itemName = findViewById<EditText>(R.id.itemEditText).text.toString()
+            val itemNameText = findViewById<EditText>(R.id.itemEditText)
+            val itemName = itemNameText.text.toString()
             //inserimos os valores na bd
-            insertItems(itemName, null)
+            val isInserted = insertItems(itemName, null)
 
+            if(isInserted){
+                itemNameText.setText("")
+            }
         }
 
     }
     //função que inser o novo item na bd
-    private fun insertItems(name : String, categoryId: Long?){
+    private fun insertItems(name : String, categoryId: Long?): Boolean{
 
         //usamos a nossa class Items para criar o contentValues
         val items = Items(name, categoryId)
@@ -46,10 +50,13 @@ class AddItem : AppCompatActivity() {
          */
         try {
             ItemsTable(db).insert(items.toContentValues())
+            db.close()
+            return true
         }catch (e: Exception){
                 Toast.makeText(this, e.localizedMessage, Toast.LENGTH_SHORT).show()
+            return false
         }
 
-        db.close()
+
     }
 }
