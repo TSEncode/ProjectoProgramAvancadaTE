@@ -44,7 +44,10 @@ class ItemsFragment : Fragment() {
 
         val addButton: ImageButton = binding.toAddItemButton
 
-        addButton.setOnClickListener(View.OnClickListener { toAddItem() })
+        addButton.setOnClickListener {
+            val intent = Intent(context, AddItem::class.java)
+            startActivity(intent)
+        }
 
 
         return root
@@ -55,15 +58,4 @@ class ItemsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-    private fun toAddItem(){
-
-        activity?.let {
-            val intent = Intent(it, AddItem::class.java)
-            it.startActivity(intent)
-        }
-
-    }
-
-
 }

@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_travell"
-        android:name="com.example.travellorganizer.ui.travells.TravellsFragment"
+        android:name="com.example.travellorganizer.ui.travels.TravelsFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 

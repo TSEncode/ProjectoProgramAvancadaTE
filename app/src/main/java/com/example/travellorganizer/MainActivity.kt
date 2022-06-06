@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.travellorganizer.databinding.ActivityMainBinding
+import com.example.travellorganizer.db.DbOpenHelper
 
 class MainActivity : AppCompatActivity() {
 

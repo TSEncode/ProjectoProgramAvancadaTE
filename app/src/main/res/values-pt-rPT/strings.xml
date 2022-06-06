@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Travell Organizer</string>
+    <string name="app_name">Travel Organizer</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Viagens</string>
     <string name="title_notifications">Listas</string>
@@ -12,4 +12,8 @@
     <string name="create_item">Criar</string>
     <string name="add_item_name_placeholder">Coloque o nome do item</string>
     <string name="add_item_name_label">Área para colocar o nome do item</string>
+
+    <string name="category_name">Nome da Categoria</string>
+    <string name="add_category_name_placeholder">Adicionar nova categoria</string>
+    <string name="travel_organizer_logo">Travel Organizer Logo</string>
 </resources>

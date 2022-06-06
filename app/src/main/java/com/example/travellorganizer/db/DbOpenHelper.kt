@@ -3,6 +3,7 @@ package com.example.travellorganizer.db
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.travellorganizer.models.Travel
 
 class DbOpenHelper (context : Context?) : SQLiteOpenHelper(context, NAME, null, VERSION) {
 
@@ -15,13 +16,13 @@ class DbOpenHelper (context : Context?) : SQLiteOpenHelper(context, NAME, null, 
     override fun onCreate(db: SQLiteDatabase?) {
         requireNotNull(db)
 
+
         CategoriesTable(db).create()
         ItemsTable(db).create()
         ListTable(db).create()
         TravelsTable(db).create()
         ListItemsTable(db).create()
         ListTravelTable(db).create()
-
     }
 
     /**
@@ -47,10 +48,11 @@ class DbOpenHelper (context : Context?) : SQLiteOpenHelper(context, NAME, null, 
      * @param newVersion The new database version.
      */
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
+
     }
 
     companion object {
-        const val NAME = "travell_organizer.db"
+        const val NAME = "travel_organizer.db"
         private const val VERSION = 1
     }
 }

@@ -1,10 +1,10 @@
-package com.example.travellorganizer.ui.travells
+package com.example.travellorganizer.ui.travels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class TravellsViewModel : ViewModel() {
+class TravelsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"

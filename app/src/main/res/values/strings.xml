@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Travell Organizer</string>
+    <string name="app_name">Travel Organizer</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Travells</string>
+    <string name="title_dashboard">Travels</string>
     <string name="title_notifications">Lists</string>
     <string name="navigation_item">Items</string>
     <string name="itemAdd">Add New Item</string>
@@ -11,4 +11,7 @@
     <string name="create_item">Create</string>
     <string name="add_item_name_placeholder">Add Item Name</string>
     <string name="add_item_name_label">Add item name label</string>
+    <string name="category_name">Category Name</string>
+    <string name="add_category_name_placeholder">Add category name</string>
+    <string name="travel_organizer_logo">Travel Organizer Logo</string>
 </resources>

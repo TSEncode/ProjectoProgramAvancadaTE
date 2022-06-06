@@ -1,4 +1,4 @@
-package com.example.travellorganizer.ui.travells
+package com.example.travellorganizer.ui.travels
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.travellorganizer.databinding.FragmentDashboardBinding
 
-class TravellsFragment : Fragment() {
+class TravelsFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 
@@ -23,7 +23,7 @@ class TravellsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this).get(TravellsViewModel::class.java)
+            ViewModelProvider(this).get(TravelsViewModel::class.java)
 
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root

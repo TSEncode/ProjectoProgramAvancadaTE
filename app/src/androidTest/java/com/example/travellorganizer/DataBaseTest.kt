@@ -28,7 +28,6 @@ class DataBaseTest {
         assertNotEquals(-1, items.id)
     }
 
-    @Before
     fun deleteDB() {
         appContext().deleteDatabase(DbOpenHelper.NAME)
     }
@@ -36,8 +35,8 @@ class DataBaseTest {
     @Test
     fun canOpenDB(){
         val helper = DbOpenHelper(appContext())
-        val db = helper.readableDatabase
 
+        val db = helper.readableDatabase
         assertTrue(db.isOpen)
 
         db.close()
@@ -49,7 +48,7 @@ class DataBaseTest {
         val helper = DbOpenHelper(appContext())
         val db = helper.writableDatabase
 
-        insertItem(db, Items("colher", 20, null))
+        insertItem(db, Items("colher", null))
 
         db.close()
     }
