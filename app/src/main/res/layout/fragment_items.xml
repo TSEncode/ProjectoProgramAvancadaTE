@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.items.ItemsFragment" >
 
-    <TextView
-        android:id="@+id/addItems"
-        android:layout_width="159dp"
-        android:layout_height="28dp"
-        android:text="@string/itemAdd"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
-        app:layout_constraintStart_toEndOf="@+id/toAddItemButton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.038" />
-
     <ImageButton
         android:id="@+id/toAddItemButton"
         android:layout_width="48dp"
@@ -29,8 +15,22 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.043"
+        app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.144" />
+
+    <TextView
+        android:id="@+id/addItems"
+        android:layout_width="159dp"
+        android:layout_height="28dp"
+        android:text="@string/itemAdd"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toEndOf="@+id/toAddItemButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.155" />
 </androidx.constraintlayout.widget.ConstraintLayout>

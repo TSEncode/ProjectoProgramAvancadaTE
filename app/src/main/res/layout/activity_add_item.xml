@@ -33,34 +33,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.853" />
 
-    <EditText
-        android:id="@+id/itemNameValue"
-        android:layout_width="283dp"
-        android:layout_height="49dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/add_item_name_placeholder"
-        android:inputType="textPersonName"
-        android:textColorHint="#757575"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameTextView"
-        app:layout_constraintVertical_bias="0.04" />
-
     <Button
         android:id="@+id/addItem"
         android:layout_width="200dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="228dp"
         android:text="@string/create_item"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.345"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemNameValue"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/itemNameTextView"
+        app:layout_constraintVertical_bias="0.418" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -74,5 +57,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.34"
         app:srcCompat="@drawable/ic_logo" />
+
+    <EditText
+        android:id="@+id/itemEditText"
+        android:layout_width="284dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/add_item_name_label"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/addItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemNameTextView"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

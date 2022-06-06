@@ -38,9 +38,9 @@ class ItemsFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.addItems
-        itemsViewModel.text.observe(viewLifecycleOwner) {
+       /* itemsViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
-        }
+        }*/
 
         val addButton: ImageButton = binding.toAddItemButton
 

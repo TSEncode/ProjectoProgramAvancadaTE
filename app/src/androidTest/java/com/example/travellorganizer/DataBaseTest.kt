@@ -27,7 +27,7 @@ class DataBaseTest {
         items.id = ItemsTable(db).insert(items.toContentValues())
         assertNotEquals(-1, items.id)
     }
-
+    @Before
     fun deleteDB() {
         appContext().deleteDatabase(DbOpenHelper.NAME)
     }

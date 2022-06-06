@@ -19,23 +19,31 @@ class AddItem : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_item)
 
-        val itemName: String = findViewById<EditText>(R.id.itemNameValue).text.toString()
+        //guardamos o botão que adiciona o item
         val addButton = findViewById<Button>(R.id.addItem)
-        val name = findViewById<TextView>(R.id.itemNameTextView)
-
+        //no evente de click pasamos o valor do edit text para ser guardado, utiliza-se a função insertItems para inserir os valores
         addButton.setOnClickListener {
-            //insertItems(itemName, null)
-            name.text = itemName
+            //guardamos o conteudo do editText
+            val itemName = findViewById<EditText>(R.id.itemEditText).text.toString()
+            //inserimos os valores na bd
+            insertItems(itemName, null)
+
         }
 
     }
-
+    //função que inser o novo item na bd
     private fun insertItems(name : String, categoryId: Long?){
+
+        //usamos a nossa class Items para criar o contentValues
         val items = Items(name, categoryId)
-
+        // instanciamos o helper para gerirmos a base de dados
         val helper = DbOpenHelper(this)
+        //vamos buscar a base de dados no modo de escrita
         val db = helper.writableDatabase
-
+        /**
+         *  Experimenta-se se dá para inserir os valores na base de dados, se não der
+         *  aciona-se uma depuração de erro no terminal
+         */
         try {
             ItemsTable(db).insert(items.toContentValues())
         }catch (e: Exception){
