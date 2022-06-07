@@ -14,4 +14,8 @@
     <string name="category_name">Category Name</string>
     <string name="add_category_name_placeholder">Add category name</string>
     <string name="travel_organizer_logo">Travel Organizer Logo</string>
+    <string name="choose_category">Choose Category</string>
+    <string name="choose_category_spinner">Choose Category Spinner</string>
+    <string name="add_category_button">Add Category Button</string>
+    <string name="new_category">New Category</string>
 </resources>
