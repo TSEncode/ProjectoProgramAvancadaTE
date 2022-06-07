@@ -3,15 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Projectos/TravellOrganizer/app/src/main/res/layout/activity_add_item.xml" value="0.335" />
         <entry key="..\:/Projectos/TravellOrganizer/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Projectos/TravellOrganizer/app/src/main/res/layout/fragment_dashboard.xml" value="0.1716485507246377" />
-        <entry key="..\:/Projectos/TravellOrganizer/app/src/main/res/layout/fragment_home.xml" value="0.335" />
         <entry key="..\:/Projectos/TravellOrganizer/app/src/main/res/layout/fragment_notifications.xml" value="0.17980072463768115" />
+        <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/drawable-night/ic_add.xml" value="0.49" />
+        <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/drawable-night/ic_add_white.xml" value="0.3165" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/drawable-night/ic_logo.xml" value="0.493" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/drawable-night/ic_logo_white.xml" value="0.4185" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.3165" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/drawable/ic_logo.xml" value="0.3165" />
+        <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/activity_add_category.xml" value="0.5541666666666667" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/activity_add_item.xml" value="0.5" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/activity_main.xml" value="0.31354166666666666" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/fragment_dashboard.xml" value="0.31354166666666666" />

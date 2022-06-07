@@ -1,7 +1,6 @@
 package com.example.travellorganizer.ui.items
 
 import android.content.Intent
-import android.database.sqlite.SQLiteDatabase
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,12 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import com.example.travellorganizer.databinding.FragmentItemsBinding
-import com.example.travellorganizer.db.DbOpenHelper
-import com.example.travellorganizer.db.ItemsTable
-import com.example.travellorganizer.models.Items
-import java.lang.Exception
 
 
 class ItemsFragment : Fragment() {
@@ -45,7 +39,7 @@ class ItemsFragment : Fragment() {
         val addButton: ImageButton = binding.toAddItemButton
 
         addButton.setOnClickListener {
-            val intent = Intent(context, AddItem::class.java)
+            val intent = Intent(context, AddItemActivity::class.java)
             startActivity(intent)
         }
 

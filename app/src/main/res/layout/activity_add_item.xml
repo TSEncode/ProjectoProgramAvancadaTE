@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.items.AddItem">
+    tools:context=".ui.items.AddItemActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,98 +14,144 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="290dp"
-                android:layout_height="83dp"
-                android:contentDescription="@string/travel_organizer_logo"
-                app:srcCompat="@drawable/ic_logo" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="709dp">
 
-            <TextView
-                android:id="@+id/itemNameTextView"
-                android:layout_width="325dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/item_add_name"
-                android:textAlignment="viewStart"
-                android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/addItemTitle"
+                    android:layout_width="325dp"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/add_item_title"
+                    android:textAlignment="viewStart"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.434"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addItemLogo" />
 
-            <TextView
-                android:id="@+id/addItemTitle"
-                android:layout_width="325dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/add_item_title"
-                android:textAlignment="viewStart"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                <Button
+                    android:id="@+id/addItemButton"
+                    android:layout_width="200dp"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="60dp"
+                    android:text="@string/create_item"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.424"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addCategoryItemsTextView"
+                    app:layout_constraintVertical_bias="0.812" />
 
-            <TextView
-                android:id="@+id/chooseCategoriesTextView"
-                android:layout_width="325dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/choose_category"
-                android:textAlignment="viewStart"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/itemNameValue"
+                    android:layout_width="325dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:ems="10"
+                    android:hint="@string/add_item_name_placeholder"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:textAlignment="viewStart"
+                    android:textColorHint="#757575"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/itemNameTextView" />
 
-            <EditText
-                android:id="@+id/itemEditText"
-                android:layout_width="325dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:ems="10"
-                android:hint="@string/add_item_name_placeholder"
-                android:importantForAutofill="no"
-                android:inputType="textPersonName"
-                android:textAlignment="viewStart"
-                android:textColorHint="#757575" />
+                <TextView
+                    android:id="@+id/itemNameTextView"
+                    android:layout_width="325dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/item_add_name"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addItemTitle" />
 
-            <Spinner
-                android:id="@+id/categoriesSpinner"
-                android:layout_width="325dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="@string/choose_category_spinner" />
+                <ImageView
+                    android:id="@+id/addItemLogo"
+                    android:layout_width="290dp"
+                    android:layout_height="83dp"
+                    android:contentDescription="@string/travel_organizer_logo"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_logo" />
 
-            <ImageButton
-                android:id="@+id/addCategoryButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginTop="28dp"
-                android:backgroundTint="#00FFFFFF"
-                android:contentDescription="@string/add_category_button"
-                app:srcCompat="@drawable/ic_add"
-                tools:ignore="RedundantDescriptionCheck,RedundantDescriptionCheck" />
+                <TextView
+                    android:id="@+id/chooseCategoriesTextView"
+                    android:layout_width="325dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/choose_category"
+                    android:textAlignment="viewStart"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/itemNameValue" />
 
-            <TextView
-                android:id="@+id/addCategoryItemsTextView"
-                android:layout_width="260dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/new_category"
-                android:textSize="16sp" />
+                <Spinner
+                    android:id="@+id/categoriesSpinner"
+                    android:layout_width="325dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:contentDescription="@string/choose_category_spinner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chooseCategoriesTextView" />
 
-            <Button
-                android:id="@+id/addItem"
-                android:layout_width="200dp"
-                android:layout_height="52dp"
-                android:layout_marginTop="60dp"
-                android:text="@string/create_item" />
+                <ImageButton
+                    android:id="@+id/toAddCategoryButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#00FFFFFF"
+                    android:contentDescription="@string/add_category_button"
+                    app:layout_constraintEnd_toStartOf="@+id/addCategoryItemsTextView"
+                    app:layout_constraintHorizontal_bias="0.97"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/categoriesSpinner"
+                    app:srcCompat="@drawable/ic_add"
+                    tools:ignore="RedundantDescriptionCheck,RedundantDescriptionCheck" />
+
+                <TextView
+                    android:id="@+id/addCategoryItemsTextView"
+                    android:layout_width="263dp"
+                    android:layout_height="22dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="@string/new_category"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.742"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/categoriesSpinner" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
 
