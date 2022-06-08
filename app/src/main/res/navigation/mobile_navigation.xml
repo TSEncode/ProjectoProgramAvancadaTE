@@ -27,5 +27,13 @@
         android:id="@+id/navigation_item"
         android:name="com.example.travellorganizer.ui.items.ItemsFragment"
         android:label="@string/navigation_item"
-        tools:layout="@layout/fragment_items" />
+        tools:layout="@layout/fragment_items" >
+        <action
+            android:id="@+id/action_navigation_item_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.example.travellorganizer.ui.items.AddItemFragment"
+        android:label="AddItemFragment" />
 </navigation>

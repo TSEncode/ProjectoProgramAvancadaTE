@@ -1,22 +1,21 @@
 package com.example.travellorganizer.ui.items
 
-import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.TextView
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
+import androidx.lifecycle.ViewModelProvider
 import com.example.travellorganizer.R
 import com.example.travellorganizer.databinding.FragmentItemsBinding
 
-
-class ItemsFragment : Fragment() {
-
+/**
+ * A simple [Fragment] subclass.
+ * Use the [AddItemFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
+class AddItemFragment : Fragment() {
     private var _binding: FragmentItemsBinding? = null
 
     // This property is only valid between onCreateView and
@@ -35,26 +34,9 @@ class ItemsFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.addItems
-       /* itemsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
-
-        val addButton: ImageButton = binding.toAddItemButton
-
-        val navController = findNavController()
-
-
-        addButton.setOnClickListener {
-            navController.navigate(R.id.addItemFragment)
-        }
-
-
+        /* itemsViewModel.text.observe(viewLifecycleOwner) {
+             textView.text = it
+         }*/
         return root
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

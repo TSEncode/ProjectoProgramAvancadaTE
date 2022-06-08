@@ -40,7 +40,7 @@ class AddItemActivity : AppCompatActivity() {
         }
 
     }
-    //função que inser o novo item na bd
+    //função que insere o novo item na bd
     private fun insertItems(name : String, categoryId: Long?): Boolean{
 
         //usamos a nossa class Items para criar o contentValues
