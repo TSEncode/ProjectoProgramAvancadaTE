@@ -19,10 +19,12 @@
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/drawable/ic_logo.xml" value="0.3165" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/activity_add_item.xml" value="0.5" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/activity_main.xml" value="0.31354166666666666" />
+        <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/fragment_add_item.xml" value="0.4230072463768116" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/fragment_dashboard.xml" value="0.31354166666666666" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/fragment_home.xml" value="0.31354166666666666" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/fragment_items.xml" value="0.5" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/fragment_notifications.xml" value="0.31354166666666666" />
+        <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/layout/spinner_items.xml" value="0.5541666666666667" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.31354166666666666" />
         <entry key="..\:/Projectos/TravellerOrganizer/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3165" />
       </map>

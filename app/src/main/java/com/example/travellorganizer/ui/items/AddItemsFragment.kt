@@ -46,18 +46,22 @@ class AddItemsFragment : Fragment() {
 
         val addButton = binding.addItemButton
         spinnerDefault()
+        val debug = binding.addCategoryItemsTextView
 
         //no evento de click pasamos o valor do edit text para ser guardado, utiliza-se a função insertItems para inserir os valores
         addButton.setOnClickListener {
             //guardamos o conteudo do editText
             val itemNameText = binding.itemNameValue
             val itemName = itemNameText.text.toString()
+
+            val categorySelected = binding.categoriesSpinner.selectedItem.toString()
+            debug.setText(getCategoryId(categorySelected).toString())
             //inserimos os valores na bd
-            val isInserted = insertItems(itemName, null)
+           /* //val isInserted = insertItems(itemName, null)
 
             if(isInserted){
                 itemNameText.setText("")
-            }
+            }*/
         }
 
         val addCategories: ImageButton = binding.toAddCategoryButton
@@ -77,6 +81,10 @@ class AddItemsFragment : Fragment() {
         val helper = DbOpenHelper(context)
         //vamos buscar a base de dados no modo de escrita
         val db = helper.writableDatabase
+
+
+
+
         /**
          *  Experimenta-se se dá para inserir os valores na base de dados, se não der
          *  aciona-se uma depuração de erro no terminal
@@ -95,23 +103,29 @@ class AddItemsFragment : Fragment() {
     private fun spinnerDefault(){
         val spinner = binding.categoriesSpinner
 
+        //cria-se a lista para passar para o spinner através do adapter
         val valuesArray = ArrayList<String>()
+        //vamos buscar a lista com os nomes das categorias
         val categoriesNames = getCategoriesNames()
 
+        valuesArray.add(getString(R.string.no_categories_spinner))
 
-        if(valuesArray.count() == 0){
-            valuesArray.add(getString(R.string.no_categories_spinner))
+        for ( name in categoriesNames){
+                valuesArray.add(name)
         }
 
-        val arrayAdapter = ArrayAdapter(requireActivity(), android.R.layout.simple_spinner_item, valuesArray)
+        //cria-se o adapter para o spinner, este spinner irá apresentar um dropdown com as categorias
+        val arrayAdapter = ArrayAdapter(requireActivity(), R.layout.spinner_items, valuesArray)
 
         spinner.adapter = arrayAdapter
 
     }
 
+    //Função que
     //Função que retorna todos os nomes das categorias
-    private fun getCategoriesNames(): Cursor?{
-        var result : Cursor?
+    private fun getCategoriesNames(): ArrayList<String>{
+
+        val categoriesNameList =  ArrayList<String>()
         // instanciamos o helper para gerirmos a base de dados
         val helper = DbOpenHelper(context)
         //vamos buscar a base de dados no modo de escrita
@@ -121,18 +135,49 @@ class AddItemsFragment : Fragment() {
          *  aciona-se uma depuração de erro no terminal
          */
         try {
+            //passamos o nome da coluna para um array, neste caso queremos a coluna nome
+            val columns = arrayOf(CategoriesTable.FIELD_NAME)
+            //vamos buscar todos os registos da coluna, ele vai ser desenvolvido num objecto do tipo Cursor
+            val result = CategoriesTable(db).query(columns)
 
-            val columns = arrayOf(CategoriesTable.NAME)
+            //interamos o resultado, cada vez que o cursor andar adicionamos o resultado do cursor
+            while (result.moveToNext()){
+                   categoriesNameList.add(result.getString(result.getColumnIndexOrThrow(CategoriesTable.FIELD_NAME)))
+               }
+        }catch (e: Exception){
+            Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
+        }
 
+        return categoriesNameList
+    }
 
-            result = CategoriesTable(db).query(columns)
+    //Função que devolve o id da categoria escolhida
+    private fun getCategoryId(name: String): Int{
+
+        // instanciamos o helper para gerirmos a base de dados
+        val helper = DbOpenHelper(context)
+        //vamos buscar a base de dados no modo de escrita
+        val db = helper.readableDatabase
+        /**
+         *  Experimenta-se se dá para inserir os valores na base de dados, se não der
+         *  aciona-se uma depuração de erro no terminal
+         */
+        try {
+            //passamos o nome da coluna que se pretende ir buscar
+            val columns = arrayOf("_id")
+            val selectionArgs = arrayOf(name)
+            val result = CategoriesTable(db).query(columns, "${CategoriesTable.FIELD_NAME} LIKE ?",selectionArgs )
+
+            //retorna-se o valor do id
+            while (result.moveToNext()){
+                return result.getInt(result.getColumnIndexOrThrow("_id"))
+            }
 
         }catch (e: Exception){
             Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
-            result = null
         }
 
-        return result
+        return 0
     }
 
 
