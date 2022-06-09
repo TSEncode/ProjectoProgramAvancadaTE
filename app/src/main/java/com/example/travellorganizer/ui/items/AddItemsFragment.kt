@@ -2,6 +2,7 @@ package com.example.travellorganizer.ui.items
 
 import android.content.Context
 import android.content.Intent
+import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -95,6 +96,8 @@ class AddItemsFragment : Fragment() {
         val spinner = binding.categoriesSpinner
 
         val valuesArray = ArrayList<String>()
+        val categoriesNames = getCategoriesNames()
+
 
         if(valuesArray.count() == 0){
             valuesArray.add(getString(R.string.no_categories_spinner))
@@ -105,4 +108,32 @@ class AddItemsFragment : Fragment() {
         spinner.adapter = arrayAdapter
 
     }
+
+    //Função que retorna todos os nomes das categorias
+    private fun getCategoriesNames(): Cursor?{
+        var result : Cursor?
+        // instanciamos o helper para gerirmos a base de dados
+        val helper = DbOpenHelper(context)
+        //vamos buscar a base de dados no modo de escrita
+        val db = helper.readableDatabase
+        /**
+         *  Experimenta-se se dá para inserir os valores na base de dados, se não der
+         *  aciona-se uma depuração de erro no terminal
+         */
+        try {
+
+            val columns = arrayOf(CategoriesTable.NAME)
+
+
+            result = CategoriesTable(db).query(columns)
+
+        }catch (e: Exception){
+            Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
+            result = null
+        }
+
+        return result
+    }
+
+
 }

@@ -16,12 +16,12 @@
     <!-- Categorias-->
     <string name="choose_category">Escolha a categoria:</string>
     <string name="category_name">Nome da Categoria:</string>
-    <string name="add_category_name_placeholder">Adicionar nova categoria</string>
     <string name="travel_organizer_logo">Travel Organizer Logo</string>
     <string name="choose_category_spinner">Opções de categorias</string>
     <string name="add_category_button">Botão de adicionar categoria</string>
     <string name="new_category">Nova categoria</string>
     <string name="no_categories_spinner">Não existem categorias</string>
     <string name="add_category">CRIAR CATEGORIA</string>
-    <string name="add_category_name">Add Category Name</string>
+    <string name="add_category_name">Coloque o nome da categoria</string>
+    <string name="add_items_fragment">AddItemsFragment</string>
 </resources>

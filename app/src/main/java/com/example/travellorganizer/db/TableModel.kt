@@ -15,7 +15,7 @@ abstract class TableModel(val db: SQLiteDatabase, val name: String) {
     fun delete(whereClause: String, whereArgs: Array<String>) =
         db.delete(name, whereClause, whereArgs)
 
-    fun query(columns: Array<String>?, selection: String?, selectionArgs: Array<String>?, groupBy: String?, having: String?, orderBy: String?) =
+    fun query(columns: Array<String>?= null, selection: String? = null, selectionArgs: Array<String>? = null, groupBy: String? = null, having: String? = null, orderBy: String? = null) =
         db.query(name, columns, selection, selectionArgs, groupBy, having, orderBy)
 
 }
