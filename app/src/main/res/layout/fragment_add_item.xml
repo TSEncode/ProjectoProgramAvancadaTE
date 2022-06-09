@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.items.AddItemActivity">
+    tools:context=".ui.items.AddItemsFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
                     android:layout_width="325dp"
                     android:layout_height="44dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="120dp"
                     android:layout_marginEnd="10dp"
                     android:text="@string/add_item_title"
                     android:textAlignment="viewStart"
@@ -34,14 +34,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.434"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/addItemLogo" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
                     android:id="@+id/addItemButton"
                     android:layout_width="200dp"
                     android:layout_height="52dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginBottom="60dp"
                     android:text="@string/create_item"
@@ -82,16 +82,6 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/addItemTitle" />
-
-                <ImageView
-                    android:id="@+id/addItemLogo"
-                    android:layout_width="290dp"
-                    android:layout_height="83dp"
-                    android:contentDescription="@string/travel_organizer_logo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_logo" />
 
                 <TextView
                     android:id="@+id/chooseCategoriesTextView"

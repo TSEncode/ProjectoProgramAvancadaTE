@@ -15,13 +15,13 @@
         android:id="@+id/navigation_travell"
         android:name="com.example.travellorganizer.ui.travels.TravelsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_travels" />
 
     <fragment
         android:id="@+id/navigation_list"
         android:name="com.example.travellorganizer.ui.lists.ListsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_lists" />
 
     <fragment
         android:id="@+id/navigation_item"
@@ -29,11 +29,21 @@
         android:label="@string/navigation_item"
         tools:layout="@layout/fragment_items" >
         <action
-            android:id="@+id/action_navigation_item_to_addItemFragment"
-            app:destination="@id/addItemFragment" />
+            android:id="@+id/action_navigation_item_to_navigation_addItemsFragment"
+            app:destination="@id/navigation_addItemsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addItemFragment"
-        android:name="com.example.travellorganizer.ui.items.AddItemFragment"
-        android:label="AddItemFragment" />
+        android:id="@+id/navigation_addItemsFragment"
+        android:name="com.example.travellorganizer.ui.items.AddItemsFragment"
+        android:label="fragment_add_item"
+        tools:layout="@layout/fragment_add_item" >
+        <action
+            android:id="@+id/action_navigation_addItemsFragment_to_navigation_addCategoryFragment"
+            app:destination="@id/navigation_addCategoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_addCategoryFragment"
+        android:name="com.example.travellorganizer.ui.items.AddCategoryFragment"
+        android:label="fragment_add_category"
+        tools:layout="@layout/fragment_add_category" />
 </navigation>

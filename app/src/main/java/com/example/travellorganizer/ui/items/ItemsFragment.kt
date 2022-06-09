@@ -9,8 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.navigation.Navigation
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
+import com.example.travellorganizer.MainActivity
 import com.example.travellorganizer.R
 import com.example.travellorganizer.databinding.FragmentItemsBinding
 
@@ -41,13 +46,10 @@ class ItemsFragment : Fragment() {
 
         val addButton: ImageButton = binding.toAddItemButton
 
-        val navController = findNavController()
-
 
         addButton.setOnClickListener {
-            navController.navigate(R.id.addItemFragment)
+           findNavController(this).navigate(R.id.navigation_addItemsFragment)
         }
-
 
         return root
     }
