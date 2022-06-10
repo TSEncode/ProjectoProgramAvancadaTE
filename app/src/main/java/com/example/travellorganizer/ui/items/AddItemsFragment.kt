@@ -55,13 +55,14 @@ class AddItemsFragment : Fragment() {
             val itemName = itemNameText.text.toString()
 
             val categorySelected = binding.categoriesSpinner.selectedItem.toString()
-            debug.setText(getCategoryId(categorySelected).toString())
-            //inserimos os valores na bd
-           /* //val isInserted = insertItems(itemName, null)
+
+            val idCategory = categoryIdFilter(categorySelected)
+
+           val isInserted = insertItems(itemName, idCategory)
 
             if(isInserted){
                 itemNameText.setText("")
-            }*/
+            }
         }
 
         val addCategories: ImageButton = binding.toAddCategoryButton
@@ -121,7 +122,17 @@ class AddItemsFragment : Fragment() {
 
     }
 
-    //Função que
+    //Função que valida se o item tem categoria ou não
+
+        private fun categoryIdFilter(name : String): Long? {
+            //verifca-se se o valor escolhido é sem categoria, se for retorna-se nulo se não retorna-se o id
+            if (name === getString(R.string.no_categories_spinner)) {
+                return null
+            }else{
+                return getCategoryId(name)
+            }
+        }
+
     //Função que retorna todos os nomes das categorias
     private fun getCategoriesNames(): ArrayList<String>{
 
@@ -152,7 +163,7 @@ class AddItemsFragment : Fragment() {
     }
 
     //Função que devolve o id da categoria escolhida
-    private fun getCategoryId(name: String): Int{
+    private fun getCategoryId(name: String): Long{
 
         // instanciamos o helper para gerirmos a base de dados
         val helper = DbOpenHelper(context)
@@ -170,7 +181,7 @@ class AddItemsFragment : Fragment() {
 
             //retorna-se o valor do id
             while (result.moveToNext()){
-                return result.getInt(result.getColumnIndexOrThrow("_id"))
+                return result.getLong(result.getColumnIndexOrThrow("_id"))
             }
 
         }catch (e: Exception){
