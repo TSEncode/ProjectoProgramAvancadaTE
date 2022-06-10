@@ -58,7 +58,7 @@ class AddItemsFragment : Fragment() {
 
             val idCategory = categoryIdFilter(categorySelected)
 
-           val isInserted = insertItems(itemName, idCategory)
+            val isInserted = Items(requireContext(),itemName, idCategory).insertItems()
 
             if(isInserted){
                 itemNameText.setText("")
@@ -73,33 +73,7 @@ class AddItemsFragment : Fragment() {
 
         return root
     }
-    //função que insere o novo item na bd
-    private fun insertItems(name : String, categoryId: Long?): Boolean{
 
-        //usamos a nossa class Items para criar o contentValues
-        val items = Items(name, categoryId)
-        // instanciamos o helper para gerirmos a base de dados
-        val helper = DbOpenHelper(context)
-        //vamos buscar a base de dados no modo de escrita
-        val db = helper.writableDatabase
-
-
-
-
-        /**
-         *  Experimenta-se se dá para inserir os valores na base de dados, se não der
-         *  aciona-se uma depuração de erro no terminal
-         */
-        try {
-            ItemsTable(db).insert(items.toContentValues())
-            db.close()
-            return true
-        }catch (e: Exception){
-            Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
-            return false
-        }
-
-    }
 
     private fun spinnerDefault(){
         val spinner = binding.categoriesSpinner
@@ -124,14 +98,14 @@ class AddItemsFragment : Fragment() {
 
     //Função que valida se o item tem categoria ou não
 
-        private fun categoryIdFilter(name : String): Long? {
-            //verifca-se se o valor escolhido é sem categoria, se for retorna-se nulo se não retorna-se o id
-            if (name === getString(R.string.no_categories_spinner)) {
-                return null
-            }else{
-                return getCategoryId(name)
-            }
+    private fun categoryIdFilter(name : String): Long? {
+        //verifca-se se o valor escolhido é sem categoria, se for retorna-se nulo se não retorna-se o id
+        if (name === getString(R.string.no_categories_spinner)) {
+            return null
+        }else{
+            return getCategoryId(name)
         }
+    }
 
     //Função que retorna todos os nomes das categorias
     private fun getCategoriesNames(): ArrayList<String>{

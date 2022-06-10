@@ -13,15 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TravellOrganizer"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.items.AddCategoryActivity"
-            android:exported="false"
-            android:theme="@style/Theme.TravellOrganizer.NoActionBar"/>
-        <activity
-            android:name=".ui.items.AddItemActivity"
-            android:theme="@style/Theme.TravellOrganizer.NoActionBar">
 
-        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true"

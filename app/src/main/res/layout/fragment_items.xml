@@ -18,7 +18,8 @@
         app:layout_constraintHorizontal_bias="0.071"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintVertical_bias="0.144"
+        tools:ignore="RedundantDescriptionCheck" />
 
     <TextView
         android:id="@+id/addItems"
@@ -33,4 +34,13 @@
         app:layout_constraintStart_toEndOf="@+id/toAddItemButton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.155" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/itemsReciclerView"
+        android:layout_width="402dp"
+        android:layout_height="478dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toAddItemButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
