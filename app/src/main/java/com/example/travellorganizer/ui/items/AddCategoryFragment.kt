@@ -57,7 +57,7 @@ class AddCategoryFragment : Fragment() {
 
     private fun insertCategory(name : String): Boolean{
         //usamos a nossa class Items para criar o contentValues
-        val categories = Category(name)
+        val categories = Category(requireContext(),name)
         // instanciamos o helper para gerirmos a base de dados
         val helper = DbOpenHelper(context)
         //vamos buscar a base de dados no modo de escrita

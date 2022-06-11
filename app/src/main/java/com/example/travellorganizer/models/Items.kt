@@ -8,7 +8,7 @@ import com.example.travellorganizer.db.DbOpenHelper
 import com.example.travellorganizer.db.ItemsTable
 import java.lang.Exception
 
-data class Items(var context: Context, var name : String, var categoryId : Long?= null, var id: Long = -1){
+data class Items(var context: Context, var name : String? = null, var categoryId : Long?= null, var id: Long = -1){
 
     //Função que cria um set com os valores a inserir na tabela
     fun toContentValues(): ContentValues{
@@ -59,7 +59,7 @@ data class Items(var context: Context, var name : String, var categoryId : Long?
         try {
 
             //vamos buscar todos os registos da coluna, ele vai ser desenvolvido num objecto do tipo Cursor
-            val result = CategoriesTable(db).query()
+            val result = ItemsTable(db).query()
 
             //interamos o resultado, cada vez que o cursor andar adicionamos o resultado do cursor
             while (result.moveToNext()){
@@ -67,8 +67,8 @@ data class Items(var context: Context, var name : String, var categoryId : Long?
                 itemsList.add(
                     Items(
                         context,
-                        result.getString(result.getColumnIndexOrThrow(CategoriesTable.FIELD_NAME)),
-                        result.getLong(result.getColumnIndexOrThrow(CategoriesTable.FIELD_CATEGORY_ID)),
+                        result.getString(result.getColumnIndexOrThrow(ItemsTable.FIELD_NAME)),
+                        result.getLong(result.getColumnIndexOrThrow(ItemsTable.FIELD_CATEGORY_ID)),
                         result.getLong(result.getColumnIndexOrThrow("_id"))
                     )
                 )

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
@@ -15,9 +16,12 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travellorganizer.MainActivity
 import com.example.travellorganizer.R
 import com.example.travellorganizer.databinding.FragmentItemsBinding
+import com.example.travellorganizer.models.Items
+import com.example.travellorganizer.ui.items.adapters.ItemsAdapter
 
 
 class ItemsFragment : Fragment() {
@@ -46,6 +50,17 @@ class ItemsFragment : Fragment() {
 
         val addButton: ImageButton = binding.toAddItemButton
 
+        val items = Items(requireContext()).getAll()
+
+        val recycler = binding.itemsReciclerView
+
+
+        recycler.apply {
+            setHasFixedSize(true)
+
+            layoutManager = LinearLayoutManager(context)
+            adapter = ItemsAdapter(items)
+        }
 
         addButton.setOnClickListener {
            findNavController(this).navigate(R.id.navigation_addItemsFragment)
@@ -53,7 +68,6 @@ class ItemsFragment : Fragment() {
 
         return root
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
