@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.travellorganizer.R
 import com.example.travellorganizer.databinding.FragmentListsBinding
 
 class ListsFragment : Fragment() {
@@ -28,9 +30,10 @@ class ListsFragment : Fragment() {
         _binding = FragmentListsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val addButton = binding.newListbutton
+
+        addButton.setOnClickListener{
+            findNavController().navigate(R.id.navigation_createListFragment)
         }
         return root
     }

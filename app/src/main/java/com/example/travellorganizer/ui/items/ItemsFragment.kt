@@ -43,10 +43,6 @@ class ItemsFragment : Fragment() {
         _binding = FragmentItemsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.addItems
-       /* itemsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }*/
 
         val addButton: ImageButton = binding.toAddItemButton
 

@@ -21,7 +21,11 @@
         android:id="@+id/navigation_list"
         android:name="com.example.travellorganizer.ui.lists.ListsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_lists" />
+        tools:layout="@layout/fragment_lists" >
+        <action
+            android:id="@+id/action_navigation_list_to_createListFragment"
+            app:destination="@id/navigation_createListFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_item"
@@ -46,4 +50,9 @@
         android:name="com.example.travellorganizer.ui.items.AddCategoryFragment"
         android:label="fragment_add_category"
         tools:layout="@layout/fragment_add_category" />
+    <fragment
+        android:id="@+id/navigation_createListFragment"
+        android:name="com.example.travellorganizer.ui.lists.CreateListFragment"
+        android:label="fragment_create_list"
+        tools:layout="@layout/fragment_create_list" />
 </navigation>

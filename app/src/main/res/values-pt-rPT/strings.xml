@@ -26,4 +26,5 @@
     <string name="add_items_fragment">AddItemsFragment</string>
     <string name="category_added">Categoria inserida com sucesso!</string>
     <string name="item_added">Item adicionado com sucesso!</string>
+    <string name="create_a_new_list">Criar Nova lista</string>
 </resources>

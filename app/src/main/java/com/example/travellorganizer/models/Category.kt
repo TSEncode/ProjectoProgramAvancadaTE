@@ -18,6 +18,27 @@ data class Category(val context: Context, var name: String? = null, var category
         return values
     }
 
+     fun insertCategory(name : String): Boolean{
+        //usamos a nossa class Items para criar o contentValues
+        val categories = Category(context,name)
+        // instanciamos o helper para gerirmos a base de dados
+        val helper = DbOpenHelper(context)
+        //vamos buscar a base de dados no modo de escrita
+        val db = helper.writableDatabase
+        /**
+         *  Experimenta-se se dá para inserir os valores na base de dados, se não der
+         *  aciona-se uma depuração de erro a ser lançado num toast
+         */
+        try {
+            CategoriesTable(db).insert(categories.toContentValues())
+            db.close()
+            return true
+        }catch (e: Exception){
+            Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
+            return false
+        }
+    }
+
     fun getAll(): ArrayList<Category>{
 
         val categoryList = ArrayList<Category>()

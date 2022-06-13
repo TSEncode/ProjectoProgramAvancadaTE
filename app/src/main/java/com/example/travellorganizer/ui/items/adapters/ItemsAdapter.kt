@@ -1,8 +1,11 @@
 package com.example.travellorganizer.ui.items.adapters
 
+import android.os.Debug
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 
 import android.widget.TextView
 import android.widget.Toast
@@ -40,13 +43,29 @@ class ItemsAdapter (val items: ArrayList<Items>) : RecyclerView.Adapter<ItemsAda
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val item = itemView.findViewById<TextView>(R.id.itemCardTextView)
+        val checkBox = itemView.findViewById<CheckBox>(R.id.itemCardCheckBox)
 
         init{
+            val arrayTest : ArrayList<String?> = ArrayList()
+            val itemChecked = checkBox.isChecked
+
+            var stringtest = ""
 
             itemView.setOnClickListener{
+
                 val position = absoluteAdapterPosition
-                Toast.makeText(itemView.context, "${items[position].name}", Toast.LENGTH_SHORT).show()
+
+                if(itemChecked){
+                    arrayTest.add(items[position].name)
+                }
+
+                for(s in arrayTest) Log.d(s!!, "teste")
+
             }
+
+
+
         }
+
     }
 }

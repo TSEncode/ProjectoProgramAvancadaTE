@@ -35,11 +35,10 @@
             android:layout_width="309dp"
             android:layout_height="25dp"
             android:layout_marginEnd="28dp"
-            android:paddingTop="2dp"
             android:textSize="16sp"
+            android:paddingTop="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/itemCardCheckBox"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

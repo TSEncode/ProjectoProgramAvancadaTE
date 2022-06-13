@@ -47,7 +47,7 @@ class AddCategoryFragment : Fragment() {
 
             val categoryName = categoryNameEditText.text.toString()
 
-            insertCategory(categoryName)
+            Category(requireContext()).insertCategory(categoryName)
             Toast.makeText(context, getString(R.string.category_added), Toast.LENGTH_SHORT).show()
 
             categoryNameEditText.setText("")
@@ -56,24 +56,5 @@ class AddCategoryFragment : Fragment() {
         return root
     }
 
-    private fun insertCategory(name : String): Boolean{
-        //usamos a nossa class Items para criar o contentValues
-        val categories = Category(requireContext(),name)
-        // instanciamos o helper para gerirmos a base de dados
-        val helper = DbOpenHelper(context)
-        //vamos buscar a base de dados no modo de escrita
-        val db = helper.writableDatabase
-        /**
-         *  Experimenta-se se dá para inserir os valores na base de dados, se não der
-         *  aciona-se uma depuração de erro no terminal
-         */
-        try {
-            CategoriesTable(db).insert(categories.toContentValues())
-            db.close()
-            return true
-        }catch (e: Exception){
-            Toast.makeText(context, e.localizedMessage, Toast.LENGTH_SHORT).show()
-            return false
-        }
-    }
+
 }
