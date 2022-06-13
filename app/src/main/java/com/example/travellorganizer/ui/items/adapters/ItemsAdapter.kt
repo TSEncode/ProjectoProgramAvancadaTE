@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -38,6 +39,14 @@ class ItemsAdapter (val items: ArrayList<Items>) : RecyclerView.Adapter<ItemsAda
 
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val item = itemView.findViewById<TextView>(R.id.item)
+        val item = itemView.findViewById<TextView>(R.id.itemCardTextView)
+
+        init{
+
+            itemView.setOnClickListener{
+                val position = absoluteAdapterPosition
+                Toast.makeText(itemView.context, "${items[position].name}", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

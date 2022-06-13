@@ -48,6 +48,7 @@ class AddCategoryFragment : Fragment() {
             val categoryName = categoryNameEditText.text.toString()
 
             insertCategory(categoryName)
+            Toast.makeText(context, getString(R.string.category_added), Toast.LENGTH_SHORT).show()
 
             categoryNameEditText.setText("")
         }

@@ -24,4 +24,6 @@
     <string name="add_category">CRIAR CATEGORIA</string>
     <string name="add_category_name">Coloque o nome da categoria</string>
     <string name="add_items_fragment">AddItemsFragment</string>
+    <string name="category_added">Categoria inserida com sucesso!</string>
+    <string name="item_added">Item adicionado com sucesso!</string>
 </resources>

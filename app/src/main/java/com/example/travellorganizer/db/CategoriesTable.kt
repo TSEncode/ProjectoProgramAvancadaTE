@@ -22,3 +22,4 @@ class CategoriesTable(db : SQLiteDatabase) : TableModel (db, NAME) {
         const val FIELD_CATEGORY_ID = "category_id"
     }
 }
+
