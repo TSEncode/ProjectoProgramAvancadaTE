@@ -22,17 +22,19 @@
     <string name="no_categories_spinner">No category</string>
     <string name="add_category">ADD CATEGORY</string>
     <string name="add_category_name">Add Category Name</string>
-
     <string name="add_items_fragment">AddItemsFragment</string>
     <string name="category_added">Category successfully added!</string>
     <string name="item_added">Item added successfully!</string>
+
+
+    <!-- List -->
     <string name="create_a_new_list">Create a New List</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="create_a_list">Create a List</string>
     <string name="add_list_name">Add List Name</string>
     <string name="list_name">List Name:</string>
-    <string name="description">Description</string>
+    <string name="description">Description:</string>
     <string name="add_a_list_description">Add a list description</string>
     <string name="list_sucess">List successfully created!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

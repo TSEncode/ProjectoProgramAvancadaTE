@@ -42,15 +42,21 @@ class CreateListFragment : Fragment() {
             val name = binding.listNameValue.text.toString()
             val descrip = binding.descriptionListValue.text.toString()
 
-            Lists(requireContext(), name, descrip).insertList()
+            val listInsert = Lists(requireContext(), name, descrip).insertList()
 
-            binding.listNameValue.setText("")
-            binding.descriptionListValue.setText("")
+            if(listInsert){
 
-            Toast.makeText(context, getString(R.string.list_sucess), Toast.LENGTH_SHORT)
+                Toast.makeText(context, getString(R.string.list_sucess), Toast.LENGTH_SHORT).show()
+
+                binding.listNameValue.setText("")
+                binding.descriptionListValue.setText("")
+
+            }
+
         }
 
         return root
+
     }
 
     override fun onDestroyView() {

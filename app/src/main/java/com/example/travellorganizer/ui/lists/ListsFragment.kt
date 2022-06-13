@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travellorganizer.R
 import com.example.travellorganizer.databinding.FragmentListsBinding
+import com.example.travellorganizer.models.Lists
+import com.example.travellorganizer.ui.lists.adapters.ListAdapter
 
 class ListsFragment : Fragment() {
 
@@ -32,9 +34,21 @@ class ListsFragment : Fragment() {
 
         val addButton = binding.newListbutton
 
+
+        val recycler = binding.listRecylerView
+
+        val lists = Lists(requireContext()).getAll()
+
+        recycler.apply {
+            setHasFixedSize(true)
+
+            layoutManager = LinearLayoutManager(context)
+            adapter = ListAdapter(lists)
+        }
         addButton.setOnClickListener{
             findNavController().navigate(R.id.navigation_createListFragment)
         }
+
         return root
     }
 

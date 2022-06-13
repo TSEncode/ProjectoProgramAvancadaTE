@@ -18,7 +18,7 @@ class ListTable(db: SQLiteDatabase) : TableModel(db, NAME) {
 
     //Nomes dos campos e da tabela
     companion object {
-        const val NAME = "list_table"
+        const val NAME = "list"
         const val FIELD_NAME = "name"
         const val FIELD_DESCRIPTION = "description"
         const val FIELD_STATUS = "status"

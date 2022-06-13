@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.lists.ListsFragment">
+    tools:context=".ui.lists.ListsFragment"
+    android:id="@+id/listFragment">
 
     <ImageButton
         android:id="@+id/newListbutton"
@@ -34,5 +35,14 @@
         app:layout_constraintStart_toEndOf="@+id/newListbutton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.157" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listRecylerView"
+        android:layout_width="410dp"
+        android:layout_height="497dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addListTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

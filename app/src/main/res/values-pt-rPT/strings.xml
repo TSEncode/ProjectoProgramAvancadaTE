@@ -26,5 +26,13 @@
     <string name="add_items_fragment">AddItemsFragment</string>
     <string name="category_added">Categoria inserida com sucesso!</string>
     <string name="item_added">Item adicionado com sucesso!</string>
-    <string name="create_a_new_list">Criar Nova lista</string>
+
+    <!-- List -->
+    <string name="create_a_new_list">Criar uma Nova Lista</string>
+    <string name="create_a_list">Crie uma lista</string>
+    <string name="add_list_name">Coloque o nome da lista</string>
+    <string name="list_name">Nome da Lista:</string>
+    <string name="description">Descrição:</string>
+    <string name="add_a_list_description">Coloque uma descrição para a lista</string>
+    <string name="list_sucess">Lista criada com sucesso!</string>
 </resources>

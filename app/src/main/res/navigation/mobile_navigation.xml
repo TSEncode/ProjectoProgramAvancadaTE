@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_navigation_list_to_createListFragment"
             app:destination="@id/navigation_createListFragment" />
+        <action
+            android:id="@+id/action_navigation_list_to_navigation_listBodyFragment"
+            app:destination="@id/navigation_listBodyFragment" />
     </fragment>
 
     <fragment
@@ -55,4 +58,9 @@
         android:name="com.example.travellorganizer.ui.lists.CreateListFragment"
         android:label="fragment_create_list"
         tools:layout="@layout/fragment_create_list" />
+    <fragment
+        android:id="@+id/navigation_listBodyFragment"
+        android:name="com.example.travellorganizer.ui.lists.ListBodyFragment"
+        android:label="fragment_list_body"
+        tools:layout="@layout/fragment_list_body" />
 </navigation>
