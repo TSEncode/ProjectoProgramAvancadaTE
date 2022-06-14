@@ -26,7 +26,7 @@ import com.example.travellorganizer.ui.items.adapters.ItemsAdapter
  */
 class ListBodyFragment : Fragment() {
     private var _binding: FragmentListBodyBinding? = null
-
+    private var id : Long? = null
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
@@ -39,16 +39,17 @@ class ListBodyFragment : Fragment() {
         val listsViewModel =
             ViewModelProvider(this).get(ListsViewModel::class.java)
 
+        arguments?.let {
+            id = it.getLong("list_id")
+        }
         _binding = FragmentListBodyBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
 
         val test = binding.teste
 
-       listsViewModel.id.observe(viewLifecycleOwner, Observer{ id ->
-            binding.teste.setText(id.toString())
-        } )
 
+        test.setText(" O id é: ${id}")
 
         return root
     }

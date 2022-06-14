@@ -11,10 +11,11 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travellorganizer.R
 import com.example.travellorganizer.models.Lists
+import com.example.travellorganizer.ui.lists.GetAdapterData
 import com.example.travellorganizer.ui.lists.ListBodyFragment
 import com.example.travellorganizer.ui.lists.ListsViewModel
 
-class ListAdapter (val lists: ArrayList<Lists>) : RecyclerView.Adapter<ListAdapter.ListsViewHolder>(){
+class ListAdapter (val lists: ArrayList<Lists>, val getId : GetAdapterData) : RecyclerView.Adapter<ListAdapter.ListsViewHolder>(){
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListsViewHolder {
@@ -39,37 +40,20 @@ class ListAdapter (val lists: ArrayList<Lists>) : RecyclerView.Adapter<ListAdapt
 
 
 
-    inner class ListsViewHolder(listView: View) : RecyclerView.ViewHolder(listView) {
+    inner class ListsViewHolder(listView: View) : RecyclerView.ViewHolder(listView), View.OnClickListener {
 
         val listViewText = listView.findViewById<TextView>(R.id.listCardTextView)
 
 
         init{
-            val arrayTest : ArrayList<String?> = ArrayList()
+            listView.setOnClickListener(this)
 
 
-            listView.setOnClickListener{
+        }
 
-                val position = absoluteAdapterPosition
-
-                val viewModel = ListsViewModel()
-
-                viewModel.selectId(lists[position].id)
-
-                Toast.makeText(it.context, "${lists[position].id}", Toast.LENGTH_SHORT).show()
-
-
-
-                val args = Bundle()
-
-                args.putLong("list_id", lists[position].id)
-
-                val bodyFragment = ListBodyFragment()
-
-                it.findNavController().navigate(R.id.navigation_listBodyFragment)
-            }
-
-
+        override fun onClick(p0: View?) {
+                val position = bindingAdapterPosition
+                getId.getId(lists[position].id)
         }
 
     }

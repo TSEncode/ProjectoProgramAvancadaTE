@@ -17,7 +17,8 @@ import com.example.travellorganizer.models.Items
 import kotlinx.coroutines.NonDisposableHandle.parent
 
 class ItemsAdapter (val items: ArrayList<Items>) : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>(){
-
+    var selectedItem = -1
+    var lastSelectedItem = -1
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemsViewHolder {
         // Create a new view, which defines the UI of the list item
@@ -34,7 +35,11 @@ class ItemsAdapter (val items: ArrayList<Items>) : RecyclerView.Adapter<ItemsAda
         val item = items[position]
 
         viewHolder.item.text = item.name
+
+
+
     }
+
 
     override fun getItemCount() = items.size
 

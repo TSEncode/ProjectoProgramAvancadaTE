@@ -56,11 +56,14 @@ class ItemsFragment : Fragment() {
 
             layoutManager = LinearLayoutManager(context)
             adapter = ItemsAdapter(items)
+
+
         }
 
         addButton.setOnClickListener {
            findNavController(this).navigate(R.id.navigation_addItemsFragment)
         }
+
 
         return root
     }

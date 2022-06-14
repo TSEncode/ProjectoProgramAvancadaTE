@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -13,7 +14,7 @@ import com.example.travellorganizer.databinding.FragmentListsBinding
 import com.example.travellorganizer.models.Lists
 import com.example.travellorganizer.ui.lists.adapters.ListAdapter
 
-class ListsFragment : Fragment() {
+class ListsFragment : Fragment(), GetAdapterData {
 
     private var _binding: FragmentListsBinding? = null
 
@@ -39,11 +40,13 @@ class ListsFragment : Fragment() {
 
         val lists = Lists(requireContext()).getAll()
 
+        val listAdapter = ListAdapter(lists, this)
+
         recycler.apply {
             setHasFixedSize(true)
 
             layoutManager = LinearLayoutManager(context)
-            adapter = ListAdapter(lists)
+            adapter = listAdapter
         }
         addButton.setOnClickListener{
             findNavController().navigate(R.id.navigation_createListFragment)
@@ -55,5 +58,12 @@ class ListsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun getId(id: Long) {
+        val bundle = Bundle()
+        bundle.putLong("list_id", id)
+
+        findNavController().navigate(R.id.navigation_listBodyFragment, bundle)
     }
 }
