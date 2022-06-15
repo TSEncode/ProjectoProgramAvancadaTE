@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.travellorganizer.ui.home.HomeFragment"
+        android:name="com.example.travelorganizer.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_travell"
-        android:name="com.example.travellorganizer.ui.travels.TravelsFragment"
+        android:name="com.example.travelorganizer.ui.travels.TravelsFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_travels" />
 
     <fragment
         android:id="@+id/navigation_list"
-        android:name="com.example.travellorganizer.ui.lists.ListsFragment"
+        android:name="com.example.travelorganizer.ui.lists.ListsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_lists" >
         <action
@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/navigation_item"
-        android:name="com.example.travellorganizer.ui.items.ItemsFragment"
+        android:name="com.example.travelorganizer.ui.items.ItemsFragment"
         android:label="@string/navigation_item"
         tools:layout="@layout/fragment_items" >
         <action
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_addItemsFragment"
-        android:name="com.example.travellorganizer.ui.items.AddItemsFragment"
+        android:name="com.example.travelorganizer.ui.items.AddItemsFragment"
         android:label="fragment_add_item"
         tools:layout="@layout/fragment_add_item" >
         <action
@@ -50,17 +50,17 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_addCategoryFragment"
-        android:name="com.example.travellorganizer.ui.items.AddCategoryFragment"
+        android:name="com.example.travelorganizer.ui.items.AddCategoryFragment"
         android:label="fragment_add_category"
         tools:layout="@layout/fragment_add_category" />
     <fragment
         android:id="@+id/navigation_createListFragment"
-        android:name="com.example.travellorganizer.ui.lists.CreateListFragment"
+        android:name="com.example.travelorganizer.ui.lists.CreateListFragment"
         android:label="fragment_create_list"
         tools:layout="@layout/fragment_create_list" />
     <fragment
         android:id="@+id/navigation_listBodyFragment"
-        android:name="com.example.travellorganizer.ui.lists.ListBodyFragment"
+        android:name="com.example.travelorganizer.ui.lists.ListBodyFragment"
         android:label="fragment_list_body"
         tools:layout="@layout/fragment_list_body" />
 </navigation>
