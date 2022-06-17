@@ -129,8 +129,16 @@ class TravelContentProvider : ContentProvider() {
         val cursor = when (getUriMatcher().match(uri)) {
             URI_ITEMS -> ItemsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_CATEGORIES -> CategoriesTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
+            URI_LISTS -> ListTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
+            URI_TRAVEL ->TravelsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
+            URI_LIST_TRAVEL -> ListTravelTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
+            URI_LIST_ITEM -> ListItemsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_SPECIFIC_ITEM -> ItemsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_CATEGORY -> CategoriesTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_SPECIFIC_LISTS -> ListTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_SPECIFIC_TRAVEL -> TravelsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_SPECIFIC_LIST_TRAVEL -> ListTravelTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_SPECIFIC_LIST_ITEM -> ListItemsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> null
         }
 
