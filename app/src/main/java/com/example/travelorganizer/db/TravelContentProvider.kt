@@ -202,7 +202,12 @@ class TravelContentProvider : ContentProvider() {
         requireNotNull(values)
 
         val id = when (getUriMatcher().match(uri)) {
-            //TODO
+            URI_CATEGORIES -> CategoriesTable(db).insert(values)
+            URI_LISTS -> ListTable(db).insert(values)
+            URI_ITEMS -> ItemsTable(db).insert(values)
+            URI_TRAVEL -> TravelsTable(db).insert(values)
+            URI_LIST_TRAVEL -> ListTravelTable(db).insert(values)
+            URI_LIST_ITEM -> ListItemsTable(db).insert(values)
             else -> -1
         }
 
@@ -323,8 +328,8 @@ class TravelContentProvider : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, ListTravelTable.NAME, URI_LIST_TRAVEL)
             uriMatcher.addURI(AUTHORITY, "${ListTravelTable.NAME}/#", URI_SPECIFIC_LIST_TRAVEL)
 
-
             return uriMatcher
+
         }
     }
 }
