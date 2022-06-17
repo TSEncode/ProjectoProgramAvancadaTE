@@ -247,7 +247,12 @@ class TravelContentProvider : ContentProvider() {
         val id = uri.lastPathSegment
 
         val registosApagados = when (getUriMatcher().match(uri)) {
-            //TODO
+            URI_CATEGORIES -> CategoriesTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_LISTS -> ListTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_TRAVEL -> TravelsTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_ITEMS -> ItemsTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_LIST_TRAVEL -> ListTravelTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_LIST_ITEM -> ListItemsTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
