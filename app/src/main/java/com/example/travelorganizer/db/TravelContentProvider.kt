@@ -1,5 +1,6 @@
 package com.example.travelorganizer.db
 
+import android.content.ClipData
 import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.UriMatcher
@@ -288,14 +289,19 @@ class TravelContentProvider : ContentProvider() {
 
         val id = uri.lastPathSegment
 
-        val registosAlterados = when (getUriMatcher().match(uri)) {
-           //TODO
+        val updateRecords = when (getUriMatcher().match(uri)) {
+                URI_SPECIFIC_CATEGORY -> CategoriesTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+                URI_SPECIFIC_ITEM -> ItemsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+                URI_SPECIFIC_LISTS -> ListTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+                URI_SPECIFIC_TRAVEL -> TravelsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+                URI_SPECIFIC_LIST_ITEM -> ListItemsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+                URI_SPECIFIC_LIST_TRAVEL -> ListTravelTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
             else -> 0
         }
 
         db.close()
 
-        return registosAlterados
+        return updateRecords
     }
 
     companion object {
@@ -316,6 +322,15 @@ class TravelContentProvider : ContentProvider() {
 
         const val UNIQUE_RECORD = "vnd.android.cursor.item"
         const val MULTIPLE_RECORDS = "vnd.android.cursor.dir"
+
+        private val BASE_URL = Uri.parse("content://$AUTHORITY")
+
+        val CATEGORY_URL =Uri.withAppendedPath(BASE_URL, CategoriesTable.NAME)
+        val ITEM_URL =Uri.withAppendedPath(BASE_URL, ItemsTable.NAME)
+        val TRAVEL_URL =Uri.withAppendedPath(BASE_URL, TravelsTable.NAME)
+        val LIST_URL =Uri.withAppendedPath(BASE_URL, ListTable.NAME)
+        val LIST_ITEM_URL =Uri.withAppendedPath(BASE_URL, ListItemsTable.NAME)
+        val LIST_TRAVEL_URL =Uri.withAppendedPath(BASE_URL, ListTravelTable.NAME)
 
         fun getUriMatcher() : UriMatcher {
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)

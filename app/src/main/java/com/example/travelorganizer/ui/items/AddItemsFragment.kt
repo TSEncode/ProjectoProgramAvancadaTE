@@ -1,5 +1,6 @@
 package com.example.travelorganizer.ui.items
 
+import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,9 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
+import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentAddItemBinding
+import com.example.travelorganizer.db.CategoriesTable
+import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Category
 import com.example.travelorganizer.models.Items
 
@@ -18,7 +24,7 @@ import com.example.travelorganizer.models.Items
  * Use the [AddItemsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AddItemsFragment() : Fragment() {
+class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentAddItemBinding? = null
 
     // This property is only valid between onCreateView and
@@ -37,27 +43,27 @@ class AddItemsFragment() : Fragment() {
         val root: View = binding.root
 
         val addButton = binding.addItemButton
-        spinnerDefault()
+
         val debug = binding.addCategoryItemsTextView
 
         //no evento de click pasamos o valor do edit text para ser guardado, utiliza-se a função insertItems para inserir os valores
-        addButton.setOnClickListener {
+        /*addButton.setOnClickListener {
             //guardamos o conteudo do editText
             val itemNameText = binding.itemNameValue
             val itemName = itemNameText.text.toString()
 
             val categorySelected = binding.categoriesSpinner.selectedItem.toString()
 
-            val idCategory = categoryIdFilter(categorySelected)
 
-            val isInserted = Items(requireContext(),itemName, idCategory).insertItems()
 
-            if(isInserted){
+
+
+           *//* if(isInserted){
                 Toast.makeText(context, getString(R.string.item_added), Toast.LENGTH_SHORT).show()
 
                 itemNameText.setText("")
             }
-        }
+        }*/
 
         val addCategories: ImageButton = binding.toAddCategoryButton
 
@@ -68,8 +74,44 @@ class AddItemsFragment() : Fragment() {
         return root
     }
 
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+        }
 
-    private fun spinnerDefault(){
+
+
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
+        CursorLoader(
+            requireContext(),
+            TravelContentProvider.CATEGORY_URL,
+            CategoriesTable.ALL_FIELDS,
+            null,
+            null,
+            CategoriesTable.FIELD_NAME
+        )
+
+
+    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
+        val categoriesAdapter = SimpleCursorAdapter(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            data,
+            arrayOf(CategoriesTable.FIELD_NAME),
+            intArrayOf(android.R.id.text1),
+            0
+        )
+
+        binding.categoriesSpinner.adapter = categoriesAdapter
+    }
+
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+        binding.categoriesSpinner.adapter = null
+    }
+
+}
+
+/*private fun spinnerDefault(){
         val spinner = binding.categoriesSpinner
 
         //cria-se a lista para passar para o spinner através do adapter
@@ -99,6 +141,4 @@ class AddItemsFragment() : Fragment() {
         }else{
             return Category(requireContext()).getCategoryId(name)
         }
-    }
-
-}
+    }*/

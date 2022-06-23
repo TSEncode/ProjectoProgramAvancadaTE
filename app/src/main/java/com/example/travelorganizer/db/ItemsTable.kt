@@ -1,6 +1,8 @@
 package com.example.travelorganizer.db
 
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteQueryBuilder
 import android.provider.BaseColumns
 
 //Classe que cria a tabela Lista herda a class TableModel
@@ -14,6 +16,21 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
                 "$FIELD_CATEGORY_ID INTEGER," +
                 "FOREIGN KEY($FIELD_CATEGORY_ID) REFERENCES $TABLE_REFERENCE(${BaseColumns._ID}) " +
                 ")")
+    }
+
+    override fun query(
+        columns: Array<String>?,
+        selection: String?,
+        selectionArgs: Array<String>?,
+        groupBy: String?,
+        having: String?,
+        orderBy: String?,
+        limit: String? )
+    : Cursor {
+        val queryBuilder = SQLiteQueryBuilder()
+        queryBuilder.tables = "$NAME INNER JOIN ${CategoriesTable.NAME} ON ${CategoriesTable.FIELD_ID} = $FIELD_ID"
+
+        return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
 
     //Nomes dos campos e da tabela
