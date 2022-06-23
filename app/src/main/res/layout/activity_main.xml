@@ -35,6 +35,7 @@
         android:layout_width="336dp"
         android:layout_height="53dp"
         android:contentDescription="@string/travel_organizer_logo"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/nav_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"

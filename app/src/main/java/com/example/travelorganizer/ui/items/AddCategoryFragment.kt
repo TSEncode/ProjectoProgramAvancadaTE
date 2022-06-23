@@ -37,7 +37,7 @@ class AddCategoryFragment : Fragment() {
 
         val addCategory =  binding.addCategoryButton
 
-        addCategory.setOnClickListener{
+        /*addCategory.setOnClickListener{
             val categoryNameEditText = binding.categoryNameValue
 
             val categoryName = categoryNameEditText.text.toString()
@@ -46,7 +46,7 @@ class AddCategoryFragment : Fragment() {
             Toast.makeText(context, getString(R.string.category_added), Toast.LENGTH_SHORT).show()
 
             categoryNameEditText.setText("")
-        }
+        }*/
 
         return root
     }

@@ -37,11 +37,6 @@ class ListBodyFragment : Fragment() {
         val root: View = binding.root
 
 
-        val test = binding.teste
-
-
-        test.setText(" O id é: ${id}")
-
         return root
     }
 

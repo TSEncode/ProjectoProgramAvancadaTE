@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.travelorganizer.MainActivity
+import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -33,6 +35,14 @@ class HomeFragment : Fragment() {
             textView.text = it
         }
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuTop = R.menu.bottom_nav_menu
     }
 
     override fun onDestroyView() {

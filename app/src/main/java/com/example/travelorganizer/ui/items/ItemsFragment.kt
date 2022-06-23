@@ -37,7 +37,7 @@ class ItemsFragment : Fragment() {
 
         val addButton: ImageButton = binding.toAddItemButton
 
-        val items = Items(requireContext()).getAll()
+        /*val items = Items(requireContext()).getAll()
 
         val recycler = binding.itemsReciclerView
 
@@ -53,7 +53,7 @@ class ItemsFragment : Fragment() {
 
         addButton.setOnClickListener {
            findNavController(this).navigate(R.id.navigation_addItemsFragment)
-        }
+        }*/
 
 
         return root

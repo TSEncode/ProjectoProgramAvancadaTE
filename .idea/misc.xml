@@ -3,8 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Projectos/TravelOrganizer/app/src/main/res/layout/activity_main.xml" value="0.1296875" />
         <entry key="..\:/Projectos/TravelOrganizer/app/src/main/res/layout/fragment_items.xml" value="0.1716485507246377" />
+        <entry key="..\:/Projectos/TravelOrganizer/app/src/main/res/layout/fragment_list_body.xml" value="0.1296875" />
         <entry key="..\:/Projectos/TravelOrganizer/app/src/main/res/layout/fragment_lists.xml" value="0.1716485507246377" />
+        <entry key="..\:/Projectos/TravelOrganizer/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1296875" />
+        <entry key="..\:/Projectos/TravelOrganizer/app/src/main/res/menu/top_nav_list_menu.xml" value="0.1296875" />
         <entry key="..\:/Projectos/TravelOrganizer/app/src/main/res/menu/top_nav_menu.xml" value="0.2796875" />
         <entry key="..\:/Projectos/TravellOrganizer/app/src/main/res/layout/activity_add_category.xml" value="0.1598731884057971" />
         <entry key="..\:/Projectos/TravellOrganizer/app/src/main/res/layout/activity_add_item.xml" value="0.335" />

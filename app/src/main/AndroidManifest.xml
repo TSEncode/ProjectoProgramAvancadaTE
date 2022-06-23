@@ -18,7 +18,7 @@
             android:name="com.example.travelorganizer.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.TravellOrganizer.NoActionBar">
+            android:theme="@style/Theme.TravellOrganizer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
