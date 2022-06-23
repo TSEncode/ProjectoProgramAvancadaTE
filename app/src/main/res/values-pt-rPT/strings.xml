@@ -35,4 +35,7 @@
     <string name="description">Descrição:</string>
     <string name="add_a_list_description">Coloque uma descrição para a lista</string>
     <string name="list_sucess">Lista criada com sucesso!</string>
+
+    <string name="edit">Editar</string>
+    <string name="delete">Apagar</string>
 </resources>

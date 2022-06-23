@@ -15,7 +15,11 @@
         android:id="@+id/navigation_travell"
         android:name="com.example.travelorganizer.ui.travels.TravelsFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_travels" />
+        tools:layout="@layout/fragment_travels" >
+        <action
+            android:id="@+id/action_navigation_travell_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_list"
@@ -28,6 +32,12 @@
         <action
             android:id="@+id/action_navigation_list_to_navigation_listBodyFragment"
             app:destination="@id/navigation_listBodyFragment" />
+        <action
+            android:id="@+id/action_navigation_list_to_navigation_home"
+            app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_list_to_navigation_home2"
+            app:destination="@id/navigation_home" />
     </fragment>
 
     <fragment
@@ -38,6 +48,9 @@
         <action
             android:id="@+id/action_navigation_item_to_navigation_addItemsFragment"
             app:destination="@id/navigation_addItemsFragment" />
+        <action
+            android:id="@+id/action_navigation_item_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/navigation_addItemsFragment"
@@ -47,20 +60,35 @@
         <action
             android:id="@+id/action_navigation_addItemsFragment_to_navigation_addCategoryFragment"
             app:destination="@id/navigation_addCategoryFragment" />
+        <action
+            android:id="@+id/action_navigation_addItemsFragment_to_navigation_item"
+            app:destination="@id/navigation_item" />
     </fragment>
     <fragment
         android:id="@+id/navigation_addCategoryFragment"
         android:name="com.example.travelorganizer.ui.items.AddCategoryFragment"
         android:label="fragment_add_category"
-        tools:layout="@layout/fragment_add_category" />
+        tools:layout="@layout/fragment_add_category" >
+        <action
+            android:id="@+id/action_navigation_addCategoryFragment_to_navigation_addItemsFragment"
+            app:destination="@id/navigation_addItemsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_createListFragment"
         android:name="com.example.travelorganizer.ui.lists.CreateListFragment"
         android:label="fragment_create_list"
-        tools:layout="@layout/fragment_create_list" />
+        tools:layout="@layout/fragment_create_list" >
+        <action
+            android:id="@+id/action_navigation_createListFragment_to_navigation_list"
+            app:destination="@id/navigation_list" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_listBodyFragment"
         android:name="com.example.travelorganizer.ui.lists.ListBodyFragment"
         android:label="fragment_list_body"
-        tools:layout="@layout/fragment_list_body" />
+        tools:layout="@layout/fragment_list_body" >
+        <action
+            android:id="@+id/action_navigation_listBodyFragment_to_navigation_list"
+            app:destination="@id/navigation_list" />
+    </fragment>
 </navigation>
