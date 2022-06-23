@@ -20,10 +20,18 @@ class ListItemsTable(db: SQLiteDatabase) : TableModel(db, NAME) {
     //Nomes dos campos e da tabela
     companion object{
         const val NAME = "list_items"
+        const val FIELD_ID = "$NAME.${BaseColumns._ID}"
         const val FIELD_LIST_ID = "list_id"
         const val FIELD_ITEMS_ID = "items_id"
         const val FIELD_QUANTITY = "quantity"
         const val TABLE_LIST_REFERENCE = "list"
         const val TABLE_ITEMS_REFERENCE = "items"
+
+        val ALL_FIELDS = arrayOf(
+            FIELD_ID,
+            FIELD_LIST_ID,
+            FIELD_ITEMS_ID,
+            FIELD_QUANTITY
+        )
     }
 }

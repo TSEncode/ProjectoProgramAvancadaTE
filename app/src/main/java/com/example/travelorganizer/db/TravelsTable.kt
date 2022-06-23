@@ -21,11 +21,21 @@ class TravelsTable(db: SQLiteDatabase) : TableModel(db, NAME) {
     //Nomes dos campos e da tabela
     companion object{
         const val NAME = "travel"
+        const val FIELD_ID = "$NAME.${BaseColumns._ID}"
         const val FIELD_NAME = "name"
         const val FIELD_BUDGET = "budget"
         const val FIELD_REAL_BUDGET = "real_budget"
         const val FIELD_LOCAL = "local"
         const val FIELD_DATE = "travel_date"
+
+        val ALL_FIELDS = arrayOf(
+            FIELD_ID,
+            FIELD_NAME,
+            FIELD_BUDGET,
+            FIELD_REAL_BUDGET,
+            FIELD_LOCAL,
+            FIELD_DATE
+        )
 
     }
 }

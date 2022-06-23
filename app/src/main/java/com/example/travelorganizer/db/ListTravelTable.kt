@@ -17,10 +17,17 @@ class ListTravelTable (db: SQLiteDatabase) : TableModel(db, NAME){
 
     companion object{
         const val NAME = "list_travel"
+        const val FIELD_ID = "$NAME.${BaseColumns._ID}"
         const val FIELD_LIST_ID = "list_id"
         const val FIELD_TRAVEL_ID = "travel_id"
         const val TABLE_LIST_REFERENCE = "list"
         const val TABLE_TRAVEL_REFERENCE = "travel"
+
+        val ALL_FIELDS = arrayOf(
+            FIELD_ID,
+            FIELD_LIST_ID,
+            FIELD_TRAVEL_ID
+        )
     }
 
 }

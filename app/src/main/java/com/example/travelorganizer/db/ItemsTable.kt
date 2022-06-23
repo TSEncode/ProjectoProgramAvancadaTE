@@ -19,8 +19,16 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
     //Nomes dos campos e da tabela
     companion object {
         const val NAME = "items"
+        const val FIELD_ID = "$NAME.${BaseColumns._ID}"
         const val FIELD_NAME = "name"
         const val FIELD_CATEGORY_ID = "category_id"
         const val TABLE_REFERENCE = "categories"
+
+        val ALL_FIELDS = arrayOf(
+            FIELD_ID,
+            FIELD_NAME,
+            FIELD_CATEGORY_ID
+        )
+
     }
 }
