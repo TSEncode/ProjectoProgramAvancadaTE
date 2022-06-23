@@ -127,7 +127,7 @@ class TravelContentProvider : ContentProvider() {
 
         val id = uri.lastPathSegment
 
-        val cursor = when (getUriMatcher().match(uri)) {
+        return  when (getUriMatcher().match(uri)) {
             URI_ITEMS -> ItemsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_CATEGORIES -> CategoriesTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_LISTS -> ListTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
@@ -143,9 +143,6 @@ class TravelContentProvider : ContentProvider() {
             else -> null
         }
 
-        db.close()
-
-        return cursor
     }
 
     /**
@@ -212,9 +209,7 @@ class TravelContentProvider : ContentProvider() {
             else -> -1
         }
 
-        db.close()
-
-        //if (id == -1L) return null
+        if (id == -1L) return null
 
         return Uri.withAppendedPath(uri, "$id")
     }
@@ -247,7 +242,7 @@ class TravelContentProvider : ContentProvider() {
 
         val id = uri.lastPathSegment
 
-        val deletedRecors = when (getUriMatcher().match(uri)) {
+        return  when (getUriMatcher().match(uri)) {
             URI_CATEGORIES -> CategoriesTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_LISTS -> ListTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_TRAVEL -> TravelsTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
@@ -257,9 +252,6 @@ class TravelContentProvider : ContentProvider() {
             else -> 0
         }
 
-        db.close()
-
-        return deletedRecors
     }
 
     /**
@@ -289,7 +281,7 @@ class TravelContentProvider : ContentProvider() {
 
         val id = uri.lastPathSegment
 
-        val updateRecords = when (getUriMatcher().match(uri)) {
+        return when (getUriMatcher().match(uri)) {
                 URI_SPECIFIC_CATEGORY -> CategoriesTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
                 URI_SPECIFIC_ITEM -> ItemsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
                 URI_SPECIFIC_LISTS -> ListTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
@@ -299,9 +291,6 @@ class TravelContentProvider : ContentProvider() {
             else -> 0
         }
 
-        db.close()
-
-        return updateRecords
     }
 
     companion object {

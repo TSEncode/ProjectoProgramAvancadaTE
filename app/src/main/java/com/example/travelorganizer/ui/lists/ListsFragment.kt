@@ -93,7 +93,7 @@ class ListsFragment : Fragment(), GetAdapterData, LoaderManager.LoaderCallbacks<
         CursorLoader(
             requireContext(),
             TravelContentProvider.LIST_URL,
-            ListTable.ALL_FIELDS,
+           arrayOf(ListTable.FIELD_NAME),
             null,
             null,
             ListTable.FIELD_NAME
