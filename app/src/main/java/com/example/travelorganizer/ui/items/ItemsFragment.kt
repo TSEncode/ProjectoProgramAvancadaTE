@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentItemsBinding
 import com.example.travelorganizer.models.Items
@@ -57,6 +58,15 @@ class ItemsFragment : Fragment() {
 
 
         return root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = activity as MainActivity
+        activity.fragment = this
+        activity.idMenuTop = R.menu.top_nav_list_menu
+
     }
 
     override fun onDestroyView() {

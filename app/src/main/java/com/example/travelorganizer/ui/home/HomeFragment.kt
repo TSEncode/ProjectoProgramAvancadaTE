@@ -43,6 +43,7 @@ class HomeFragment : Fragment() {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuTop = R.menu.bottom_nav_menu
+
     }
 
     override fun onDestroyView() {

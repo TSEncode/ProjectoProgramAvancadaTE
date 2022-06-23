@@ -12,6 +12,7 @@ import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
+import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentAddItemBinding
 import com.example.travelorganizer.db.CategoriesTable
@@ -74,10 +75,15 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         return root
     }
 
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            super.onViewCreated(view, savedInstanceState)
-        }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        val activity = activity as MainActivity
+
+        activity.fragment = this
+        activity.idMenuTop = R.menu.top_nav_list_menu
+
+    }
 
 
 

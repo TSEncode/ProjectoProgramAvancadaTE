@@ -50,7 +50,7 @@ class ListsFragment : Fragment(), GetAdapterData {
             adapter = listAdapter
         }
         addButton.setOnClickListener{
-            findNavController().navigate(R.id.navigation_createListFragment)
+            findNavController().navigate(R.id.action_navigation_list_to_createListFragment)
         }
 
         return root
@@ -63,6 +63,7 @@ class ListsFragment : Fragment(), GetAdapterData {
 
         activity.fragment = this
         activity.idMenuTop = R.menu.top_nav_list_menu
+
     }
 
     override fun onDestroyView() {

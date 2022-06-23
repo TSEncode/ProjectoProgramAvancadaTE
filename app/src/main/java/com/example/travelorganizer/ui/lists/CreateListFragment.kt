@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentCreateListBinding
 import com.example.travelorganizer.models.Lists
@@ -56,6 +57,16 @@ class CreateListFragment : Fragment() {
         }
 
         return root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val activity = activity as MainActivity
+
+        activity.fragment = this
+        activity.idMenuTop = R.menu.top_nav_list_menu
 
     }
 

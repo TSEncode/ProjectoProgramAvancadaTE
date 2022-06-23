@@ -76,8 +76,8 @@
     <fragment
         android:id="@+id/navigation_createListFragment"
         android:name="com.example.travelorganizer.ui.lists.CreateListFragment"
-        android:label="fragment_create_list"
-        tools:layout="@layout/fragment_create_list" >
+        android:label="@string/create_a_list"
+        tools:layout="@layout/fragment_create_list">
         <action
             android:id="@+id/action_navigation_createListFragment_to_navigation_list"
             app:destination="@id/navigation_list" />
