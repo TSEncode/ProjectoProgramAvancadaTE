@@ -13,6 +13,7 @@
     <string name="add_item_name_placeholder">Add Item Name</string>
     <string name="add_item_name_label">Add item name label</string>
     <!-- Categories Strings -->
+
     <string name="category_name">Category Name:</string>
     <string name="travel_organizer_logo">Travel Organizer Logo</string>
     <string name="choose_category">Choose Category</string>

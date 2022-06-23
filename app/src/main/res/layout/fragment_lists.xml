@@ -7,42 +7,15 @@
     tools:context=".ui.lists.ListsFragment"
     android:id="@+id/listFragment">
 
-    <ImageButton
-        android:id="@+id/newListbutton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="#00FFFFFF"
-        android:contentDescription="@string/add_item_button"
-        android:src="@drawable/ic_add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.071"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144"
-        tools:ignore="RedundantDescriptionCheck" />
-
-    <TextView
-        android:id="@+id/addListTextView"
-        android:layout_width="269dp"
-        android:layout_height="37dp"
-        android:text="@string/create_a_new_list"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.264"
-        app:layout_constraintStart_toEndOf="@+id/newListbutton"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listRecylerView"
         android:layout_width="410dp"
         android:layout_height="497dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addListTextView" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.068" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
