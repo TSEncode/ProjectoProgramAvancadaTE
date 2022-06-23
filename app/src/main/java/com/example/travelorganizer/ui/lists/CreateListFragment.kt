@@ -37,25 +37,6 @@ class CreateListFragment : Fragment() {
         val root: View = binding.root
 
 
-        val addList = binding.addListButton
-
-        addList.setOnClickListener {
-            val name = binding.listNameValue.text.toString()
-            val descrip = binding.descriptionListValue.text.toString()
-
-            val listInsert = Lists(requireContext(), name, descrip).insertList()
-
-            if(listInsert){
-
-                Toast.makeText(context, getString(R.string.list_sucess), Toast.LENGTH_SHORT).show()
-
-                binding.listNameValue.setText("")
-                binding.descriptionListValue.setText("")
-
-            }
-
-        }
-
         return root
 
     }
@@ -75,3 +56,23 @@ class CreateListFragment : Fragment() {
         _binding = null
     }
 }
+
+
+/*val addList = binding.addListButton
+
+        addList.setOnClickListener {
+            val name = binding.listNameValue.text.toString()
+            val descrip = binding.descriptionListValue.text.toString()
+
+            val listInsert = Lists(requireContext(), name, descrip).insertList()
+
+            if(listInsert){
+
+                Toast.makeText(context, getString(R.string.list_sucess), Toast.LENGTH_SHORT).show()
+
+                binding.listNameValue.setText("")
+                binding.descriptionListValue.setText("")
+
+            }
+
+        }*/

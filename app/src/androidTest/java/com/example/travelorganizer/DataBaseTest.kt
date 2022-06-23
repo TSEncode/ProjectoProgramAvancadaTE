@@ -7,8 +7,10 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.example.travelorganizer.db.CategoriesTable
 import com.example.travelorganizer.db.DbOpenHelper
 import com.example.travelorganizer.db.ItemsTable
+import com.example.travelorganizer.db.ListTable
 import com.example.travelorganizer.models.Category
 import com.example.travelorganizer.models.Items
+import com.example.travelorganizer.models.Lists
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -33,6 +35,11 @@ class DataBaseTest {
     private fun insertCategory( db: SQLiteDatabase, category : Category){
         category.id = CategoriesTable(db).insert(category.toContentValues())
         assertNotEquals(-1, category.id)
+    }
+
+    private fun insertList( db: SQLiteDatabase, list : Lists){
+        list.id = ListTable(db).insert(list.toContentValues())
+        assertNotEquals(-1, list.id)
     }
     @Before
     fun deleteDB() {
@@ -67,6 +74,18 @@ class DataBaseTest {
         val db = helper.writableDatabase
 
         insertCategory(db, Category("Roupa"))
+
+        db.close()
+    }
+
+    @Test
+    fun canInserList(){
+        val helper = DbOpenHelper(appContext())
+        val db = helper.writableDatabase
+
+        insertList(db, Lists("Viagem Algarve"))
+        insertList(db, Lists("Viagem Salamanca"))
+        insertList(db, Lists("Viagem Suíça"))
 
         db.close()
     }

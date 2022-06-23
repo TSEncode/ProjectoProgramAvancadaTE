@@ -36,7 +36,6 @@ class ItemsFragment : Fragment() {
         val root: View = binding.root
 
 
-        val addButton: ImageButton = binding.toAddItemButton
 
         /*val items = Items(requireContext()).getAll()
 

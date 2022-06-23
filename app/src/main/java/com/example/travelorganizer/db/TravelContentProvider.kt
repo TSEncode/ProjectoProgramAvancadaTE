@@ -247,7 +247,7 @@ class TravelContentProvider : ContentProvider() {
 
         val id = uri.lastPathSegment
 
-        val registosApagados = when (getUriMatcher().match(uri)) {
+        val deletedRecors = when (getUriMatcher().match(uri)) {
             URI_CATEGORIES -> CategoriesTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_LISTS -> ListTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_TRAVEL -> TravelsTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
@@ -259,7 +259,7 @@ class TravelContentProvider : ContentProvider() {
 
         db.close()
 
-        return registosApagados
+        return deletedRecors
     }
 
     /**

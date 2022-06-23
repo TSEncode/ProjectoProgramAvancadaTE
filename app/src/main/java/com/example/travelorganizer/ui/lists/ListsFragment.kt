@@ -1,5 +1,6 @@
 package com.example.travelorganizer.ui.lists
 
+import android.database.Cursor
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -7,15 +8,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.loader.app.LoaderManager
+import androidx.loader.content.CursorLoader
+import androidx.loader.content.Loader
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentListsBinding
+import com.example.travelorganizer.db.CategoriesTable
+import com.example.travelorganizer.db.ListTable
+import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Lists
 import com.example.travelorganizer.ui.lists.adapters.ListAdapter
 
-class ListsFragment : Fragment(), GetAdapterData {
+class ListsFragment : Fragment(), GetAdapterData, LoaderManager.LoaderCallbacks<Cursor> {
 
     private var _binding: FragmentListsBinding? = null
 
@@ -23,6 +30,7 @@ class ListsFragment : Fragment(), GetAdapterData {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var listAdapter : ListAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,30 +42,24 @@ class ListsFragment : Fragment(), GetAdapterData {
         _binding = FragmentListsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val addButton = binding.newListbutton
 
 
-        val recycler = binding.listRecylerView
-
-        val lists = Lists(requireContext()).getAll()
-
-        val listAdapter = ListAdapter(lists, this)
-
-        recycler.apply {
-            setHasFixedSize(true)
-
-            layoutManager = LinearLayoutManager(context)
-            adapter = listAdapter
-        }
-        addButton.setOnClickListener{
-            findNavController().navigate(R.id.action_navigation_list_to_createListFragment)
-        }
 
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_LIST, null, this)
+
+        val recycler = binding.listRecylerView
+
+
+        val listAdapter = ListAdapter(this)
+
+        recycler.adapter = listAdapter
+        recycler.layoutManager = LinearLayoutManager(requireContext())
 
         val activity = activity as MainActivity
 
@@ -81,5 +83,28 @@ class ListsFragment : Fragment(), GetAdapterData {
     fun handlerOptionProcessed(item: MenuItem): Boolean {
         //TODO
         return true
+    }
+
+    companion object{
+        const val ID_LOADER_LIST = 0
+    }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
+        CursorLoader(
+            requireContext(),
+            TravelContentProvider.LIST_URL,
+            ListTable.ALL_FIELDS,
+            null,
+            null,
+            ListTable.FIELD_NAME
+        )
+
+
+    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
+        listAdapter!!.cursor = data
+    }
+
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+        listAdapter!!.cursor = null
     }
 }

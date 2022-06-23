@@ -115,6 +115,10 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         binding.categoriesSpinner.adapter = null
     }
 
+    companion object{
+        const val ID_LOADER_ITEMS = 0;
+    }
+
 }
 
 /*private fun spinnerDefault(){
