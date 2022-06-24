@@ -3,6 +3,8 @@ package com.example.travelorganizer
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Spinner
+import android.widget.TextView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -60,6 +62,34 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(idMenuTop,menu)
         return true;
+    }
+
+    //função para gerir campos, retorna true se forem validados
+    fun validateFields(
+
+        fieldString : String ? = null,
+        text : TextView,
+        msg : String,
+        spinner : Long = -1 ,
+        isSpinner : Boolean = false
+    ) : Boolean{
+        if(!isSpinner){
+            if(fieldString!!.isBlank()){
+                text.error = msg
+                text.requestFocus()
+                return false
+            }
+        }
+
+
+        if(isSpinner){
+            if(spinner == Spinner.INVALID_ROW_ID){
+                text.error
+                text.requestFocus()
+                return false
+            }
+        }
+        return  true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

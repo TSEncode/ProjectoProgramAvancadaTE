@@ -82,45 +82,27 @@ class AddCategoryFragment : Fragment() {
     //Função que inserimos categorias
     fun insertCategory(){
         val name = binding.categoryNameValue.text.toString()
+        val activity = activity as MainActivity
 
-        validateFields(name,binding.categoryNameValue, getString(R.string.fill_the_name))
+        val validated =  activity.validateFields(name,binding.categoryNameValue, getString(R.string.fill_the_name))
 
         val category = Category(name)
 
-        //usa-se o contentResolver para inserir os dados, é passado os endereço do caminho do provider da categoria e os dados a inserir
-        val url = requireActivity().contentResolver.insert(TravelContentProvider.CATEGORY_URL, category.toContentValues())
+        //se os dados forem validados então guardam-se
+        if(validated){
+            //usa-se o contentResolver para inserir os dados, é passado os endereço do caminho do provider da categoria e os dados a inserir
+            val url = requireActivity().contentResolver.insert(TravelContentProvider.CATEGORY_URL, category.toContentValues())
 
-        if(url != null){
-            Toast.makeText(requireContext(), getString(R.string.category_added), Toast.LENGTH_LONG).show()
-            returnToAddItems()
-        }else{
-            Toast.makeText(requireContext(), getString(R.string.error_category), Toast.LENGTH_LONG).show()
+            if(url != null){
+                Toast.makeText(requireContext(), getString(R.string.category_added), Toast.LENGTH_LONG).show()
+                returnToAddItems()
+            }else{
+                Toast.makeText(requireContext(), getString(R.string.error_category), Toast.LENGTH_LONG).show()
+            }
         }
 
-
     }
 
-    //função para gerir campos
-    private fun validateFields(
-        fieldString : String,
-        text : TextView,
-        msg : String,
-        isSpinner : Boolean = false,
-        spinner : Long = -1
-    ){
-            if(fieldString.isBlank()){
-                text.error = msg
-                text.requestFocus()
-                return
-            }
 
-            if(isSpinner){
-                if(spinner == Spinner.INVALID_ROW_ID){
-                    text.error
-                    text.requestFocus()
-                    return
-                }
-            }
-    }
 
 }

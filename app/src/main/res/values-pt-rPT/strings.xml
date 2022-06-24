@@ -27,7 +27,7 @@
     <string name="category_added">Categoria inserida com sucesso!</string>
     <string name="item_added">Item adicionado com sucesso!</string>
     <string name="fill_the_name">Preencha o nome</string>
-    <string name="error_category">Erro: A categoria não foi inserida</string>
+    <string name="error_category">Erro: A categoria não </string>
 
     <!-- List -->
     <string name="create_a_new_list">Criar uma Nova Lista</string>

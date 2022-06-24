@@ -55,8 +55,8 @@
     <fragment
         android:id="@+id/navigation_addItemsFragment"
         android:name="com.example.travelorganizer.ui.items.AddItemsFragment"
-        android:label="fragment_add_item"
-        tools:layout="@layout/fragment_add_item" >
+        android:label="@string/add_item_title"
+        tools:layout="@layout/fragment_add_item">
         <action
             android:id="@+id/action_navigation_addItemsFragment_to_navigation_addCategoryFragment"
             app:destination="@id/navigation_addCategoryFragment" />
@@ -67,8 +67,8 @@
     <fragment
         android:id="@+id/navigation_addCategoryFragment"
         android:name="com.example.travelorganizer.ui.items.AddCategoryFragment"
-        android:label="fragment_add_category"
-        tools:layout="@layout/fragment_add_category" >
+        android:label="@string/add_category"
+        tools:layout="@layout/fragment_add_category">
         <action
             android:id="@+id/action_navigation_addCategoryFragment_to_navigation_addItemsFragment"
             app:destination="@id/navigation_addItemsFragment" />

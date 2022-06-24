@@ -20,6 +20,7 @@ import com.example.travelorganizer.db.CategoriesTable
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Category
 import com.example.travelorganizer.models.Items
+import com.example.travelorganizer.ui.lists.ListsFragment
 
 /**
  * A simple [Fragment] subclass.
@@ -44,15 +45,6 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         _binding = FragmentAddItemBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val addButton = binding.addItemButton
-
-        val debug = binding.addCategoryItemsTextView
-
-        val addCategories: ImageButton = binding.toAddCategoryButton
-
-        addCategories.setOnClickListener {
-            findNavController().navigate(R.id.navigation_addCategoryFragment)
-        }
 
         return root
     }
@@ -60,15 +52,18 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_ITEMS, null, this)
         //vai-se buscar a Main Activity para alterar o menu do topo
         val activity = activity as MainActivity
 
         activity.fragment = this
-        activity.idMenuTop = R.menu.top_nav_list_menu
+        activity.idMenuTop = R.menu.top_nav_save
 
+        val addCategories: ImageButton = binding.toAddCategoryButton
+        addCategories.setOnClickListener {
+            findNavController().navigate(R.id.navigation_addCategoryFragment)
+        }
     }
-
-
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
         CursorLoader(
@@ -98,9 +93,56 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         binding.categoriesSpinner.adapter = null
     }
 
+    //Cria-se as rotas para os butoes do menu do topo
+    // gere-se através do id do item que é clicado
     fun handlerOptionProcessed(item: MenuItem): Boolean {
-        //TODO
-        return true
+        return when (item.itemId){
+            R.id.saveButton -> {
+                inserItem()
+                return true
+            }
+            R.id.closeButton -> {
+                returnToItems()
+                return  true
+            }
+            else -> false
+        }
+
+    }
+
+    fun returnToItems(){
+        findNavController().navigate(AddItemsFragmentDirections.actionNavigationAddItemsFragmentToNavigationItem())
+    }
+
+    fun inserItem(){
+        val activity = activity as MainActivity
+
+        val name = binding.itemNameValue.text.toString()
+        val categoryId = binding.categoriesSpinner.selectedItemId
+
+        val nameValidated = activity.validateFields( name,binding.itemNameValue, getString(R.string.fill_the_name))
+        val categorIdvalidated = activity.validateFields(
+            isSpinner = true,
+            msg = getString(R.string.choose_category),
+            spinner = categoryId,
+            text = binding.addCategoryItemsTextView
+        )
+
+        val item = Items(
+            name,
+            categoryId
+        )
+
+        if(nameValidated && categorIdvalidated){
+            val url = requireActivity().contentResolver.insert(TravelContentProvider.ITEM_URL, item.toContentValues())
+            if(url != null){
+                Toast.makeText(requireContext(), getString(R.string.item_added), Toast.LENGTH_LONG).show()
+                returnToItems()
+            }else{
+                Toast.makeText(requireContext(), getString(R.string.error_item), Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
 
     companion object{
@@ -108,35 +150,3 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
 }
-
-/*private fun spinnerDefault(){
-        val spinner = binding.categoriesSpinner
-
-        //cria-se a lista para passar para o spinner através do adapter
-        val valuesArray = ArrayList<String>()
-        //vamos buscar a lista com os nomes das categorias
-        val categoriesNames = Category(requireContext()).getCategoriesNames()
-
-        valuesArray.add(getString(R.string.no_categories_spinner))
-
-        for ( name in categoriesNames){
-                valuesArray.add(name)
-        }
-
-        //cria-se o adapter para o spinner, este spinner irá apresentar um dropdown com as categorias
-        val arrayAdapter = ArrayAdapter(requireActivity(), R.layout.spinner_items, valuesArray)
-
-        spinner.adapter = arrayAdapter
-
-    }
-
-    //Função que valida se o item tem categoria ou não
-
-    private fun categoryIdFilter(name : String): Long? {
-        //verifca-se se o valor escolhido é sem categoria, se for retorna-se nulo se não retorna-se o id
-        if (name === getString(R.string.no_categories_spinner)) {
-            return null
-        }else{
-            return Category(requireContext()).getCategoryId(name)
-        }
-    }*/

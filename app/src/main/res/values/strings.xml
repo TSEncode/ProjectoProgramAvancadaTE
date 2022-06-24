@@ -45,6 +45,7 @@
     <string name="close">Close</string>
     <string name="fill_the_name">Fill the name</string>
     <string name="error_category">Error: Category don\'t added</string>
+    <string name="error_item">\"Error: Item don\'t added \"</string>
 
 
 </resources>
