@@ -4,6 +4,7 @@ import android.database.Cursor
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -47,25 +48,6 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         val debug = binding.addCategoryItemsTextView
 
-        //no evento de click pasamos o valor do edit text para ser guardado, utiliza-se a função insertItems para inserir os valores
-        /*addButton.setOnClickListener {
-            //guardamos o conteudo do editText
-            val itemNameText = binding.itemNameValue
-            val itemName = itemNameText.text.toString()
-
-            val categorySelected = binding.categoriesSpinner.selectedItem.toString()
-
-
-
-
-
-           *//* if(isInserted){
-                Toast.makeText(context, getString(R.string.item_added), Toast.LENGTH_SHORT).show()
-
-                itemNameText.setText("")
-            }
-        }*/
-
         val addCategories: ImageButton = binding.toAddCategoryButton
 
         addCategories.setOnClickListener {
@@ -78,6 +60,7 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //vai-se buscar a Main Activity para alterar o menu do topo
         val activity = activity as MainActivity
 
         activity.fragment = this
@@ -113,6 +96,11 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
         binding.categoriesSpinner.adapter = null
+    }
+
+    fun handlerOptionProcessed(item: MenuItem): Boolean {
+        //TODO
+        return true
     }
 
     companion object{

@@ -3,13 +3,21 @@ package com.example.travelorganizer.ui.items
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.loader.app.LoaderManager
+import androidx.navigation.fragment.findNavController
+import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentAddCategoryBinding
+import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Category
+import org.w3c.dom.Text
 import java.util.*
 
 /**
@@ -35,21 +43,84 @@ class AddCategoryFragment : Fragment() {
         _binding = FragmentAddCategoryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val addCategory =  binding.addCategoryButton
 
-        /*addCategory.setOnClickListener{
-            val categoryNameEditText = binding.categoryNameValue
-
-            val categoryName = categoryNameEditText.text.toString()
-
-            Category(requireContext(),categoryName).insertCategory()
-            Toast.makeText(context, getString(R.string.category_added), Toast.LENGTH_SHORT).show()
-
-            categoryNameEditText.setText("")
-        }*/
 
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        val activity = activity as MainActivity
+
+        activity.fragment = this
+        activity.idMenuTop = R.menu.top_nav_save
+    }
+
+    //Cria-se as rotas para os butoes do menu do topo
+    // gere-se através do id do item que é clicado
+    fun handlerOptionProcessed(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.saveButton -> {
+                insertCategory()
+                return true
+            }
+            R.id.closeButton -> {
+                returnToAddItems()
+                return  true
+            }
+            else -> false
+        }
+
+    }
+
+    fun returnToAddItems(){
+        findNavController().navigate(AddCategoryFragmentDirections.actionNavigationAddCategoryFragmentToNavigationAddItemsFragment())
+    }
+
+    //Função que inserimos categorias
+    fun insertCategory(){
+        val name = binding.categoryNameValue.text.toString()
+
+        validateFields(name,binding.categoryNameValue, getString(R.string.fill_the_name))
+
+        val category = Category(name)
+
+        //usa-se o contentResolver para inserir os dados, é passado os endereço do caminho do provider da categoria e os dados a inserir
+        val url = requireActivity().contentResolver.insert(TravelContentProvider.CATEGORY_URL, category.toContentValues())
+
+        if(url != null){
+            Toast.makeText(requireContext(), getString(R.string.category_added), Toast.LENGTH_LONG).show()
+            returnToAddItems()
+        }else{
+            Toast.makeText(requireContext(), getString(R.string.error_category), Toast.LENGTH_LONG).show()
+        }
+
+
+    }
+
+    //função para gerir campos
+    private fun validateFields(
+        fieldString : String,
+        text : TextView,
+        msg : String,
+        isSpinner : Boolean = false,
+        spinner : Long = -1
+    ){
+            if(fieldString.isBlank()){
+                text.error = msg
+                text.requestFocus()
+                return
+            }
+
+            if(isSpinner){
+                if(spinner == Spinner.INVALID_ROW_ID){
+                    text.error
+                    text.requestFocus()
+                    return
+                }
+            }
+    }
 
 }

@@ -10,14 +10,6 @@ class ListsViewModel : ViewModel() {
         value = "This is notifications Fragment"
     }
 
-    private val _id = MutableLiveData<Long>()
-
-
     val text: LiveData<String> = _text
 
-    val id : LiveData<Long> = _id
-
-    fun selectId(idP : Long){
-        _id.value = idP
-    }
 }

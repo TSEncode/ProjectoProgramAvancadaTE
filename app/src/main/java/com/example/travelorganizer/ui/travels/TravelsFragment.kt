@@ -2,6 +2,7 @@ package com.example.travelorganizer.ui.travels
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -35,5 +36,10 @@ class TravelsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun handlerOptionProcessed(item: MenuItem): Boolean {
+        //TODO
+        return true
     }
 }

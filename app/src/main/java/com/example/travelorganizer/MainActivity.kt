@@ -12,7 +12,12 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.travelorganizer.databinding.ActivityMainBinding
+import com.example.travelorganizer.ui.items.AddCategoryFragment
+import com.example.travelorganizer.ui.items.AddItemsFragment
+import com.example.travelorganizer.ui.items.ItemsFragment
+import com.example.travelorganizer.ui.lists.ListBodyFragment
 import com.example.travelorganizer.ui.lists.ListsFragment
+import com.example.travelorganizer.ui.travels.TravelsFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -63,6 +68,16 @@ class MainActivity : AppCompatActivity() {
 
         if(fragment is ListsFragment){
             optionProcessed = (fragment as ListsFragment).handlerOptionProcessed(item)
+        }else if(fragment is ItemsFragment){
+            optionProcessed = (fragment as ItemsFragment).handlerOptionProcessed(item)
+        }else if(fragment is AddItemsFragment){
+            optionProcessed = (fragment as AddItemsFragment).handlerOptionProcessed(item)
+        }else if(fragment is AddCategoryFragment){
+            optionProcessed = (fragment as AddCategoryFragment).handlerOptionProcessed(item)
+        }else if(fragment is ListBodyFragment){
+            optionProcessed = (fragment as ListBodyFragment).handlerOptionProcessed(item)
+        }else if(fragment is TravelsFragment){
+            optionProcessed = (fragment as TravelsFragment).handlerOptionProcessed(item)
         }
 
 

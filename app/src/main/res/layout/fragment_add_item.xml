@@ -97,14 +97,13 @@
                     android:id="@+id/toAddCategoryButton"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="28dp"
                     android:layout_marginEnd="10dp"
                     android:backgroundTint="#00FFFFFF"
                     android:contentDescription="@string/add_category_button"
                     app:layout_constraintEnd_toStartOf="@+id/addCategoryItemsTextView"
                     app:layout_constraintHorizontal_bias="0.97"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/categoriesSpinner"
                     app:layout_constraintTop_toBottomOf="@+id/categoriesSpinner"
                     app:srcCompat="@drawable/ic_add"
                     tools:ignore="RedundantDescriptionCheck,RedundantDescriptionCheck" />
@@ -113,14 +112,10 @@
                     android:id="@+id/addCategoryItemsTextView"
                     android:layout_width="263dp"
                     android:layout_height="22dp"
-                    android:layout_marginStart="10dp"
                     android:layout_marginTop="40dp"
-                    android:layout_marginEnd="10dp"
                     android:text="@string/new_category"
                     android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.742"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/categoriesSpinner"
                     app:layout_constraintTop_toBottomOf="@+id/categoriesSpinner" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

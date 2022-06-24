@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
@@ -49,5 +51,19 @@ class ItemsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    //Cria-se as rotas para os butoes do menu do topo
+    // gere-se através do id do item que é clicado
+    fun handlerOptionProcessed(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.addButton -> {
+                val action =ItemsFragmentDirections.actionNavigationItemToNavigationAddItemsFragment()
+                findNavController().navigate(action)
+                return true
+            }
+            else -> false
+        }
+
     }
 }

@@ -26,6 +26,8 @@
     <string name="add_items_fragment">AddItemsFragment</string>
     <string name="category_added">Categoria inserida com sucesso!</string>
     <string name="item_added">Item adicionado com sucesso!</string>
+    <string name="fill_the_name">Preencha o nome</string>
+    <string name="error_category">Erro: A categoria não foi inserida</string>
 
     <!-- List -->
     <string name="create_a_new_list">Criar uma Nova Lista</string>
@@ -36,6 +38,9 @@
     <string name="add_a_list_description">Coloque uma descrição para a lista</string>
     <string name="list_sucess">Lista criada com sucesso!</string>
 
+    <!-- Menus -->
     <string name="edit">Editar</string>
     <string name="delete">Apagar</string>
+    <string name="save">Guardar</string>
+    <string name="close">Fechar</string>
 </resources>

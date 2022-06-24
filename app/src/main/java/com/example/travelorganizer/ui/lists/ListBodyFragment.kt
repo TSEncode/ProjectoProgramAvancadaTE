@@ -3,6 +3,7 @@ package com.example.travelorganizer.ui.lists
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
@@ -43,5 +44,10 @@ class ListBodyFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun handlerOptionProcessed(item: MenuItem): Boolean {
+        //TODO
+        return true
     }
 }
