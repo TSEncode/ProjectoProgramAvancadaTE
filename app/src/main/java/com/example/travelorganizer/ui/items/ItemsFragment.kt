@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
@@ -34,27 +33,6 @@ class ItemsFragment : Fragment() {
 
         _binding = FragmentItemsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-
-
-        /*val items = Items(requireContext()).getAll()
-
-        val recycler = binding.itemsReciclerView
-
-
-        recycler.apply {
-            setHasFixedSize(true)
-
-            layoutManager = LinearLayoutManager(context)
-            adapter = ItemsAdapter(items)
-
-
-        }
-
-        addButton.setOnClickListener {
-           findNavController(this).navigate(R.id.navigation_addItemsFragment)
-        }*/
-
 
         return root
     }

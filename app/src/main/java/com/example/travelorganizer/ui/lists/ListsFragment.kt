@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.loader.app.LoaderManager
@@ -52,7 +53,7 @@ class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         val recycler = binding.listRecylerView
 
-        val listAdapter = ListAdapter(this)
+        listAdapter = ListAdapter(this)
 
         recycler.adapter = listAdapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
@@ -79,15 +80,15 @@ class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         CursorLoader(
             requireContext(),
             TravelContentProvider.LIST_URL,
-           arrayOf(ListTable.FIELD_NAME),
+            ListTable.ALL_FIELDS,
             null,
             null,
             ListTable.FIELD_NAME
         )
 
-
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         listAdapter!!.cursor = data
+        Toast.makeText(requireContext(), listAdapter!!.itemCount.toString(), Toast.LENGTH_LONG).show()
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
