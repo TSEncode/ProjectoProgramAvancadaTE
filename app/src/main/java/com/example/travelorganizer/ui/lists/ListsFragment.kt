@@ -22,7 +22,7 @@ import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Lists
 import com.example.travelorganizer.ui.lists.adapters.ListAdapter
 
-class ListsFragment : Fragment(), GetAdapterData, LoaderManager.LoaderCallbacks<Cursor> {
+class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private var _binding: FragmentListsBinding? = null
 
@@ -42,9 +42,6 @@ class ListsFragment : Fragment(), GetAdapterData, LoaderManager.LoaderCallbacks<
         _binding = FragmentListsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
-
-
         return root
     }
 
@@ -54,7 +51,6 @@ class ListsFragment : Fragment(), GetAdapterData, LoaderManager.LoaderCallbacks<
         LoaderManager.getInstance(this).initLoader(ID_LOADER_LIST, null, this)
 
         val recycler = binding.listRecylerView
-
 
         val listAdapter = ListAdapter(this)
 
@@ -73,21 +69,11 @@ class ListsFragment : Fragment(), GetAdapterData, LoaderManager.LoaderCallbacks<
         _binding = null
     }
 
-    override fun getId(id: Long) {
-        val bundle = Bundle()
-        bundle.putLong("list_id", id)
-
-        findNavController().navigate(R.id.navigation_listBodyFragment, bundle)
-    }
-
     fun handlerOptionProcessed(item: MenuItem): Boolean {
         //TODO
         return true
     }
 
-    companion object{
-        const val ID_LOADER_LIST = 0
-    }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
         CursorLoader(
@@ -107,4 +93,9 @@ class ListsFragment : Fragment(), GetAdapterData, LoaderManager.LoaderCallbacks<
     override fun onLoaderReset(loader: Loader<Cursor>) {
         listAdapter!!.cursor = null
     }
+
+    companion object{
+        const val ID_LOADER_LIST = 0
+    }
+
 }

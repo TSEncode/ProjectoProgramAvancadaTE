@@ -25,9 +25,11 @@ class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapt
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListsViewHolder {
         // Create a new view, which defines the UI of the list item
-        val view = LayoutInflater.from(viewGroup.context)
+        //val view = LayoutInflater.from(viewGroup.context)
 
-        return ListsViewHolder(view.inflate(R.layout.list, viewGroup, false))
+        val itemList= fragment.layoutInflater.inflate(R.layout.list, viewGroup, false)
+
+        return ListsViewHolder(itemList)
     }
 
 
@@ -63,11 +65,8 @@ class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapt
                 listViewText.text =list?.name ?:" "
             }
 
-
-
         override fun onClick(p0: View?) {
                 val position = bindingAdapterPosition
-
         }
 
     }
