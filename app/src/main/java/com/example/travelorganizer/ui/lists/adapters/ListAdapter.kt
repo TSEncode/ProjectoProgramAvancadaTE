@@ -24,9 +24,6 @@ class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapt
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListsViewHolder {
-        // Create a new view, which defines the UI of the list item
-        //val view = LayoutInflater.from(viewGroup.context)
-
         val itemList= fragment.layoutInflater.inflate(R.layout.list, viewGroup, false)
 
         return ListsViewHolder(itemList)
