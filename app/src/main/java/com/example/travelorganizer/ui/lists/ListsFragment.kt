@@ -88,7 +88,6 @@ class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         listAdapter!!.cursor = data
-        Toast.makeText(requireContext(), listAdapter!!.itemCount.toString(), Toast.LENGTH_LONG).show()
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {

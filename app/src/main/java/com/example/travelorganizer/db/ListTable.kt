@@ -20,9 +20,9 @@ class ListTable(db: SQLiteDatabase) : TableModel(db, NAME) {
     companion object {
         const val NAME = "list"
         const val FIELD_ID = "$NAME.${BaseColumns._ID}"
-        const val FIELD_NAME = "name"
-        const val FIELD_DESCRIPTION = "description"
-        const val FIELD_STATUS = "status"
+        const val FIELD_NAME = "list_name"
+        const val FIELD_DESCRIPTION = "list_description"
+        const val FIELD_STATUS = "list_status"
 
         val ALL_FIELDS = arrayOf(
             FIELD_ID,

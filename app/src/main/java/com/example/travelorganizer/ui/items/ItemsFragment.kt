@@ -22,6 +22,7 @@ import com.example.travelorganizer.db.ItemsTable
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.ui.items.adapters.ItemsAdapter
+import com.example.travelorganizer.ui.lists.adapters.ListAdapter
 
 
 class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -31,6 +32,7 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+    private  var itemAdapter : ItemsAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +52,13 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         super.onViewCreated(view, savedInstanceState)
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_ITEMS, null, this)
+
+        val recycler = binding.itemsReciclerView
+
+        itemAdapter = ItemsAdapter(this)
+
+        recycler.adapter = itemAdapter
+        recycler.layoutManager = LinearLayoutManager(requireContext())
 
         val activity = activity as MainActivity
         activity.fragment = this
@@ -88,15 +97,15 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             ItemsTable.ALL_FIELDS,
             null,
             null,
-            ItemsTable.FIELD_NAME
+           null
         )
 
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        TODO("Not yet implemented")
+        itemAdapter!!.cursor = data
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        TODO("Not yet implemented")
+        itemAdapter!!.cursor = null
     }
 }
