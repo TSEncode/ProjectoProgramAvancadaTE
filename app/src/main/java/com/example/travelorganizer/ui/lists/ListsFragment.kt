@@ -21,6 +21,7 @@ import com.example.travelorganizer.db.CategoriesTable
 import com.example.travelorganizer.db.ListTable
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Lists
+import com.example.travelorganizer.ui.items.ItemsFragmentDirections
 import com.example.travelorganizer.ui.lists.adapters.ListAdapter
 
 class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -30,6 +31,15 @@ class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    var checkedList : Lists? = null
+        get() = field
+        set(value) {
+            if( value != field){
+                field = value
+                (requireActivity() as MainActivity).changeMenuOps(field != null)
+            }
+        }
 
     private var listAdapter : ListAdapter? = null
     override fun onCreateView(
@@ -71,8 +81,14 @@ class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     fun handlerOptionProcessed(item: MenuItem): Boolean {
-        //TODO
-        return true
+        return when (item.itemId){
+            R.id.addButton -> {
+                val action = ListsFragmentDirections.actionNavigationListToCreateListFragment()
+                findNavController().navigate(action)
+                return true
+            }
+            else -> false
+        }
     }
 
 

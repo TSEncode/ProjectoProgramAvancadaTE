@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
 
     var fragment : Fragment? = null
 
+    private var menu : Menu? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -61,6 +63,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(idMenuTop,menu)
+
+        this.menu = menu
         return true;
     }
 
@@ -112,6 +116,13 @@ class MainActivity : AppCompatActivity() {
 
 
         return super.onOptionsItemSelected(item)
+    }
+
+    //função que mostra os menus de apagar e editar
+
+    fun changeMenuOps(changeOps : Boolean){
+       menu!!.findItem(R.id.deleteButton).isVisible = changeOps
+        menu!!.findItem(R.id.editButton).isVisible = changeOps
     }
 
     override fun onSupportNavigateUp(): Boolean {

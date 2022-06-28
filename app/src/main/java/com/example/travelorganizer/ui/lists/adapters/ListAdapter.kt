@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Lists
+import com.example.travelorganizer.ui.items.adapters.ItemsAdapter
 import com.example.travelorganizer.ui.lists.GetAdapterData
 import com.example.travelorganizer.ui.lists.ListsFragment
 
@@ -20,7 +21,7 @@ class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapt
             notifyDataSetChanged()
         }
     }
-
+    private var count = 0
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ListsViewHolder {
@@ -63,8 +64,29 @@ class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapt
             }
 
         override fun onClick(p0: View?) {
-                val position = bindingAdapterPosition
+            checked?.uncheck()
+
+            this.isChecked()
+
+        }
+        // função que retorna o livro selecionado para o fragment, muida a cor ao clicar
+        private fun isChecked(){
+            checked = this
+            fragment.checkedList = list
+            itemView.setBackgroundResource(R.color.white_grey)
         }
 
+
+
+        //função que deseleciona o item
+        private fun uncheck(){
+            itemView.setBackgroundResource(R.color.layout_grey)
+
+        }
     }
+
+    companion object{
+        var checked : ListsViewHolder? = null
+    }
+
 }

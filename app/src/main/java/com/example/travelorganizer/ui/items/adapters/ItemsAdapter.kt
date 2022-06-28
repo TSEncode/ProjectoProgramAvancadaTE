@@ -70,5 +70,13 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
             //Todo
         }
 
+        fun isChecked(){
+            checked = this
+
+        }
+    }
+
+    companion object{
+        var checked : ItemsViewHolder? = null
     }
 }

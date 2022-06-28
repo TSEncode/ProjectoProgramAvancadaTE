@@ -47,7 +47,7 @@ class CreateListFragment : Fragment() {
         val activity = activity as MainActivity
 
         activity.fragment = this
-        activity.idMenuTop = R.menu.top_nav_list_menu
+        activity.idMenuTop = R.menu.top_nav_save
 
     }
 
