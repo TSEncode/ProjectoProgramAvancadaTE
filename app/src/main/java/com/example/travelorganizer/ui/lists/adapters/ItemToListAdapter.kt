@@ -1,21 +1,17 @@
-package com.example.travelorganizer.ui.items.adapters
+package com.example.travelorganizer.ui.lists.adapters
 
 import android.database.Cursor
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CheckBox
-
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Items
-import com.example.travelorganizer.models.Lists
 import com.example.travelorganizer.ui.items.ItemsFragment
-import org.w3c.dom.Text
+import com.example.travelorganizer.ui.items.adapters.ItemsAdapter
 
-class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAdapter.ItemsViewHolder>(){
+class ItemToListAdapter(val fragment : ItemsFragment) : RecyclerView.Adapter<ItemToListAdapter.ItemsToListViewHolder>() {
     var cursor: Cursor? = null
         get() = field
         set(value){
@@ -27,16 +23,16 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
 
 
     // Create new views (invoked by the layout manager)
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemsViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ItemsToListViewHolder {
         // Create a new view, which defines the UI of the list item
         val view = LayoutInflater.from(viewGroup.context)
 
-        return ItemsViewHolder(view.inflate(R.layout.list, viewGroup, false))
+        return ItemsToListViewHolder(view.inflate(R.layout.list, viewGroup, false))
     }
 
 
     // Replace the contents of a view (invoked by the layout manager)
-    override fun onBindViewHolder(viewHolder: ItemsViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ItemsToListViewHolder, position: Int) {
         cursor!!.moveToPosition(position)
         viewHolder.items = Items.fromCursor(cursor!!)
     }
@@ -50,7 +46,7 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
 
 
 
-    inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
+    inner class ItemsToListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val itemViewText = itemView.findViewById<TextView>(R.id.listCardTextView)
 
@@ -77,6 +73,7 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
     }
 
     companion object{
-        var checked : ItemsViewHolder? = null
+        var checked : ItemsToListViewHolder? = null
     }
+
 }

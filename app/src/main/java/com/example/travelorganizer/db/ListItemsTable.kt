@@ -12,6 +12,7 @@ class ListItemsTable(db: SQLiteDatabase) : TableModel(db, NAME) {
                 "$FIELD_LIST_ID INTEGER NOT NULL," +
                 "$FIELD_ITEMS_ID INTEGER NOT NULL," +
                 "$FIELD_QUANTITY INTEGER," +
+                "$FIELD_STATUS BOOL NOT NULL," +
                 "FOREIGN KEY($FIELD_LIST_ID) REFERENCES $TABLE_LIST_REFERENCE(${BaseColumns._ID}) " +
                 "FOREIGN KEY($FIELD_ITEMS_ID) REFERENCES $TABLE_ITEMS_REFERENCE(${BaseColumns._ID}) " +
                 ")")
@@ -24,6 +25,7 @@ class ListItemsTable(db: SQLiteDatabase) : TableModel(db, NAME) {
         const val FIELD_LIST_ID = "list_id"
         const val FIELD_ITEMS_ID = "items_id"
         const val FIELD_QUANTITY = "quantity"
+        const val FIELD_STATUS = "status"
         const val TABLE_LIST_REFERENCE = "list"
         const val TABLE_ITEMS_REFERENCE = "items"
 

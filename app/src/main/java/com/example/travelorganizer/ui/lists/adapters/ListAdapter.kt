@@ -1,15 +1,12 @@
 package com.example.travelorganizer.ui.lists.adapters
 
 import android.database.Cursor
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Lists
-import com.example.travelorganizer.ui.items.adapters.ItemsAdapter
-import com.example.travelorganizer.ui.lists.GetAdapterData
 import com.example.travelorganizer.ui.lists.ListsFragment
 
 class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapter.ListsViewHolder>(){

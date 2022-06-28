@@ -81,6 +81,9 @@
         <action
             android:id="@+id/action_navigation_createListFragment_to_navigation_list"
             app:destination="@id/navigation_list" />
+        <action
+            android:id="@+id/action_navigation_createListFragment_to_itemToListFragment"
+            app:destination="@id/itemToListFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_listBodyFragment"
@@ -90,5 +93,14 @@
         <action
             android:id="@+id/action_navigation_listBodyFragment_to_navigation_list"
             app:destination="@id/navigation_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemToListFragment"
+        android:name="com.example.travelorganizer.ui.lists.ItemToListFragment"
+        android:label="fragment_item_to_list"
+        tools:layout="@layout/fragment_item_to_list" >
+        <action
+            android:id="@+id/action_itemToListFragment_to_navigation_createListFragment"
+            app:destination="@id/navigation_createListFragment" />
     </fragment>
 </navigation>
