@@ -17,6 +17,7 @@ import com.example.travelorganizer.databinding.ActivityMainBinding
 import com.example.travelorganizer.ui.items.AddCategoryFragment
 import com.example.travelorganizer.ui.items.AddItemsFragment
 import com.example.travelorganizer.ui.items.ItemsFragment
+import com.example.travelorganizer.ui.lists.ItemToListFragment
 import com.example.travelorganizer.ui.lists.ListBodyFragment
 import com.example.travelorganizer.ui.lists.ListsFragment
 import com.example.travelorganizer.ui.travels.TravelsFragment
@@ -112,7 +113,9 @@ class MainActivity : AppCompatActivity() {
             optionProcessed = (fragment as ListBodyFragment).handlerOptionProcessed(item)
         }else if(fragment is TravelsFragment){
             optionProcessed = (fragment as TravelsFragment).handlerOptionProcessed(item)
-        }
+        }else if(fragment is ItemToListFragment){
+            optionProcessed = (fragment as ItemToListFragment).handlerOptionProcessed(item)
+    }
 
 
         return super.onOptionsItemSelected(item)

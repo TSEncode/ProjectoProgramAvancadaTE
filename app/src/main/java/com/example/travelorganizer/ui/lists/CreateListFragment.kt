@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentCreateListBinding
@@ -48,6 +49,12 @@ class CreateListFragment : Fragment() {
 
         activity.fragment = this
         activity.idMenuTop = R.menu.top_nav_save
+
+        val addItem = binding.addItemToListButton
+
+        addItem.setOnClickListener{
+            findNavController().navigate(CreateListFragmentDirections.actionNavigationCreateListFragmentToItemToListFragment())
+        }
 
     }
 

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
@@ -27,10 +28,8 @@ import com.example.travelorganizer.ui.items.adapters.ItemsAdapter
 import com.example.travelorganizer.ui.lists.adapters.ItemToListAdapter
 import com.example.travelorganizer.ui.lists.adapters.ListAdapter
 
-// TODO: Rename parameter arguments, choose names that match
+
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -44,6 +43,9 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     // onDestroyView.
     private val binding get() = _binding!!
     private  var itemToListAdapter : ItemToListAdapter? = null
+
+    //variavél que guarda os ids selecionados
+    var ids : ArrayList<Long?>? = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,7 +75,7 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         val activity = activity as MainActivity
         activity.fragment = this
-        activity.idMenuTop = R.menu.top_nav_list_menu
+        activity.idMenuTop = R.menu.top_nav_save
 
     }
 
@@ -86,9 +88,8 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     // gere-se através do id do item que é clicado
     fun handlerOptionProcessed(item: MenuItem): Boolean {
         return when (item.itemId){
-            R.id.addButton -> {
-                val action = ItemsFragmentDirections.actionNavigationItemToNavigationAddItemsFragment()
-                findNavController().navigate(action)
+            R.id.saveButton -> {
+                Toast.makeText(requireContext(), ids.toString(), Toast.LENGTH_LONG).show()
                 return true
             }
             else -> false

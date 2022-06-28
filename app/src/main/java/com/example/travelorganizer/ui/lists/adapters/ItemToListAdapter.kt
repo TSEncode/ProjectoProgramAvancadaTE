@@ -10,8 +10,9 @@ import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.ui.items.ItemsFragment
 import com.example.travelorganizer.ui.items.adapters.ItemsAdapter
+import com.example.travelorganizer.ui.lists.ItemToListFragment
 
-class ItemToListAdapter(val fragment : ItemsFragment) : RecyclerView.Adapter<ItemToListAdapter.ItemsToListViewHolder>() {
+class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapter<ItemToListAdapter.ItemsToListViewHolder>() {
     var cursor: Cursor? = null
         get() = field
         set(value){
@@ -63,12 +64,13 @@ class ItemToListAdapter(val fragment : ItemsFragment) : RecyclerView.Adapter<Ite
         }
 
         override fun onClick(p0: View?) {
-            //Todo
+            isChecked()
         }
 
         fun isChecked(){
             checked = this
-
+            fragment.ids?.add(items?.id)
+            itemView.setBackgroundResource(R.color.white_grey)
         }
     }
 

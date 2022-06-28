@@ -97,7 +97,7 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             ItemsTable.ALL_FIELDS,
             null,
             null,
-           null
+           ItemsTable.FIELD_NAME
         )
 
 
