@@ -72,7 +72,7 @@ class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapt
         }
         // função que retorna o livro selecionado para o fragment, muida a cor ao clicar
         private fun isChecked(){
-            fragment.findNavController().navigate(ListsFragmentDirections.actionNavigationListToNavigationListBodyFragment(list!!.id))
+            fragment.findNavController().navigate(ListsFragmentDirections.actionNavigationListToNavigationListBodyFragment(list!!.id, list!!.name))
         }
 
 

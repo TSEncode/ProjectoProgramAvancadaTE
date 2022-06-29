@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -118,8 +117,11 @@ class MainActivity : AppCompatActivity() {
             optionProcessed = (fragment as ItemToListFragment).handlerOptionProcessed(item)
         }else if(fragment is CreateListFragment){
             optionProcessed = (fragment as CreateListFragment).handlerOptionProcessed(item)
+        }else{
+            optionProcessed = false
         }
 
+        if (optionProcessed) return true
 
         return super.onOptionsItemSelected(item)
     }
@@ -136,4 +138,6 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
+
+
 }

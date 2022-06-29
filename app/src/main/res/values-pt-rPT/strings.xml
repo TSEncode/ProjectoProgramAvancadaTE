@@ -43,4 +43,6 @@
     <string name="delete">Apagar</string>
     <string name="save">Guardar</string>
     <string name="close">Fechar</string>
+    <string name="error_item">Erro: Item não foi adicionado </string>
+    <string name="body_list_title">Body List Title</string>
 </resources>

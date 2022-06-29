@@ -65,7 +65,7 @@ class CreateListFragment : Fragment() {
     }
 
     fun goToList(id: Long){
-        val action = CreateListFragmentDirections.actionNavigationCreateListFragmentToNavigationListBodyFragment(id)
+        val action = CreateListFragmentDirections.actionNavigationCreateListFragmentToNavigationListBodyFragment(id, binding.listNameValue.text.toString())
         findNavController().navigate(action)
     }
     fun inserList(){

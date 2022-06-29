@@ -47,7 +47,7 @@
     <string name="error_category">Error: Category don\'t added</string>
     <string name="error_item">\"Error: Item don\'t added \"</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="body_list_title">Body List Title</string>
 
 
 </resources>

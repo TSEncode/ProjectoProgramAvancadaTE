@@ -1,6 +1,8 @@
 package com.example.travelorganizer.ui.lists
 
+import android.content.ClipData
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +23,7 @@ import com.example.travelorganizer.databinding.FragmentListsBinding
 import com.example.travelorganizer.db.ItemsTable
 import com.example.travelorganizer.db.ListTable
 import com.example.travelorganizer.db.TravelContentProvider
+import com.example.travelorganizer.models.ListItems
 import com.example.travelorganizer.models.Lists
 import com.example.travelorganizer.ui.items.ItemsFragmentDirections
 import com.example.travelorganizer.ui.items.ItemsViewModel
@@ -46,6 +49,7 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     //variavél que guarda os ids selecionados
     var ids : ArrayList<Long?>? = ArrayList()
+    private var listId : Long? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,6 +69,8 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         super.onViewCreated(view, savedInstanceState)
 
         LoaderManager.getInstance(this).initLoader(ID_LOADER_ITEMS, null, this)
+
+        listId = ItemToListFragmentArgs.fromBundle(arguments!!).idList
 
         val recycler = binding.itemsReciclerView
 
@@ -94,6 +100,19 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             }
             else -> false
         }
+
+    }
+
+    private fun insertRelation(){
+
+       ids!!.forEach {
+           val listItem = ListItems(listId!!, it!!)
+           val url = requireActivity().contentResolver.insert(
+               TravelContentProvider.LIST_ITEM_URL,
+               listItem.toContentValues()
+           )
+
+       }
 
     }
 

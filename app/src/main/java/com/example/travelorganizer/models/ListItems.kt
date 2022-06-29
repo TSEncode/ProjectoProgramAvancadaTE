@@ -9,8 +9,8 @@ import com.example.travelorganizer.db.ListItemsTable
 data class ListItems(
     var listId : Long,
     var itemId : Long,
-    var quantity : Int,
-    var status : Int,
+    var status : Int = 0,
+    var quantity : Int? = null,
     var id : Long = -1
     ){
 
