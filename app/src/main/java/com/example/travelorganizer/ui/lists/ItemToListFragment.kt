@@ -104,7 +104,7 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun insertRelation(){
-
+        var count : Int = 0
        ids!!.forEach {
            val listItem = ListItems(listId!!, it!!)
            val url = requireActivity().contentResolver.insert(
@@ -112,6 +112,18 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                listItem.toContentValues()
            )
 
+           if(count == ids!!.lastIndex){
+               if(url != null){
+                   Toast.makeText(requireContext(), getString(R.string.items_added), Toast.LENGTH_LONG).show()
+                   findNavController().navigate(ItemToListFragmentDirections.actionItemToListFragmentToNavigationListBodyFragment(-1, null))
+
+
+               }else{
+                   Toast.makeText(requireContext(), getString(R.string.error_dont_create_relation), Toast.LENGTH_LONG).show()
+               }
+
+           }
+           count++
        }
 
     }

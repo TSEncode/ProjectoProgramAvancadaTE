@@ -48,6 +48,8 @@
     <string name="error_item">\"Error: Item don\'t added \"</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="body_list_title">Body List Title</string>
+    <string name="items_added">Items Added to List</string>
+    <string name="error_dont_create_relation">Error: Don\'t create the associate</string>
 
 
 </resources>

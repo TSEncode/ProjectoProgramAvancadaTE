@@ -29,7 +29,7 @@ import com.example.travelorganizer.models.Lists
  * Use the [ListBodyFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ListBodyFragment : Fragment() {
+class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private var _binding: FragmentListBodyBinding? = null
     private var id : Long? = null
     // This property is only valid between onCreateView and
@@ -85,6 +85,18 @@ class ListBodyFragment : Fragment() {
             }
             else -> false
         }
+    }
+
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onLoaderReset(loader: Loader<Cursor>) {
+        TODO("Not yet implemented")
     }
 
 
