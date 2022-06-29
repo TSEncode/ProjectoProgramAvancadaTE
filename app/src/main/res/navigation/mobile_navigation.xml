@@ -38,6 +38,9 @@
         <action
             android:id="@+id/action_navigation_list_to_navigation_home2"
             app:destination="@id/navigation_home" />
+        <argument
+            android:name="listId"
+            app:argType="long" />
     </fragment>
 
     <fragment
@@ -82,8 +85,8 @@
             android:id="@+id/action_navigation_createListFragment_to_navigation_list"
             app:destination="@id/navigation_list" />
         <action
-            android:id="@+id/action_navigation_createListFragment_to_itemToListFragment"
-            app:destination="@id/itemToListFragment" />
+            android:id="@+id/action_navigation_createListFragment_to_navigation_listBodyFragment"
+            app:destination="@id/navigation_listBodyFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_listBodyFragment"
@@ -93,6 +96,15 @@
         <action
             android:id="@+id/action_navigation_listBodyFragment_to_navigation_list"
             app:destination="@id/navigation_list" />
+        <action
+            android:id="@+id/action_navigation_listBodyFragment_to_navigation_createListFragment"
+            app:destination="@id/navigation_createListFragment" />
+        <action
+            android:id="@+id/action_navigation_listBodyFragment_to_itemToListFragment"
+            app:destination="@id/itemToListFragment" />
+        <argument
+            android:name="listUri"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/itemToListFragment"
@@ -100,7 +112,7 @@
         android:label="fragment_item_to_list"
         tools:layout="@layout/fragment_item_to_list" >
         <action
-            android:id="@+id/action_itemToListFragment_to_navigation_createListFragment"
-            app:destination="@id/navigation_createListFragment" />
+            android:id="@+id/action_itemToListFragment_to_navigation_listBodyFragment"
+            app:destination="@id/navigation_listBodyFragment" />
     </fragment>
 </navigation>

@@ -135,6 +135,7 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         if(nameValidated && categorIdvalidated){
             val url = requireActivity().contentResolver.insert(TravelContentProvider.ITEM_URL, item.toContentValues())
+
             if(url != null){
                 Toast.makeText(requireContext(), getString(R.string.item_added), Toast.LENGTH_LONG).show()
                 returnToItems()
@@ -148,5 +149,4 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     companion object{
         const val ID_LOADER_ITEMS = 0;
     }
-
 }

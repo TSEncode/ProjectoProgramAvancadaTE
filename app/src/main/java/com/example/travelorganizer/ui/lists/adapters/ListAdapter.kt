@@ -4,10 +4,14 @@ import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Lists
+import com.example.travelorganizer.ui.lists.ListBodyFragmentArgs
+import com.example.travelorganizer.ui.lists.ListBodyFragmentDirections
 import com.example.travelorganizer.ui.lists.ListsFragment
+import com.example.travelorganizer.ui.lists.ListsFragmentDirections
 
 class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapter.ListsViewHolder>(){
     var cursor: Cursor? = null
@@ -68,9 +72,7 @@ class ListAdapter (val fragment: ListsFragment) : RecyclerView.Adapter<ListAdapt
         }
         // função que retorna o livro selecionado para o fragment, muida a cor ao clicar
         private fun isChecked(){
-            checked = this
-            fragment.checkedList = list
-            itemView.setBackgroundResource(R.color.white_grey)
+            fragment.findNavController().navigate(ListsFragmentDirections.actionNavigationListToNavigationListBodyFragment(list!!.id))
         }
 
 

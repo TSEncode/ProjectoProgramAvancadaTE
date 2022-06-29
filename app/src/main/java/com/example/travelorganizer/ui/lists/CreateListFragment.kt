@@ -1,8 +1,11 @@
 package com.example.travelorganizer.ui.lists
 
+import android.net.Uri
 import android.os.Bundle
+import android.provider.BaseColumns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -11,8 +14,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentCreateListBinding
+import com.example.travelorganizer.db.ListTable
+import com.example.travelorganizer.db.TravelContentProvider
+import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.models.Lists
 import com.example.travelorganizer.ui.travels.TravelsViewModel
+import java.net.URI
 
 /**
  * A simple [Fragment] subclass.
@@ -50,36 +57,58 @@ class CreateListFragment : Fragment() {
         activity.fragment = this
         activity.idMenuTop = R.menu.top_nav_save
 
-        val addItem = binding.addItemToListButton
-
-        addItem.setOnClickListener{
-            findNavController().navigate(CreateListFragmentDirections.actionNavigationCreateListFragmentToItemToListFragment())
-        }
-
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-}
 
+    fun goToList(id: Long){
+        val action = CreateListFragmentDirections.actionNavigationCreateListFragmentToNavigationListBodyFragment(id)
+        findNavController().navigate(action)
+    }
+    fun inserList(){
+        val activity = activity as MainActivity
 
-/*val addList = binding.addListButton
+        val name = binding.listNameValue.text.toString()
+        val descript = binding.descriptionListValue.text.toString()
 
-        addList.setOnClickListener {
-            val name = binding.listNameValue.text.toString()
-            val descrip = binding.descriptionListValue.text.toString()
+        val nameValidated = activity.validateFields( name,binding.listNameValue, getString(R.string.fill_the_name))
 
-            val listInsert = Lists(requireContext(), name, descrip).insertList()
+        val list = Lists(
+            name,
+            descript
+        )
 
-            if(listInsert){
+        if(nameValidated){
+            val url = requireActivity().contentResolver.insert(TravelContentProvider.LIST_URL, list.toContentValues())
 
-                Toast.makeText(context, getString(R.string.list_sucess), Toast.LENGTH_SHORT).show()
+            if(url != null){
+                Toast.makeText(requireContext(), getString(R.string.item_added), Toast.LENGTH_LONG).show()
 
-                binding.listNameValue.setText("")
-                binding.descriptionListValue.setText("")
+                val listCursor = requireActivity().contentResolver.query(url, ListTable.ALL_FIELDS, null, null)
+                val id = Lists.fromCursor(listCursor!!).id
+                goToList(id)
 
+            }else{
+                Toast.makeText(requireContext(), getString(R.string.error_item), Toast.LENGTH_LONG).show()
             }
+        }
 
-        }*/
+    }
+
+    fun handlerOptionProcessed(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.saveButton -> {
+                inserList()
+                return true
+            }
+            else -> false
+        }
+    }
+
+    companion object{
+        const val ID_LOADER_ITEMS = 0;
+    }
+}
