@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.example.travelorganizer.MainActivity
+import com.example.travelorganizer.R
 
 import com.example.travelorganizer.databinding.FragmentListBodyBinding
 
@@ -48,6 +51,12 @@ class ListBodyFragment : Fragment() {
 
             teste.text = ListBodyFragmentArgs.fromBundle(arguments!!).listUri.toString()
 
+            val activity = activity as MainActivity
+
+            activity.fragment = this
+            activity.idMenuTop = R.menu.top_nav_save
+
+
         }
     }
     override fun onDestroyView() {
@@ -56,7 +65,12 @@ class ListBodyFragment : Fragment() {
     }
 
     fun handlerOptionProcessed(item: MenuItem): Boolean {
-        //TODO
-        return true
+        return when (item.itemId){
+            R.id.closeButton -> {
+                findNavController().navigate(ListBodyFragmentDirections.actionNavigationListBodyFragmentToNavigationList(-1))
+                return true
+            }
+            else -> false
+        }
     }
 }

@@ -86,7 +86,7 @@ class CreateListFragment : Fragment() {
 
             if(url != null){
                 Toast.makeText(requireContext(), getString(R.string.item_added), Toast.LENGTH_LONG).show()
-
+                //vai-se buscar o ultimo caminho do uri gerado, este é o id
                 val id : Long = url.lastPathSegment!!.toLong()
 
                 goToList(id)

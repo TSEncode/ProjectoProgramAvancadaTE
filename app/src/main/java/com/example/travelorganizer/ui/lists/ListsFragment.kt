@@ -63,6 +63,7 @@ class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
         val recycler = binding.listRecylerView
 
+
         listAdapter = ListAdapter(this)
 
         recycler.adapter = listAdapter
