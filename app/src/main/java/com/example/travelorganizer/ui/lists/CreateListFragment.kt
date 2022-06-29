@@ -87,8 +87,8 @@ class CreateListFragment : Fragment() {
             if(url != null){
                 Toast.makeText(requireContext(), getString(R.string.item_added), Toast.LENGTH_LONG).show()
 
-                val listCursor = requireActivity().contentResolver.query(url, ListTable.ALL_FIELDS, null, null)
-                val id = Lists.fromCursor(listCursor!!).id
+                val id : Long = url.lastPathSegment!!.toLong()
+
                 goToList(id)
 
             }else{
