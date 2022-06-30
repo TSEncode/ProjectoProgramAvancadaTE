@@ -39,6 +39,7 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
     override fun onBindViewHolder(viewHolder: ItemsViewHolder, position: Int) {
         cursor!!.moveToPosition(position)
         viewHolder.items = Items.fromCursor(cursor!!)
+
     }
 
     override fun getItemCount() : Int {

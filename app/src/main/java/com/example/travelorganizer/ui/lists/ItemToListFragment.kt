@@ -95,7 +95,7 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     fun handlerOptionProcessed(item: MenuItem): Boolean {
         return when (item.itemId){
             R.id.saveButton -> {
-                Toast.makeText(requireContext(), ids.toString(), Toast.LENGTH_LONG).show()
+                insertRelation()
                 return true
             }
             else -> false
@@ -104,7 +104,9 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
     private fun insertRelation(){
-        var count : Int = 0
+        //variável para fazer a contagem e ver quando chega ao último indíce
+        var count = 0
+        //para cada id adicionao ao arrayLyst vamos inserir na relação
        ids!!.forEach {
            val listItem = ListItems(listId!!, it!!)
            val url = requireActivity().contentResolver.insert(

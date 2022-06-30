@@ -1,6 +1,8 @@
 package com.example.travelorganizer.db
 
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteQueryBuilder
 import android.provider.BaseColumns
 
 //Classe que cria a tabela Lista herda a class TableModel
@@ -15,6 +17,9 @@ class ListTable(db: SQLiteDatabase) : TableModel(db, NAME) {
                 "$FIELD_STATUS BOOL NOT NULL" +
                 ")")
     }
+
+
+
 
     //Nomes dos campos e da tabela
     companion object {

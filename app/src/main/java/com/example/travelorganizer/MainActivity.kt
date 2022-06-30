@@ -14,6 +14,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.travelorganizer.databinding.ActivityMainBinding
+import com.example.travelorganizer.db.DbOpenHelper
 import com.example.travelorganizer.ui.items.AddCategoryFragment
 import com.example.travelorganizer.ui.items.AddItemsFragment
 import com.example.travelorganizer.ui.items.ItemsFragment

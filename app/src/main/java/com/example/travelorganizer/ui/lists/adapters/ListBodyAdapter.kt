@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
-import com.example.travelorganizer.models.Lists
+import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.ui.lists.ListBodyFragment
 import com.example.travelorganizer.ui.lists.ListsFragmentDirections
 
@@ -25,19 +25,19 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
 
     inner class ListsBodyViewHolder(listBodyView: View) : RecyclerView.ViewHolder(listBodyView), View.OnClickListener {
 
-        val listBodyViewText = listBodyView.findViewById<TextView>(R.id.listCardTextView)
+        val listBodyViewText = listBodyView.findViewById<TextView>(R.id.itemCardTextView)
 
         init{
             listBodyView.setOnClickListener(this)
 
         }
 
-        var list : Lists? = null
+        var items : Items? = null
             get() = field
             set(value){
                 field = value
 
-                listBodyViewText.text =list?.name ?:" "
+                listBodyViewText.text =items?.name ?:" "
             }
 
         override fun onClick(p0: View?) {
@@ -47,7 +47,7 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
         }
         // função que retorna o livro selecionado para o fragment, muida a cor ao clicar
         private fun isChecked(){
-            fragment.findNavController().navigate(ListsFragmentDirections.actionNavigationListToNavigationListBodyFragment(list!!.id, list!!.name))
+            fragment.findNavController().navigate(ListsFragmentDirections.actionNavigationListToNavigationListBodyFragment(items!!.id, items!!.name))
         }
 
 
@@ -60,16 +60,19 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListsBodyViewHolder {
-        val itemList= fragment.layoutInflater.inflate(R.layout.list, parent, false)
+        val itemList= fragment.layoutInflater.inflate(R.layout.item, parent, false)
 
         return ListsBodyViewHolder(itemList)
     }
 
     override fun onBindViewHolder(holder: ListsBodyViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        cursor!!.moveToPosition(position)
+        holder.items = Items.fromCursor(cursor!!)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        if (cursor == null) return 0
+
+        return cursor!!.count
     }
 }

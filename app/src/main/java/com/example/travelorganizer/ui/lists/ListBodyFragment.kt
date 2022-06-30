@@ -1,5 +1,6 @@
 package com.example.travelorganizer.ui.lists
 
+import android.content.ContentResolver
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -15,13 +16,17 @@ import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 
 import com.example.travelorganizer.databinding.FragmentListBodyBinding
+import com.example.travelorganizer.db.ItemsTable
+import com.example.travelorganizer.db.ListItemsTable
 import com.example.travelorganizer.db.ListTable
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Lists
+import com.example.travelorganizer.ui.lists.adapters.ListBodyAdapter
 
 
 /**
@@ -36,6 +41,8 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     // onDestroyView.
     private val binding get() = _binding!!
     private var listName : String? = null
+
+    var listBodyAdapter : ListBodyAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,13 +66,22 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
             id = ListBodyFragmentArgs.fromBundle(arguments!!).listId
             listName = ListBodyFragmentArgs.fromBundle(arguments!!).listName
-            val activity = activity as MainActivity
-
-            activity.fragment = this
-            activity.idMenuTop = R.menu.top_nav_body_list
-
 
         }
+
+
+        val recycler = binding.bodyListRecycler
+
+        listBodyAdapter = ListBodyAdapter(this)
+
+        recycler.adapter = listBodyAdapter
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+
+        val activity = activity as MainActivity
+
+        activity.fragment = this
+        activity.idMenuTop = R.menu.top_nav_body_list
+
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -87,16 +103,23 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         }
     }
 
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        TODO("Not yet implemented")
-    }
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
+        CursorLoader(
+            requireContext(),
+            Uri.parse("${TravelContentProvider.ITEM_URL}/#${TravelContentProvider.URI_GET_LIST_ITEM}"),
+            ItemsTable.ALL_FIELDS,
+            "${ListItemsTable.FIELD_LIST_ID} = ?",
+            arrayOf("$id"),
+            null
+        )
+
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
-        TODO("Not yet implemented")
+        listBodyAdapter!!.cursor = data
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
-        TODO("Not yet implemented")
+       listBodyAdapter!!.cursor = null
     }
 
 

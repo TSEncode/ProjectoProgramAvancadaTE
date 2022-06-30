@@ -140,6 +140,7 @@ class TravelContentProvider : ContentProvider() {
             URI_SPECIFIC_TRAVEL -> TravelsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_LIST_TRAVEL -> ListTravelTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_LIST_ITEM -> ListItemsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_GET_LIST_ITEM -> ItemsTable(db).queryItemList(columns, selection, argsSelections, null, null, sortOrder)
             else -> null
         }
 
@@ -178,6 +179,7 @@ class TravelContentProvider : ContentProvider() {
             URI_SPECIFIC_CATEGORY -> "$UNIQUE_RECORD/${CategoriesTable.NAME}"
             URI_SPECIFIC_LIST_TRAVEL -> "$UNIQUE_RECORD/${ListTravelTable.NAME}"
             URI_SPECIFIC_LIST_ITEM -> "$UNIQUE_RECORD/${ListItemsTable.NAME}"
+
 
             else -> null
         }
@@ -300,6 +302,7 @@ class TravelContentProvider : ContentProvider() {
         const val URI_SPECIFIC_CATEGORY = 101
         const val URI_ITEMS = 200
         const val URI_SPECIFIC_ITEM = 201
+        const val URI_GET_LIST_ITEM = 202
         const val URI_LISTS = 300
         const val URI_SPECIFIC_LISTS = 301
         const val URI_TRAVEL = 400
@@ -334,6 +337,7 @@ class TravelContentProvider : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, "${ListItemsTable.NAME}/#", URI_SPECIFIC_LIST_ITEM)
             uriMatcher.addURI(AUTHORITY, ListTable.NAME, URI_LISTS)
             uriMatcher.addURI(AUTHORITY, "${ListTable.NAME}/#", URI_SPECIFIC_LISTS)
+            uriMatcher.addURI(AUTHORITY, "${ItemsTable.NAME}/#", URI_GET_LIST_ITEM)
             uriMatcher.addURI(AUTHORITY, ListTravelTable.NAME, URI_LIST_TRAVEL)
             uriMatcher.addURI(AUTHORITY, "${ListTravelTable.NAME}/#", URI_SPECIFIC_LIST_TRAVEL)
 
