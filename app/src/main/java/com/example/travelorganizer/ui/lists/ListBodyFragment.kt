@@ -61,26 +61,26 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        LoaderManager.getInstance(this).initLoader(ListsFragment.ID_LOADER_LIST, null, this)
 
         if(arguments != null){
 
             id = ListBodyFragmentArgs.fromBundle(arguments!!).listId
             listName = ListBodyFragmentArgs.fromBundle(arguments!!).listName
 
+            val recycler = binding.bodyListRecycler
+
+            listBodyAdapter = ListBodyAdapter(this)
+
+            recycler.adapter = listBodyAdapter
+            recycler.layoutManager = LinearLayoutManager(requireContext())
+
+            val activity = activity as MainActivity
+
+            activity.fragment = this
+            activity.idMenuTop = R.menu.top_nav_body_list
+
         }
-
-
-        val recycler = binding.bodyListRecycler
-
-        listBodyAdapter = ListBodyAdapter(this)
-
-        recycler.adapter = listBodyAdapter
-        recycler.layoutManager = LinearLayoutManager(requireContext())
-
-        val activity = activity as MainActivity
-
-        activity.fragment = this
-        activity.idMenuTop = R.menu.top_nav_body_list
 
     }
     override fun onDestroyView() {
@@ -109,13 +109,14 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             Uri.parse("${TravelContentProvider.ITEM_URL}/#${TravelContentProvider.URI_GET_LIST_ITEM}"),
             ItemsTable.ALL_FIELDS,
             "${ListItemsTable.FIELD_LIST_ID} = ?",
-            arrayOf("$id"),
+            arrayOf("${ListBodyFragmentArgs.fromBundle(arguments!!).listId}"),
             null
         )
 
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         listBodyAdapter!!.cursor = data
+
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {

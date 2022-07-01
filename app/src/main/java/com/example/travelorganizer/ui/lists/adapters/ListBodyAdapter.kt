@@ -23,41 +23,6 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
             }
         }
 
-    inner class ListsBodyViewHolder(listBodyView: View) : RecyclerView.ViewHolder(listBodyView), View.OnClickListener {
-
-        val listBodyViewText = listBodyView.findViewById<TextView>(R.id.itemCardTextView)
-
-        init{
-            listBodyView.setOnClickListener(this)
-
-        }
-
-        var items : Items? = null
-            get() = field
-            set(value){
-                field = value
-
-                listBodyViewText.text =items?.name ?:" "
-            }
-
-        override fun onClick(p0: View?) {
-
-
-
-        }
-        // função que retorna o livro selecionado para o fragment, muida a cor ao clicar
-        private fun isChecked(){
-            fragment.findNavController().navigate(ListsFragmentDirections.actionNavigationListToNavigationListBodyFragment(items!!.id, items!!.name))
-        }
-
-
-
-        //função que deseleciona o item
-        private fun uncheck(){
-            itemView.setBackgroundResource(R.color.layout_grey)
-
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListsBodyViewHolder {
         val itemList= fragment.layoutInflater.inflate(R.layout.item, parent, false)
@@ -74,5 +39,42 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
         if (cursor == null) return 0
 
         return cursor!!.count
+    }
+
+    inner class ListsBodyViewHolder(listBodyView: View) : RecyclerView.ViewHolder(listBodyView), View.OnClickListener {
+
+        val listBodyViewText = listBodyView.findViewById<TextView>(R.id.itemCardTextView)
+
+        var items : Items? = null
+            get() = field
+            set(value){
+                field = value
+
+                listBodyViewText.text =items?.name ?:" "
+            }
+
+        init{
+            listBodyView.setOnClickListener(this)
+
+        }
+
+
+
+        override fun onClick(p0: View?) {
+
+
+        }
+        // função que retorna o livro selecionado para o fragment, muida a cor ao clicar
+        private fun isChecked(){
+            fragment.findNavController().navigate(ListsFragmentDirections.actionNavigationListToNavigationListBodyFragment(items!!.id, items!!.name))
+        }
+
+
+
+        //função que deseleciona o item
+        private fun uncheck(){
+            itemView.setBackgroundResource(R.color.layout_grey)
+
+        }
     }
 }
