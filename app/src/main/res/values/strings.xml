@@ -50,6 +50,7 @@
     <string name="body_list_title">Body List Title</string>
     <string name="items_added">Items Added to List</string>
     <string name="error_dont_create_relation">Error: Don\'t create the associate</string>
+    <string name="item_update">Item updated Sucessfully!</string>
 
 
 </resources>

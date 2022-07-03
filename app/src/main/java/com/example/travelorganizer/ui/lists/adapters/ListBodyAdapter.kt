@@ -3,7 +3,9 @@ package com.example.travelorganizer.ui.lists.adapters
 import android.database.Cursor
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
@@ -44,7 +46,8 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
     inner class ListsBodyViewHolder(listBodyView: View) : RecyclerView.ViewHolder(listBodyView), View.OnClickListener {
 
         val listBodyViewText = listBodyView.findViewById<TextView>(R.id.itemCardTextView)
-
+        val listBodyCheckbox = listBodyView.findViewById<CheckBox>(R.id.itemCardCheckBox)
+        var isChecked = false
         var items : Items? = null
             get() = field
             set(value){
@@ -53,21 +56,45 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
                 listBodyViewText.text =items?.name ?:" "
             }
 
+
+
         init{
+            listBodyCheckbox.setOnClickListener{
+                isChecked()
+            }
             listBodyView.setOnClickListener(this)
 
         }
 
 
-
         override fun onClick(p0: View?) {
+            isChecked()
+
+                Toast.makeText(fragment.context,fragment.ids.toString(), Toast.LENGTH_LONG).show()
 
 
         }
         // função que retorna o livro selecionado para o fragment, muida a cor ao clicar
         private fun isChecked(){
-            fragment.findNavController().navigate(ListsFragmentDirections.actionNavigationListToNavigationListBodyFragment(items!!.id, items!!.name))
+            if(!isChecked){
+                listBodyCheckbox.isChecked = true
+                itemView.setBackgroundResource(R.color.white_grey)
+                fragment.updateCheckedItem(items, 1 )
+                this.isChecked = true
+
+
+                fragment.ids!!.add(items?.id)
+            }else{
+                listBodyCheckbox.isChecked = false
+                itemView.setBackgroundResource(R.color.layout_grey)
+                fragment.updateCheckedItem(items, 0 )
+                this.isChecked = false
+
+
+            }
         }
+
+
 
 
 

@@ -32,21 +32,6 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
     }
-/*
-     fun queryItemList(
-        columns: Array<String>?,
-        selection: String?,
-        selectionArgs: Array<String>?,
-        groupBy: String?,
-        having: String?,
-        orderBy: String?,
-         )
-            : Cursor {
-        val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NAME LEFT JOIN ${ListItemsTable.NAME} ON ${ListItemsTable.FIELD_ITEMS_ID} = $FIELD_ID "
-
-        return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
-    }*/
 
 
     //Nomes dos campos e da tabela
@@ -56,14 +41,15 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
         const val FIELD_NAME = "items_name"
         const val FIELD_CATEGORY_ID = "items_category_id"
         const val TABLE_REFERENCE = "categories"
-        const val LIST_ID = "list_id"
+        val LIST = ListItemsTable
 
         val ALL_FIELDS = arrayOf(
             FIELD_ID,
             FIELD_NAME,
             FIELD_CATEGORY_ID,
-            LIST_ID
-
+            LIST.FIELD_LIST_ID,
+            LIST.FIELD_ITEMS_ID,
+            LIST.FIELD_ID
         )
 
     }

@@ -69,7 +69,13 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
 
         fun isChecked(){
             checked = this
-            fragment.ids?.add(items?.id)
+
+            fragment.ids!!.forEach {
+                if(it != items?.id){
+                    fragment.ids?.add(items?.id)
+
+                }
+            }
             itemView.setBackgroundResource(R.color.white_grey)
         }
     }
