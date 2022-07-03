@@ -106,7 +106,7 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
         CursorLoader(
             requireContext(),
-            Uri.parse("${TravelContentProvider.ITEM_URL}/#${TravelContentProvider.URI_GET_LIST_ITEM}"),
+            TravelContentProvider.ITEM_URL,
             ItemsTable.ALL_FIELDS,
             "${ListItemsTable.FIELD_LIST_ID} = ?",
             arrayOf("${ListBodyFragmentArgs.fromBundle(arguments!!).listId}"),

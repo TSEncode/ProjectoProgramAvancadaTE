@@ -18,7 +18,7 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
                 ")")
     }
 
-    /*override fun query(
+    override fun query(
         columns: Array<String>?,
         selection: String?,
         selectionArgs: Array<String>?,
@@ -28,11 +28,11 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
         limit: String? )
     : Cursor {
         val queryBuilder = SQLiteQueryBuilder()
-        queryBuilder.tables = "$NAME INNER JOIN ${CategoriesTable.NAME} ON ${CategoriesTable.FIELD_ID} = $FIELD_ID"
+        queryBuilder.tables =  "$NAME LEFT JOIN ${ListItemsTable.NAME} ON ${ListItemsTable.FIELD_ITEMS_ID} = $FIELD_ID "
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
-    }*/
-
+    }
+/*
      fun queryItemList(
         columns: Array<String>?,
         selection: String?,
@@ -46,7 +46,7 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
         queryBuilder.tables = "$NAME LEFT JOIN ${ListItemsTable.NAME} ON ${ListItemsTable.FIELD_ITEMS_ID} = $FIELD_ID "
 
         return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
-    }
+    }*/
 
 
     //Nomes dos campos e da tabela
@@ -56,11 +56,14 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
         const val FIELD_NAME = "items_name"
         const val FIELD_CATEGORY_ID = "items_category_id"
         const val TABLE_REFERENCE = "categories"
+        const val LIST_ID = "list_id"
 
         val ALL_FIELDS = arrayOf(
             FIELD_ID,
             FIELD_NAME,
-            FIELD_CATEGORY_ID
+            FIELD_CATEGORY_ID,
+            LIST_ID
+
         )
 
     }
