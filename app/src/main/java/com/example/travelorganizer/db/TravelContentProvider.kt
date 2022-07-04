@@ -140,7 +140,7 @@ class TravelContentProvider : ContentProvider() {
             URI_SPECIFIC_TRAVEL -> TravelsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_LIST_TRAVEL -> ListTravelTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_LIST_ITEM -> ListItemsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
-            //URI_GET_LIST_ITEM -> ItemsTable(db).queryItemList(columns, selection, argsSelections, null, null, sortOrder)
+            //URI_GET_LIST_ITEM -> ItemsTable(db).queryItemList(columns, selection, argsSelections, null, null, sortOrder, null)
             else -> null
         }
 

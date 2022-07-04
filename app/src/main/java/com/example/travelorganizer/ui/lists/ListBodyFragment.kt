@@ -51,7 +51,6 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     var listBodyAdapter : ListBodyAdapter? = null
 
     private var checkbox : CheckBox? = null
-
     //variável que guarda os ids a actualizar, usa-se um mutableset pois não podem exisitir id repetidos
     var ids : MutableSet<Long?>? = mutableSetOf()
 
@@ -67,43 +66,34 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val root: View = binding.root
 
 
+
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_ITEMS, null, this)
-        LoaderManager.getInstance(this).initLoader(ID_LOADER_ITEMS, null, this)
-        checkbox  =  view.findViewById(R.id.itemCardCheckBox)
-        LoaderManager.getInstance(this).getLoader<Cursor>(ID_LOADER_LIST_ITEMS)!!.deliverResult(checkboxCursor)
-        var listItems = ListItems.fromCursor(checkboxCursor!!)
-        while (checkboxCursor!!.moveToNext()){
-                listItems = ListItems.fromCursor(checkboxCursor!!)
-                if(listItems.status == 1 ){
-                    checkbox!!.isChecked = true
-                }
-        }
+
 
         if(arguments != null){
 
             id = ListBodyFragmentArgs.fromBundle(arguments!!).listId
             listName = ListBodyFragmentArgs.fromBundle(arguments!!).listName
 
-            val recycler = binding.bodyListRecycler
-
-            listBodyAdapter = ListBodyAdapter(this)
-
-            recycler.adapter = listBodyAdapter
-            recycler.layoutManager = LinearLayoutManager(requireContext())
-
-            val activity = activity as MainActivity
-
-            activity.fragment = this
-            activity.idMenuTop = R.menu.top_nav_body_list
-
-
         }
 
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_ITEMS, null, this)
+
+        val recycler = binding.bodyListRecycler
+
+        listBodyAdapter = ListBodyAdapter(this)
+
+        recycler.adapter = listBodyAdapter
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+
+        val activity = activity as MainActivity
+
+        activity.fragment = this
+        activity.idMenuTop = R.menu.top_nav_body_list
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -126,35 +116,20 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     }
 
 
-    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> {
-        var cursor : CursorLoader? = null
-        if(id == ID_LOADER_ITEMS ){
-              cursor = CursorLoader(
-                requireContext(),
-                TravelContentProvider.ITEM_URL,
-                ItemsTable.ALL_FIELDS,
-                "${ListItemsTable.FIELD_LIST_ID} = ?",
-                arrayOf("${ListBodyFragmentArgs.fromBundle(arguments!!).listId}"),
-                null
-            )
-
-        }else if (id == ID_LOADER_LIST_ITEMS){
-            cursor = CursorLoader(
-                requireContext(),
-                TravelContentProvider.LIST_ITEM_URL,
-                ItemsTable.ALL_FIELDS,
-                null,
-                null,
-                null
-            )
-        }
-
-        return  cursor!!
-    }
+    override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
+        CursorLoader(
+            requireContext(),
+            TravelContentProvider.ITEM_URL,
+            ItemsTable.ALL_FIELDS,
+            "${ListItemsTable.FIELD_LIST_ID} = ?",
+            arrayOf("${this.id}"),
+            null
+        )
 
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         listBodyAdapter!!.cursor = data
+
     }
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
@@ -189,7 +164,7 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     companion object{
         const val ID_LOADER_ITEMS = 0
-        const val ID_LOADER_LIST_ITEMS = 1
+
     }
 
 

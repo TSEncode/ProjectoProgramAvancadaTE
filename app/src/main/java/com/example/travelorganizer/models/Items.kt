@@ -27,20 +27,28 @@ data class Items(
 
     companion object{
         fun fromCursor(cursor: Cursor) : Items{
-            val posID = cursor.getColumnIndexOrThrow(BaseColumns._ID)
+            val posID = cursor.getColumnIndexOrThrow(ItemsTable.FIELD_ID)
             val posName = cursor.getColumnIndexOrThrow(ItemsTable.FIELD_NAME)
             val posCategoryId = cursor.getColumnIndexOrThrow(ItemsTable.FIELD_CATEGORY_ID)
             val posListItemId = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_ID)
             val posListItem = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_ITEMS_ID)
             val posListItemList = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_LIST_ID)
-
+            val posListItemStatus = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_STATUS)
+            val posListItemQuantity = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_QUANTITY)
 
 
             val id = cursor.getLong(posID)
             val name = cursor.getString(posName)
             val categoryId = cursor.getLong(posCategoryId)
 
-            val listItem = ListItems(id = cursor.getLong(posListItemId), itemId = cursor.getLong(posListItem), listId = cursor.getLong(posListItemList)  )
+            val listItem = ListItems(
+                cursor.getLong(posListItemList),
+                cursor.getLong(posListItem),
+                cursor.getInt(posListItemStatus),
+                cursor.getInt(posListItemQuantity),
+                cursor.getLong(posListItemId),
+
+            )
 
             return  Items(name,categoryId,listItem, id)
         }

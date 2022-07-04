@@ -49,7 +49,8 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
             FIELD_CATEGORY_ID,
             LIST.FIELD_LIST_ID,
             LIST.FIELD_ITEMS_ID,
-            LIST.FIELD_ID
+            LIST.FIELD_STATUS,
+            LIST.FIELD_QUANTITY
         )
 
     }

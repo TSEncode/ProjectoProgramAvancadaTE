@@ -48,7 +48,7 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     private  var itemToListAdapter : ItemToListAdapter? = null
 
     //variável que guarda os ids selecionados, usa-se um mutableset pois não podem exisitir id repetidos
-    var ids : MutableSet<Long?>? = mutableSetOf()
+    var ids : ArrayList<Long?> = ArrayList()
     private var listId : Long? = null
 
     override fun onCreateView(
@@ -105,19 +105,19 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private fun insertRelation(){
         //variável para fazer a contagem e ver quando chega ao último indíce
-        var count : Long = 0
+        var count  = 0
         //para cada id adicionao ao arrayLyst vamos inserir na relação
-       ids!!.forEach {
-           val listItem = ListItems(listId!!, it!!)
+       for ( id in ids){
+           val listItem = ListItems(listId!!, id!!)
            val url = requireActivity().contentResolver.insert(
                TravelContentProvider.LIST_ITEM_URL,
                listItem.toContentValues()
            )
 
-           if(count == ids!!.last()){
+           if(count == ids.lastIndex){
                if(url != null){
                    Toast.makeText(requireContext(), getString(R.string.items_added), Toast.LENGTH_LONG).show()
-                   findNavController().navigate(ItemToListFragmentDirections.actionItemToListFragmentToNavigationListBodyFragment(-1, null))
+                   findNavController().navigate(ItemToListFragmentDirections.actionItemToListFragmentToNavigationListBodyFragment(this.listId!!, null))
 
 
                }else{

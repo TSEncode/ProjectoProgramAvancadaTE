@@ -54,14 +54,21 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
                 field = value
 
                 listBodyViewText.text =items?.name ?:" "
+                if( items?.listItem?.status == 1){
+                    listBodyCheckbox.isChecked = true
+
+                }
+
+                listBodyCheckbox.setOnClickListener{
+                    isChecked()
+                }
             }
 
 
 
         init{
-            listBodyCheckbox.setOnClickListener{
-                isChecked()
-            }
+
+
             listBodyView.setOnClickListener(this)
 
         }
@@ -70,17 +77,16 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
         override fun onClick(p0: View?) {
             isChecked()
 
-                Toast.makeText(fragment.context,fragment.ids.toString(), Toast.LENGTH_LONG).show()
-
-
         }
-        // função que retorna o livro selecionado para o fragment, muida a cor ao clicar
+        // função que retorna o livro selecionado para o fragment, muda a cor ao clicar
         private fun isChecked(){
             if(!isChecked){
-                listBodyCheckbox.isChecked = true
+
+                listBodyCheckbox.isChecked = !listBodyCheckbox.isChecked
+
                 itemView.setBackgroundResource(R.color.white_grey)
                 fragment.updateCheckedItem(items, 1 )
-                this.isChecked = true
+                isChecked = true
 
 
                 fragment.ids!!.add(items?.id)
@@ -88,7 +94,7 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
                 listBodyCheckbox.isChecked = false
                 itemView.setBackgroundResource(R.color.layout_grey)
                 fragment.updateCheckedItem(items, 0 )
-                this.isChecked = false
+                isChecked = false
 
 
             }

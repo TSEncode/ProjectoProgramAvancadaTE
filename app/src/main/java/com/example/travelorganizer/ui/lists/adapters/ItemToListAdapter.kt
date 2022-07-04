@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Items
@@ -50,6 +51,7 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
     inner class ItemsToListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val itemViewText = itemView.findViewById<TextView>(R.id.listCardTextView)
+        var id : Long? = null
 
         var items : Items? = null
             get() = field
@@ -57,6 +59,8 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
                 field = value
 
                 itemViewText.text =items?.name ?:" "
+                id =  items?.id
+                fragment.ids.add(id)
             }
 
         init{
@@ -65,17 +69,18 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
 
         override fun onClick(p0: View?) {
             isChecked()
+            Toast.makeText(fragment.context, fragment.ids.toString(), Toast.LENGTH_LONG).show()
+
         }
 
         fun isChecked(){
             checked = this
 
-            fragment.ids!!.forEach {
-                if(it != items?.id){
-                    fragment.ids?.add(items?.id)
 
-                }
-            }
+
+
+
+
             itemView.setBackgroundResource(R.color.white_grey)
         }
     }
