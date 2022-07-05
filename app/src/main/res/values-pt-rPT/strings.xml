@@ -44,5 +44,34 @@
     <string name="save">Guardar</string>
     <string name="close">Fechar</string>
     <string name="error_item">Erro: Item não foi adicionado </string>
-    <string name="body_list_title">Body List Title</string>
+    <string name="body_list_title">Titulo Lista</string>
+
+    <string name="items_added">Items adicionados na lista</string>
+    <string name="error_dont_create_relation">Erro: Não criar o associado</string>
+    <string name="item_update">Item updated Sucessfully!</string>
+    <string name="delete_item">Item actualizado com sucesso!</string>
+    <string name="delte_item_msg">Tem a certeza de que quer apagar este item?</string>
+    <string name="error_delete_item">Erro: Item não apagar</string>
+
+    <!-- Travel -->
+    <string name="add_travel">Adicionar Viagem</string>
+    <string name="budget">Orçamento</string>
+    <string name="local">Local</string>
+    <string name="money_spent_on_travel">Dinheiro gasto na viagem</string>
+    <string name="travel_date">Data da Viagem</string>
+    <string name="travel_name">Nome da Viagem</string>
+    <string name="choose_list_to_travel">Escolha a lista da viagem</string>
+    <string name="choose_list">Escolha lista</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="show_list">Mostrar lista</string>
+    <string name="euro">€</string>
+    <string name="add_item_to_list">Adicionar item À Lista</string>
+    <string name="last_travels">Última Viagens:</string>
+    <string name="travel_delete">Apgar Viagem</string>
+    <string name="travel_delete_msg">Tem a certeza de que quer apagar esta Viagem?</string>
+    <string name="list_Delete">Apagar Lista</string>
+    <string name="list_delete_ms">Tem a certeza de que quer apagar esta Lista?</string>
+    <string name="new_travel">Nova Viagem</string>
+    <string name="edit_item">Editar item</string>
 </resources>
