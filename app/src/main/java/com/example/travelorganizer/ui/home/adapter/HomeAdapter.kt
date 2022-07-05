@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.models.Travel
 import com.example.travelorganizer.ui.home.HomeFragment
+import com.example.travelorganizer.ui.home.HomeFragmentDirections
 
 class HomeAdapter (val fragment : HomeFragment) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
     var cursor: Cursor? = null
@@ -31,7 +33,8 @@ class HomeAdapter (val fragment : HomeFragment) : RecyclerView.Adapter<HomeAdapt
         }
 
         override fun onClick(p0: View?) {
-
+            val action = HomeFragmentDirections.actionNavigationHomeToTravelBodyFragment(travels!!)
+            fragment.findNavController().navigate(action)
         }
     }
 

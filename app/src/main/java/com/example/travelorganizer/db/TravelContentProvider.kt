@@ -134,7 +134,7 @@ class TravelContentProvider : ContentProvider() {
             URI_LISTS -> ListTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_TRAVEL ->TravelsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_LIST_TRAVEL -> ListTravelTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
-            URI_LIMITED_TRAVEL -> TravelsTable(db).query(columns, selection, argsSelections, null, null, "${TravelsTable.FIELD_DATE} DESC}", "3")
+            URI_LIMITED_TRAVEL -> TravelsTable(db).query(columns, selection, argsSelections, null, null, "${TravelsTable.FIELD_DATE} DESC", "3")
             URI_LIST_ITEM -> ListItemsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_SPECIFIC_ITEM -> ItemsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_CATEGORY -> CategoriesTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
@@ -327,7 +327,7 @@ class TravelContentProvider : ContentProvider() {
         val LIST_ITEM_URL =Uri.withAppendedPath(BASE_URL, ListItemsTable.NAME)
         val LIST_TRAVEL_URL =Uri.withAppendedPath(BASE_URL, ListTravelTable.NAME)
         val LIST_GET_URL = Uri.withAppendedPath(ITEM_URL, URI_GET_LIST_ITEM.toString())
-        val TRAVEL_LIMIT_URL = Uri.withAppendedPath(ITEM_URL, URI_LIMITED_TRAVEL.toString())
+        val TRAVEL_LIMIT_URL = Uri.withAppendedPath(TRAVEL_URL, URI_LIMITED_TRAVEL.toString())
 
         fun getUriMatcher() : UriMatcher {
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
