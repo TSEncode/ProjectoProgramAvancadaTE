@@ -70,4 +70,8 @@
     <string name="euro">€</string>
     <string name="add_item_to_list">Add Item To List</string>
     <string name="last_travels">Last Travels:</string>
+    <string name="travel_delete">Delete Travel</string>
+    <string name="travel_delete_msg">Are you sure want delete this Travel?</string>
+    <string name="list_Delete">Delete List</string>
+    <string name="list_delete_ms">Are you sure want delete this List?</string>
 </resources>

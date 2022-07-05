@@ -1,6 +1,8 @@
 package com.example.travelorganizer.ui.lists
 
+import android.app.AlertDialog
 import android.content.ContentResolver
+import android.content.DialogInterface
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -22,14 +24,12 @@ import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 
 import com.example.travelorganizer.databinding.FragmentListBodyBinding
-import com.example.travelorganizer.db.ItemsTable
-import com.example.travelorganizer.db.ListItemsTable
-import com.example.travelorganizer.db.ListTable
-import com.example.travelorganizer.db.TravelContentProvider
+import com.example.travelorganizer.db.*
 import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.models.ListItems
 import com.example.travelorganizer.models.Lists
 import com.example.travelorganizer.ui.lists.adapters.ListBodyAdapter
+import com.example.travelorganizer.ui.travels.TravelBodyFragmentDirections
 
 
 /**
@@ -111,6 +111,11 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 findNavController().navigate(ListBodyFragmentDirections.actionNavigationListBodyFragmentToNavigationList(-1))
                 return true
             }
+
+            R.id.deleteButton -> {
+                deleteDialog()
+                return true
+            }
             else -> false
         }
     }
@@ -163,6 +168,60 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             Toast.makeText(requireContext(), getString(R.string.error_item), Toast.LENGTH_LONG).show()
         }
 
+    }
+
+    private fun deleteDialog(){
+        val dialogDelete = AlertDialog.Builder(requireContext())
+
+        dialogDelete.setTitle(getString(R.string.list_Delete))
+        dialogDelete.setMessage(getString(R.string.list_delete_ms))
+        dialogDelete.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener{ dialog, wich -> })
+        dialogDelete.setPositiveButton(R.string.delete, DialogInterface.OnClickListener{ dialog, wich -> deleteList() })
+        dialogDelete.show()
+
+    }
+
+    //Função que elimina uma lista e a sua relação
+    private fun deleteList() {
+        val uriList = Uri.withAppendedPath(TravelContentProvider.TRAVEL_URL, "$id")
+
+
+        val deletedRelatedListTravel = requireActivity().contentResolver.delete(
+            TravelContentProvider.LIST_TRAVEL_URL,
+            "${ListTravelTable.FIELD_LIST_ID} = ? ",
+            arrayOf("$id")
+        )
+
+
+        val deletedRelatedListItem = requireActivity().contentResolver.delete(
+            TravelContentProvider.LIST_ITEM_URL,
+            "${ListItemsTable.FIELD_LIST_ID} = ? ",
+            arrayOf("$id")
+        )
+        if (deletedRelatedListTravel == 1 && deletedRelatedListItem == 1) {
+
+            val deletedItem = requireActivity().contentResolver.delete(
+                uriList,
+                null, null
+            )
+            if (deletedItem == 1) {
+                Toast.makeText(requireContext(), "Items deleted Successfully!", Toast.LENGTH_LONG)
+                    .show()
+                findNavController().navigate(ListBodyFragmentDirections.actionNavigationListBodyFragmentToNavigationList(-1))
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.error_delete_item),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        } else {
+            Toast.makeText(
+                requireContext(),
+                deletedRelatedListItem.toString(),
+                Toast.LENGTH_LONG
+            ).show()
+        }
     }
 
     companion object{

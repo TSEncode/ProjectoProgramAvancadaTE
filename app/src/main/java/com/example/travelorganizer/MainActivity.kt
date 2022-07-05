@@ -17,12 +17,14 @@ import com.example.travelorganizer.databinding.ActivityMainBinding
 import com.example.travelorganizer.db.DbOpenHelper
 import com.example.travelorganizer.ui.items.AddCategoryFragment
 import com.example.travelorganizer.ui.items.AddItemsFragment
+import com.example.travelorganizer.ui.items.EditItemFragment
 import com.example.travelorganizer.ui.items.ItemsFragment
 import com.example.travelorganizer.ui.lists.CreateListFragment
 import com.example.travelorganizer.ui.lists.ItemToListFragment
 import com.example.travelorganizer.ui.lists.ListBodyFragment
 import com.example.travelorganizer.ui.lists.ListsFragment
 import com.example.travelorganizer.ui.travels.AddTravelFragment
+import com.example.travelorganizer.ui.travels.TravelBodyFragment
 import com.example.travelorganizer.ui.travels.TravelsFragment
 
 class MainActivity : AppCompatActivity() {
@@ -121,6 +123,10 @@ class MainActivity : AppCompatActivity() {
             optionProcessed = (fragment as CreateListFragment).handlerOptionProcessed(item)
         }else if(fragment is AddTravelFragment){
             optionProcessed = (fragment as AddTravelFragment).handlerOptionProcessed(item)
+        }else if(fragment is TravelBodyFragment){
+            optionProcessed = (fragment as TravelBodyFragment).handlerOptionProcessed(item)
+        }else if(fragment is EditItemFragment){
+            optionProcessed = (fragment as EditItemFragment).handlerOptionProcessed(item)
         }else{
             optionProcessed = false
         }

@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
-import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.models.Travel
 import com.example.travelorganizer.ui.home.HomeFragment
 import com.example.travelorganizer.ui.home.HomeFragmentDirections
@@ -31,10 +31,14 @@ class HomeAdapter (val fragment : HomeFragment) : RecyclerView.Adapter<HomeAdapt
             field = value
             travelItem.text = travels?.name ?: " "
         }
+        init {
+            itemView.setOnClickListener(this)
+        }
 
         override fun onClick(p0: View?) {
             val action = HomeFragmentDirections.actionNavigationHomeToTravelBodyFragment(travels!!)
             fragment.findNavController().navigate(action)
+
         }
     }
 

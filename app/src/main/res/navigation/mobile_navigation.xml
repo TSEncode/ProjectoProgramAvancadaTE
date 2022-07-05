@@ -64,6 +64,9 @@
         <action
             android:id="@+id/action_navigation_item_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_item_to_editItemFragment"
+            app:destination="@id/editItemFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_addItemsFragment"
@@ -158,5 +161,18 @@
         <action
             android:id="@+id/action_travelBodyFragment_to_navigation_listBodyFragment"
             app:destination="@id/navigation_listBodyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editItemFragment"
+        android:name="com.example.travelorganizer.ui.items.EditItemFragment"
+        android:label="fragment_edit_item"
+        tools:layout="@layout/fragment_edit_item" >
+        <action
+            android:id="@+id/action_editItemFragment_to_navigation_item"
+            app:destination="@id/navigation_item" />
+        <argument
+            android:name="id"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
 </navigation>

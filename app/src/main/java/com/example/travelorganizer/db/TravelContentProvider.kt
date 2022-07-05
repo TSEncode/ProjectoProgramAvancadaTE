@@ -134,7 +134,7 @@ class TravelContentProvider : ContentProvider() {
             URI_LISTS -> ListTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_TRAVEL ->TravelsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_LIST_TRAVEL -> ListTravelTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
-            URI_LIMITED_TRAVEL -> TravelsTable(db).query(columns, selection, argsSelections, null, null, "${TravelsTable.FIELD_DATE} DESC", "3")
+            URI_LIMITED_TRAVEL -> TravelsTable(db).query(columns, selection, argsSelections, null, null, "${TravelsTable.FIELD_NAME} ASC",  "3")
             URI_LIST_ITEM -> ListItemsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_SPECIFIC_ITEM -> ItemsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_CATEGORY -> CategoriesTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))

@@ -100,6 +100,11 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
                 findNavController().navigate(action)
                 return true
             }
+            R.id.editButton -> {
+                val action = ItemsFragmentDirections.actionNavigationItemToEditItemFragment(items!!.id)
+                findNavController().navigate(action)
+                return  true
+            }
             R.id.deleteButton -> {
                 deleteDialog()
                 return true
@@ -137,11 +142,12 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         dialogDelete.setTitle(getString(R.string.delete_item))
         dialogDelete.setMessage(getString(R.string.delte_item_msg))
         dialogDelete.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener{ dialog, wich -> })
-        dialogDelete.setPositiveButton("Delete", DialogInterface.OnClickListener{ dialog, wich -> deleteItem() })
+        dialogDelete.setPositiveButton(R.string.delete, DialogInterface.OnClickListener{ dialog, wich -> deleteItem() })
         dialogDelete.show()
 
     }
 
+    //Função que elimina um item e a sua relação
     private fun deleteItem(){
         val uriItem = Uri.withAppendedPath(TravelContentProvider.ITEM_URL, "${items?.id}")
 

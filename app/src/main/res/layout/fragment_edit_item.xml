@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.lists.CreateListFragment" >
+    tools:context=".ui.items.EditItemFragment" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,31 +17,32 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="713dp">
+                android:layout_height="709dp">
 
                 <EditText
-                    android:id="@+id/listNameValue"
+                    android:id="@+id/itemNameValue"
                     android:layout_width="325dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
                     android:ems="10"
-                    android:hint="@string/add_list_name"
+                    android:hint="@string/add_item_name_placeholder"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textAlignment="viewStart"
                     android:textColorHint="#757575"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/listNameTextView" />
+                    app:layout_constraintTop_toBottomOf="@+id/itemNameTextView" />
 
                 <TextView
-                    android:id="@+id/listNameTextView"
+                    android:id="@+id/itemNameTextView"
                     android:layout_width="325dp"
                     android:layout_height="32dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/list_name"
+                    android:text="@string/item_add_name"
                     android:textAlignment="viewStart"
                     android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -49,35 +50,62 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/descriptTextView"
+                    android:id="@+id/chooseCategoriesTextView"
                     android:layout_width="325dp"
-                    android:layout_height="32dp"
+                    android:layout_height="35dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginEnd="10dp"
-                    android:text="@string/description"
+                    android:text="@string/choose_category"
+                    android:textAlignment="viewStart"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/listNameValue" />
+                    app:layout_constraintTop_toBottomOf="@+id/itemNameValue" />
 
-                <EditText
-                    android:id="@+id/descriptionListValue"
+                <Spinner
+                    android:id="@+id/categoriesSpinner"
                     android:layout_width="325dp"
                     android:layout_height="48dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="10dp"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:hint="@string/add_a_list_description"
-                    android:inputType="textPersonName"
-                    android:textColorHint="#757575"
+                    android:contentDescription="@string/choose_category_spinner"
+                    android:spinnerMode="dialog"
+                    android:textSize="20sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/descriptTextView" />
+                    app:layout_constraintTop_toBottomOf="@+id/chooseCategoriesTextView" />
+
+                <ImageButton
+                    android:id="@+id/toAddCategoryButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#00FFFFFF"
+                    android:contentDescription="@string/add_category_button"
+                    app:layout_constraintEnd_toStartOf="@+id/addCategoryItemsTextView"
+                    app:layout_constraintHorizontal_bias="0.97"
+                    app:layout_constraintStart_toStartOf="@+id/categoriesSpinner"
+                    app:layout_constraintTop_toBottomOf="@+id/categoriesSpinner"
+                    app:srcCompat="@drawable/ic_add"
+                    tools:ignore="RedundantDescriptionCheck,RedundantDescriptionCheck" />
+
+                <TextView
+                    android:id="@+id/addCategoryItemsTextView"
+                    android:layout_width="263dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="40dp"
+                    android:text="@string/new_category"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/categoriesSpinner"
+                    app:layout_constraintTop_toBottomOf="@+id/categoriesSpinner" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
