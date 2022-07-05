@@ -34,7 +34,7 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
 
     override fun onBindViewHolder(holder: ListsBodyViewHolder, position: Int) {
         cursor!!.moveToPosition(position)
-        holder.items = Items.fromCursor(cursor!!)
+        holder.items = Items.fromCursorRelated(cursor!!)
     }
 
     override fun getItemCount(): Int {
@@ -88,8 +88,6 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
                 fragment.updateCheckedItem(items, 1 )
                 isChecked = true
 
-
-                fragment.ids!!.add(items?.id)
             }else{
                 listBodyCheckbox.isChecked = false
                 itemView.setBackgroundResource(R.color.layout_grey)

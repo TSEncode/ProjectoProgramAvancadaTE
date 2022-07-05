@@ -18,7 +18,7 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
                 ")")
     }
 
-    override fun query(
+      fun queryItemList(
         columns: Array<String>?,
         selection: String?,
         selectionArgs: Array<String>?,
@@ -30,7 +30,7 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
         val queryBuilder = SQLiteQueryBuilder()
         queryBuilder.tables =  "$NAME LEFT JOIN ${ListItemsTable.NAME} ON ${ListItemsTable.FIELD_ITEMS_ID} = $FIELD_ID "
 
-        return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy)
+        return queryBuilder.query(db, columns, selection, selectionArgs, groupBy, having, orderBy,limit)
     }
 
 
@@ -44,6 +44,13 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
         val LIST = ListItemsTable
 
         val ALL_FIELDS = arrayOf(
+            FIELD_ID,
+            FIELD_NAME,
+            FIELD_CATEGORY_ID,
+         
+        )
+
+        val ALL_FIELDS_RELATED = arrayOf(
             FIELD_ID,
             FIELD_NAME,
             FIELD_CATEGORY_ID,

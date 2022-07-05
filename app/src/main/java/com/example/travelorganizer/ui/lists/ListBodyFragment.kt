@@ -119,8 +119,8 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
         CursorLoader(
             requireContext(),
-            TravelContentProvider.ITEM_URL,
-            ItemsTable.ALL_FIELDS,
+            TravelContentProvider.LIST_GET_URL,
+            ItemsTable.ALL_FIELDS_RELATED,
             "${ListItemsTable.FIELD_LIST_ID} = ?",
             arrayOf("${this.id}"),
             null
@@ -135,13 +135,16 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onLoaderReset(loader: Loader<Cursor>) {
        listBodyAdapter!!.cursor = null
     }
+
     fun updateCheckedItem(item : Items?, status : Int){
         val uriItem = Uri.withAppendedPath(TravelContentProvider.LIST_ITEM_URL, item!!.listItem?.id.toString())
 
         val listItems = ListItems(
             item.listItem!!.itemId,
             item.listItem!!.listId,
-            status
+            status,
+            null,
+            item.listItem?.id!!
         )
 
 
@@ -153,7 +156,7 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         )
 
         if(updated == 1){
-            Toast.makeText(requireContext(), getString(R.string.item_update), Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), uriItem.toString(), Toast.LENGTH_LONG).show()
             //vai-se buscar o ultimo caminho do uri gerado, este é o id
 
         }else{

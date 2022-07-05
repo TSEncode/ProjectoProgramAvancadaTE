@@ -140,7 +140,7 @@ class TravelContentProvider : ContentProvider() {
             URI_SPECIFIC_TRAVEL -> TravelsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_LIST_TRAVEL -> ListTravelTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_LIST_ITEM -> ListItemsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
-            //URI_GET_LIST_ITEM -> ItemsTable(db).queryItemList(columns, selection, argsSelections, null, null, sortOrder, null)
+            URI_GET_LIST_ITEM -> ItemsTable(db).queryItemList(columns, selection, argsSelections, null, null, sortOrder, null)
             else -> null
         }
 
@@ -323,6 +323,7 @@ class TravelContentProvider : ContentProvider() {
         val LIST_URL =Uri.withAppendedPath(BASE_URL, ListTable.NAME)
         val LIST_ITEM_URL =Uri.withAppendedPath(BASE_URL, ListItemsTable.NAME)
         val LIST_TRAVEL_URL =Uri.withAppendedPath(BASE_URL, ListTravelTable.NAME)
+        val LIST_GET_URL = Uri.withAppendedPath(ITEM_URL, URI_GET_LIST_ITEM.toString())
 
         fun getUriMatcher() : UriMatcher {
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)

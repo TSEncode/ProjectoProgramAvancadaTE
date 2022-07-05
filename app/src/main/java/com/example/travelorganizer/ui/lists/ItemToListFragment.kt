@@ -21,6 +21,7 @@ import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentItemsBinding
 import com.example.travelorganizer.databinding.FragmentListsBinding
 import com.example.travelorganizer.db.ItemsTable
+import com.example.travelorganizer.db.ListItemsTable
 import com.example.travelorganizer.db.ListTable
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.ListItems
@@ -141,7 +142,7 @@ class ItemToListFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             TravelContentProvider.ITEM_URL,
             ItemsTable.ALL_FIELDS,
             null,
-            null,
+            null ,
             null
         )
 

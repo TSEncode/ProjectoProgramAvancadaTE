@@ -52,6 +52,7 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
 
         val itemViewText = itemView.findViewById<TextView>(R.id.listCardTextView)
         var id : Long? = null
+        var checked : Boolean = false
 
         var items : Items? = null
             get() = field
@@ -60,7 +61,6 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
 
                 itemViewText.text =items?.name ?:" "
                 id =  items?.id
-                fragment.ids.add(id)
             }
 
         init{
@@ -70,23 +70,25 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
         override fun onClick(p0: View?) {
             isChecked()
             Toast.makeText(fragment.context, fragment.ids.toString(), Toast.LENGTH_LONG).show()
-
         }
 
         fun isChecked(){
-            checked = this
+
+            if(!checked){
+                fragment.ids.add(this.id)
+                itemView.setBackgroundResource(R.color.white_grey)
+                checked = true
+            }else{
+                fragment.ids.remove(this.id)
+                itemView.setBackgroundResource(R.color.layout_grey)
+                checked = false
+            }
 
 
 
 
 
-
-            itemView.setBackgroundResource(R.color.white_grey)
         }
-    }
-
-    companion object{
-        var checked : ItemsToListViewHolder? = null
     }
 
 }
