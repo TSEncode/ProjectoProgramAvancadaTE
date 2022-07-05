@@ -135,16 +135,16 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onLoaderReset(loader: Loader<Cursor>) {
        listBodyAdapter!!.cursor = null
     }
-
-    fun updateCheckedItem(item : Items?, status : Int){
-        val uriItem = Uri.withAppendedPath(TravelContentProvider.LIST_ITEM_URL, item!!.listItem?.id.toString())
+    //função que altera o estado do item na lista, se ja foi escolhido ou não
+    fun updateCheckedItem(listItem : ListItems?, status : Int){
+        val uriItem = Uri.withAppendedPath(TravelContentProvider.LIST_ITEM_URL, listItem?.id.toString())
 
         val listItems = ListItems(
-            item.listItem!!.itemId,
-            item.listItem!!.listId,
+            listItem!!.listId,
+            listItem.itemId,
             status,
             null,
-            item.listItem?.id!!
+            listItem.id
         )
 
 
@@ -156,7 +156,7 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         )
 
         if(updated == 1){
-            Toast.makeText(requireContext(), uriItem.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), R.string.item_update, Toast.LENGTH_LONG).show()
             //vai-se buscar o ultimo caminho do uri gerado, este é o id
 
         }else{

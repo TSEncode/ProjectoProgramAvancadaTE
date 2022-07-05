@@ -9,6 +9,7 @@ import android.widget.CheckBox
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.models.Lists
@@ -50,7 +51,6 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
     }
 
 
-
     inner class ItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val itemViewText = itemView.findViewById<TextView>(R.id.listCardTextView)
@@ -62,22 +62,30 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
 
                 itemViewText.text =items?.name ?:" "
             }
-
+        var isChecked = false
         init{
             itemView.setOnClickListener(this)
         }
 
         override fun onClick(p0: View?) {
-            //Todo
+            isChecked()
         }
 
         fun isChecked(){
-            checked = this
+            if(!isChecked){
+                fragment.items = items
+                itemView.setBackgroundResource(R.color.white_grey)
+
+                isChecked = true
+            }else{
+                fragment.items = null
+
+                itemView.setBackgroundResource(R.color.layout_grey)
+                isChecked = false
+
+            }
 
         }
     }
 
-    companion object{
-        var checked : ItemsViewHolder? = null
-    }
 }

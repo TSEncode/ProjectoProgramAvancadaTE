@@ -1,6 +1,9 @@
 package com.example.travelorganizer.ui.items
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.database.Cursor
+import android.net.Uri
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.Toast
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
@@ -17,12 +20,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentItemsBinding
-import com.example.travelorganizer.db.CategoriesTable
 import com.example.travelorganizer.db.ItemsTable
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Items
+
 import com.example.travelorganizer.ui.items.adapters.ItemsAdapter
-import com.example.travelorganizer.ui.lists.adapters.ListAdapter
+
 
 
 class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
@@ -33,6 +36,17 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     // onDestroyView.
     private val binding get() = _binding!!
     private  var itemAdapter : ItemsAdapter? = null
+
+    var items : Items? = null
+        get() = field
+        set(value) {
+            if (value != field) {
+                field = value
+                (requireActivity() as MainActivity).changeMenuOps(field != null)
+            }
+        }
+
+    var ids : ArrayList<Long?> = ArrayList()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,6 +78,11 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         activity.fragment = this
         activity.idMenuTop = R.menu.top_nav_list_menu
 
+        if(ids.count() > 0){
+            activity.changeMenuOps(true)
+        }
+
+
     }
 
     override fun onDestroyView() {
@@ -78,6 +97,10 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             R.id.addButton -> {
                 val action =ItemsFragmentDirections.actionNavigationItemToNavigationAddItemsFragment()
                 findNavController().navigate(action)
+                return true
+            }
+            R.id.deleteButton -> {
+                deleteDialog()
                 return true
             }
             else -> false
@@ -107,5 +130,33 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
         itemAdapter!!.cursor = null
+    }
+
+    private fun deleteDialog(){
+        val dialogDelete = AlertDialog.Builder(requireContext())
+
+        dialogDelete.setTitle(getString(R.string.delete_item))
+        dialogDelete.setMessage(getString(R.string.delte_item_msg))
+        dialogDelete.setNegativeButton(android.R.string.cancel, DialogInterface.OnClickListener{ dialog, wich -> })
+        dialogDelete.setPositiveButton("Delete", DialogInterface.OnClickListener{ dialog, wich -> deleteItem() })
+        dialogDelete.show()
+
+    }
+    private fun deleteItem(){
+        val uriItem = Uri.withAppendedPath(TravelContentProvider.ITEM_URL, "${items!!.id}")
+
+
+        val deleted = requireActivity().contentResolver.delete(
+            uriItem,
+            null,null
+        )
+
+        if(deleted == 1){
+            Toast.makeText(requireContext(), "Items deleted Sucessfully!", Toast.LENGTH_LONG).show()
+            //vai-se buscar o ultimo caminho do uri gerado, este é o id
+
+        }else{
+            Toast.makeText(requireContext(), getString(R.string.error_delete_item), Toast.LENGTH_LONG).show()
+        }
     }
 }

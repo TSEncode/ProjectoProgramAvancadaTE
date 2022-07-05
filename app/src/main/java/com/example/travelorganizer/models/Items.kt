@@ -28,7 +28,7 @@ data class Items(
     companion object{
 
         fun fromCursor(cursor: Cursor) : Items {
-            val posID = cursor.getColumnIndexOrThrow(ItemsTable.FIELD_ID)
+            val posID = cursor.getColumnIndexOrThrow(BaseColumns._ID)
             val posName = cursor.getColumnIndexOrThrow(ItemsTable.FIELD_NAME)
             val posCategoryId = cursor.getColumnIndexOrThrow(ItemsTable.FIELD_CATEGORY_ID)
 
@@ -40,6 +40,7 @@ data class Items(
             return Items(name, categoryId, null, id)
         }
 
+        //From cursor existindo relação
         fun fromCursorRelated(cursor: Cursor) : Items{
             val posID = cursor.getColumnIndexOrThrow(ItemsTable.FIELD_ID)
             val posName = cursor.getColumnIndexOrThrow(ItemsTable.FIELD_NAME)

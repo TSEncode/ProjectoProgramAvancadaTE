@@ -59,16 +59,16 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
 
                 }
 
-                listBodyCheckbox.setOnClickListener{
-                    isChecked()
-                }
+
             }
 
 
 
         init{
 
-
+            listBodyCheckbox.setOnClickListener{
+                isChecked()
+            }
             listBodyView.setOnClickListener(this)
 
         }
@@ -80,18 +80,23 @@ class ListBodyAdapter(val fragment : ListBodyFragment) :  RecyclerView.Adapter<L
         }
         // função que retorna o livro selecionado para o fragment, muda a cor ao clicar
         private fun isChecked(){
-            if(!isChecked){
+            if(!isChecked) {
 
-                listBodyCheckbox.isChecked = !listBodyCheckbox.isChecked
+                if (!listBodyCheckbox.isChecked){
+                    listBodyCheckbox.isChecked = true
+                    itemView.setBackgroundResource(R.color.white_grey)
+                    fragment.updateCheckedItem(items!!.listItem, 1)
+                    isChecked = true
+                }else{
+                    isChecked = true
+                    isChecked()
+                }
 
-                itemView.setBackgroundResource(R.color.white_grey)
-                fragment.updateCheckedItem(items, 1 )
-                isChecked = true
 
             }else{
                 listBodyCheckbox.isChecked = false
                 itemView.setBackgroundResource(R.color.layout_grey)
-                fragment.updateCheckedItem(items, 0 )
+                fragment.updateCheckedItem(items!!.listItem, 0 )
                 isChecked = false
 
 

@@ -18,6 +18,7 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
                 ")")
     }
 
+    //query de relação
       fun queryItemList(
         columns: Array<String>?,
         selection: String?,
@@ -47,13 +48,14 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
             FIELD_ID,
             FIELD_NAME,
             FIELD_CATEGORY_ID,
-         
-        )
 
+        )
+        //campos a ir buscar quando é necessário relação
         val ALL_FIELDS_RELATED = arrayOf(
             FIELD_ID,
             FIELD_NAME,
             FIELD_CATEGORY_ID,
+            LIST.FIELD_ID,
             LIST.FIELD_LIST_ID,
             LIST.FIELD_ITEMS_ID,
             LIST.FIELD_STATUS,
