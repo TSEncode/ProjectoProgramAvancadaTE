@@ -79,7 +79,7 @@ class AddItemsFragment() : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         val categoriesAdapter = SimpleCursorAdapter(
             requireContext(),
-            android.R.layout.simple_list_item_1,
+            android.R.layout.simple_spinner_item,
             data,
             arrayOf(CategoriesTable.FIELD_NAME),
             intArrayOf(android.R.id.text1),

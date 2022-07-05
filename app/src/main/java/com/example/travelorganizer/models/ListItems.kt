@@ -29,7 +29,7 @@ data class ListItems(
 
     companion object{
         fun fromCursor(cursor: Cursor) : ListItems{
-            val posID = cursor.getColumnIndexOrThrow(BaseColumns._ID)
+            val posID = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_ID)
             val posListId = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_LIST_ID)
             val posItemId = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_ITEMS_ID)
             val posQuantity = cursor.getColumnIndexOrThrow(ListItemsTable.FIELD_QUANTITY)

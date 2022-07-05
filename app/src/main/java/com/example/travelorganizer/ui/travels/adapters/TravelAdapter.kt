@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.travelorganizer.R
 import com.example.travelorganizer.models.Items
 import com.example.travelorganizer.models.Travel
 import com.example.travelorganizer.ui.travels.TravelsFragment
+import com.example.travelorganizer.ui.travels.TravelsFragmentDirections
 
 class TravelAdapter(val fragment : TravelsFragment) : RecyclerView.Adapter<TravelAdapter.TravelsViewHolder>()  {
 
@@ -45,14 +47,14 @@ class TravelAdapter(val fragment : TravelsFragment) : RecyclerView.Adapter<Trave
 
     inner class TravelsViewHolder(travelView: View) : RecyclerView.ViewHolder(travelView), View.OnClickListener {
 
-        val itemViewText = itemView.findViewById<TextView>(R.id.listCardTextView)
+        val itemViewText = travelView.findViewById<TextView>(R.id.listCardTextView)
 
         var travel : Travel? = null
             get() = field
             set(value){
                 field = value
 
-                itemViewText.text =travel?.name ?:" "
+                itemViewText.text = travel?.name ?:" "
             }
 
         init{
@@ -60,14 +62,10 @@ class TravelAdapter(val fragment : TravelsFragment) : RecyclerView.Adapter<Trave
         }
 
         override fun onClick(p0: View?) {
-            isChecked()
+            val action = TravelsFragmentDirections.actionNavigationTravelToTravelBodyFragment(travel!!)
+            fragment.findNavController().navigate(action)
         }
 
-        fun isChecked(){
-
-                itemView.setBackgroundResource(R.color.white_grey)
-
-        }
 
     }
 

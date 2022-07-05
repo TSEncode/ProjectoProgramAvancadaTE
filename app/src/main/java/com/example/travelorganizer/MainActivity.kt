@@ -22,6 +22,7 @@ import com.example.travelorganizer.ui.lists.CreateListFragment
 import com.example.travelorganizer.ui.lists.ItemToListFragment
 import com.example.travelorganizer.ui.lists.ListBodyFragment
 import com.example.travelorganizer.ui.lists.ListsFragment
+import com.example.travelorganizer.ui.travels.AddTravelFragment
 import com.example.travelorganizer.ui.travels.TravelsFragment
 
 class MainActivity : AppCompatActivity() {
@@ -118,6 +119,8 @@ class MainActivity : AppCompatActivity() {
             optionProcessed = (fragment as ItemToListFragment).handlerOptionProcessed(item)
         }else if(fragment is CreateListFragment){
             optionProcessed = (fragment as CreateListFragment).handlerOptionProcessed(item)
+        }else if(fragment is AddTravelFragment){
+            optionProcessed = (fragment as AddTravelFragment).handlerOptionProcessed(item)
         }else{
             optionProcessed = false
         }

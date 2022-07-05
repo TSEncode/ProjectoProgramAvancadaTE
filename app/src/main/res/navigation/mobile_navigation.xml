@@ -23,6 +23,12 @@
         <action
             android:id="@+id/action_navigation_travell_to_navigation_home"
             app:destination="@id/navigation_home" />
+        <action
+            android:id="@+id/action_navigation_travel_to_addTravelFragment"
+            app:destination="@id/addTravelFragment" />
+        <action
+            android:id="@+id/action_navigation_travel_to_travelBodyFragment"
+            app:destination="@id/travelBodyFragment" />
     </fragment>
 
     <fragment
@@ -114,7 +120,7 @@
     <fragment
         android:id="@+id/itemToListFragment"
         android:name="com.example.travelorganizer.ui.lists.ItemToListFragment"
-        android:label="fragment_item_to_list"
+        android:label="@string/add_item_to_list"
         tools:layout="@layout/fragment_item_to_list" >
         <action
             android:id="@+id/action_itemToListFragment_to_navigation_listBodyFragment"
@@ -122,5 +128,29 @@
         <argument
             android:name="idList"
             app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTravelFragment"
+        android:name="com.example.travelorganizer.ui.travels.AddTravelFragment"
+        android:label="@string/add_travel"
+        tools:layout="@layout/fragment_add_travel">
+        <action
+            android:id="@+id/action_addTravelFragment_to_navigation_travel"
+            app:destination="@id/navigation_travel" />
+        <action
+            android:id="@+id/action_addTravelFragment_to_travelBodyFragment"
+            app:destination="@id/travelBodyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/travelBodyFragment"
+        android:name="com.example.travelorganizer.ui.travels.TravelBodyFragment"
+        android:label="  "
+        tools:layout="@layout/fragment_travel_body">
+        <action
+            android:id="@+id/action_travelBodyFragment_to_navigation_travel"
+            app:destination="@id/navigation_travel" />
+        <argument
+            android:name="travel"
+            app:argType="com.example.travelorganizer.models.Travel" />
     </fragment>
 </navigation>

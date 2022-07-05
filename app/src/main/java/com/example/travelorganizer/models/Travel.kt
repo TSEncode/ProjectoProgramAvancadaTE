@@ -5,6 +5,7 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import com.example.travelorganizer.db.ListTable
 import com.example.travelorganizer.db.TravelsTable
+import java.io.Serializable
 
 data class Travel(
     var name: String? = null,
@@ -12,7 +13,7 @@ data class Travel(
     var realBudget : Float? = null,
     var local : String? = null,
     var date : String? = null,
-    var id: Long = -1) {
+    var id: Long = -1) : Serializable {
 
     fun toContentValues(): ContentValues {
         val values = ContentValues()

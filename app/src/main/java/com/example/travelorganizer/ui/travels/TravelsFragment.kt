@@ -11,12 +11,14 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentTravelsBinding
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.db.TravelsTable
+import com.example.travelorganizer.ui.lists.ListBodyFragment
 import com.example.travelorganizer.ui.lists.adapters.ListAdapter
 import com.example.travelorganizer.ui.travels.adapters.TravelAdapter
 
@@ -36,6 +38,8 @@ class TravelsFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>  {
     ): View {
         val dashboardViewModel =
             ViewModelProvider(this).get(TravelsViewModel::class.java)
+
+        LoaderManager.getInstance(this).initLoader(ID_LOADER_TRAVEL, null, this)
 
         _binding = FragmentTravelsBinding.inflate(inflater, container, false)
         val root: View = binding.root
@@ -61,8 +65,14 @@ class TravelsFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>  {
     }
 
     fun handlerOptionProcessed(item: MenuItem): Boolean {
-        //TODO
-        return true
+        return when( item.itemId){
+            R.id.addButton -> {
+                findNavController().navigate(TravelsFragmentDirections.actionNavigationTravelToAddTravelFragment())
+                return  true
+            }
+            else -> false
+        }
+
     }
 
     override fun onCreateLoader(id: Int, args: Bundle?): Loader<Cursor> =
@@ -82,5 +92,9 @@ class TravelsFragment : Fragment() , LoaderManager.LoaderCallbacks<Cursor>  {
 
     override fun onLoaderReset(loader: Loader<Cursor>) {
         travelAdapter!!.cursor = null
+    }
+
+    companion object{
+        const val ID_LOADER_TRAVEL = 0
     }
 }
