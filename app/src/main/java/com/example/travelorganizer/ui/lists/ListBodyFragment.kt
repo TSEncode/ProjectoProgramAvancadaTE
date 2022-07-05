@@ -152,7 +152,6 @@ class ListBodyFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             listItem.id
         )
 
-
         val updated = requireActivity().contentResolver.update(
             uriItem,
             listItems.toContentValues(),

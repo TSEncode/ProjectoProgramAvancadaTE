@@ -134,6 +134,7 @@ class EditItemFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val item = Items(
             name,
             categoryId,
+            id = id!!
         )
 
         if(nameValidated && categorIdvalidated){

@@ -12,10 +12,14 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_navigation_list"
-            app:destination="@id/navigation_list" />
+            app:destination="@id/navigation_list"
+            app:enterAnim="@android:anim/fade_in" />
         <action
             android:id="@+id/action_navigation_home_to_travelBodyFragment"
             app:destination="@id/travelBodyFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_addTravelFragment"
+            app:destination="@id/addTravelFragment" />
     </fragment>
 
     <fragment
@@ -146,6 +150,9 @@
         <action
             android:id="@+id/action_addTravelFragment_to_travelBodyFragment"
             app:destination="@id/travelBodyFragment" />
+        <action
+            android:id="@+id/action_addTravelFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
     <fragment
         android:id="@+id/travelBodyFragment"
@@ -165,14 +172,14 @@
     <fragment
         android:id="@+id/editItemFragment"
         android:name="com.example.travelorganizer.ui.items.EditItemFragment"
-        android:label="fragment_edit_item"
-        tools:layout="@layout/fragment_edit_item" >
+        android:label="@string/edit_item"
+        tools:layout="@layout/fragment_edit_item">
         <action
             android:id="@+id/action_editItemFragment_to_navigation_item"
             app:destination="@id/navigation_item" />
         <argument
             android:name="id"
-            app:argType="long"
-            android:defaultValue="-1L" />
+            android:defaultValue="-1L"
+            app:argType="long" />
     </fragment>
 </navigation>

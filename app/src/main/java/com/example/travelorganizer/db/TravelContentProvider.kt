@@ -247,12 +247,12 @@ class TravelContentProvider : ContentProvider() {
         val id = uri.lastPathSegment
 
         return  when (getUriMatcher().match(uri)) {
-            URI_CATEGORIES -> CategoriesTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_LISTS -> ListTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_TRAVEL -> TravelsTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_ITEMS -> ItemsTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_LIST_TRAVEL -> ListTravelTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
-            URI_LIST_ITEM -> ListItemsTable(db).delete("${BaseColumns._ID}=?", arrayOf("${id}"))
+            URI_CATEGORIES -> CategoriesTable(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_LISTS -> ListTable(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_TRAVEL -> TravelsTable(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_ITEMS -> ItemsTable(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_LIST_TRAVEL -> ListTravelTable(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
+            URI_LIST_ITEM -> ListItemsTable(db).delete("${BaseColumns._ID}=?", arrayOf("$id"))
             else -> 0
         }
 
@@ -286,12 +286,12 @@ class TravelContentProvider : ContentProvider() {
         val id = uri.lastPathSegment
 
         return when (getUriMatcher().match(uri)) {
-                URI_SPECIFIC_CATEGORY -> CategoriesTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
-                URI_SPECIFIC_ITEM -> ItemsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
-                URI_SPECIFIC_LISTS -> ListTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
-                URI_SPECIFIC_TRAVEL -> TravelsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
-                URI_SPECIFIC_LIST_ITEM -> ListItemsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
-                URI_SPECIFIC_LIST_TRAVEL -> ListTravelTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("${id}"))
+                URI_SPECIFIC_CATEGORY -> CategoriesTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("$id"))
+                URI_SPECIFIC_ITEM -> ItemsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("$id"))
+                URI_SPECIFIC_LISTS -> ListTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("$id"))
+                URI_SPECIFIC_TRAVEL -> TravelsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("$id"))
+                URI_SPECIFIC_LIST_ITEM -> ListItemsTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("$id"))
+                URI_SPECIFIC_LIST_TRAVEL -> ListTravelTable(db).update(values, "${BaseColumns._ID}=?", arrayOf("$id"))
             else -> 0
         }
 

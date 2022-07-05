@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.loader.app.LoaderManager
 import androidx.loader.content.CursorLoader
 import androidx.loader.content.Loader
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
@@ -59,7 +60,6 @@ class HomeFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         val activity = activity as MainActivity
         activity.fragment = this
         activity.idMenuTop = R.menu.no_menu
-        
 
     }
 

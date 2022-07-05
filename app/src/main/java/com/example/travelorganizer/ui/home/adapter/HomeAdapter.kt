@@ -31,6 +31,7 @@ class HomeAdapter (val fragment : HomeFragment) : RecyclerView.Adapter<HomeAdapt
             field = value
             travelItem.text = travels?.name ?: " "
         }
+
         init {
             itemView.setOnClickListener(this)
         }
