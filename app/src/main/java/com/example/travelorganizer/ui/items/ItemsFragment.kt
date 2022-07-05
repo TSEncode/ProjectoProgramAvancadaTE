@@ -21,6 +21,7 @@ import com.example.travelorganizer.MainActivity
 import com.example.travelorganizer.R
 import com.example.travelorganizer.databinding.FragmentItemsBinding
 import com.example.travelorganizer.db.ItemsTable
+import com.example.travelorganizer.db.ListItemsTable
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.models.Items
 
@@ -105,7 +106,6 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             }
             else -> false
         }
-
     }
 
     companion object{
@@ -122,7 +122,6 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             null,
            ItemsTable.FIELD_NAME
         )
-
 
     override fun onLoadFinished(loader: Loader<Cursor>, data: Cursor?) {
         itemAdapter!!.cursor = data
@@ -142,21 +141,39 @@ class ItemsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         dialogDelete.show()
 
     }
+
     private fun deleteItem(){
-        val uriItem = Uri.withAppendedPath(TravelContentProvider.ITEM_URL, "${items!!.id}")
+        val uriItem = Uri.withAppendedPath(TravelContentProvider.ITEM_URL, "${items?.id}")
 
+        val deletedRelated = requireActivity().contentResolver.delete(
+            TravelContentProvider.LIST_ITEM_URL,
+            "${ListItemsTable.FIELD_ITEMS_ID} = ? ",
+            arrayOf("${items?.id}")
+        )
 
-        val deleted = requireActivity().contentResolver.delete(
+        val deletedItem = requireActivity().contentResolver.delete(
             uriItem,
             null,null
         )
 
-        if(deleted == 1){
-            Toast.makeText(requireContext(), "Items deleted Sucessfully!", Toast.LENGTH_LONG).show()
-            //vai-se buscar o ultimo caminho do uri gerado, este é o id
+        if(deletedRelated == 1){
 
-        }else{
-            Toast.makeText(requireContext(), getString(R.string.error_delete_item), Toast.LENGTH_LONG).show()
+            if(deletedItem == 1 ){
+                Toast.makeText(requireContext(), "Items deleted Successfully!", Toast.LENGTH_LONG).show()
+
+            }else {
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.error_delete_item),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }else {
+            Toast.makeText(
+                requireContext(),
+                uriItem.toString(),
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
 }

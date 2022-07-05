@@ -13,8 +13,8 @@ class ListItemsTable(db: SQLiteDatabase) : TableModel(db, NAME) {
                 "$FIELD_ITEMS_ID INTEGER NOT NULL," +
                 "$FIELD_QUANTITY INTEGER," +
                 "$FIELD_STATUS BOOL NOT NULL," +
-                "FOREIGN KEY($FIELD_LIST_ID) REFERENCES $TABLE_LIST_REFERENCE(${BaseColumns._ID}) " +
-                "FOREIGN KEY($FIELD_ITEMS_ID) REFERENCES $TABLE_ITEMS_REFERENCE(${BaseColumns._ID}) " +
+                "FOREIGN KEY($FIELD_LIST_ID) REFERENCES $TABLE_LIST_REFERENCE(${BaseColumns._ID}) ON DELETE RESTRICT "   +
+                "FOREIGN KEY($FIELD_ITEMS_ID) REFERENCES $TABLE_ITEMS_REFERENCE(${BaseColumns._ID}) ON DELETE RESTRICT " +
                 ")")
     }
 

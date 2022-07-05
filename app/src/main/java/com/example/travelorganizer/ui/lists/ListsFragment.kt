@@ -45,6 +45,7 @@ class ListsFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
 
     private var listAdapter : ListAdapter? = null
     override fun onCreateView(
+
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?

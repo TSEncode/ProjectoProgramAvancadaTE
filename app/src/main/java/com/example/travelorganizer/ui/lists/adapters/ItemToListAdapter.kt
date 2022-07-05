@@ -47,7 +47,6 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
     }
 
 
-
     inner class ItemsToListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
         val itemViewText = itemView.findViewById<TextView>(R.id.listCardTextView)
@@ -83,10 +82,6 @@ class ItemToListAdapter(val fragment : ItemToListFragment) : RecyclerView.Adapte
                 itemView.setBackgroundResource(R.color.layout_grey)
                 checked = false
             }
-
-
-
-
 
         }
     }

@@ -14,7 +14,7 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
                 "(${BaseColumns._ID} INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$FIELD_NAME TEXT NOT NULL," +
                 "$FIELD_CATEGORY_ID INTEGER," +
-                "FOREIGN KEY($FIELD_CATEGORY_ID) REFERENCES $TABLE_REFERENCE(${BaseColumns._ID}) " +
+                "FOREIGN KEY($FIELD_CATEGORY_ID) REFERENCES $TABLE_REFERENCE(${BaseColumns._ID}) ON DELETE RESTRICT " +
                 ")")
     }
 
@@ -48,8 +48,9 @@ class ItemsTable(db : SQLiteDatabase) : TableModel (db, NAME){
             FIELD_ID,
             FIELD_NAME,
             FIELD_CATEGORY_ID,
-
         )
+
+
         //campos a ir buscar quando é necessário relação
         val ALL_FIELDS_RELATED = arrayOf(
             FIELD_ID,

@@ -68,6 +68,8 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
         }
 
         override fun onClick(p0: View?) {
+            checked?.unchecked()
+
             isChecked()
         }
 
@@ -75,7 +77,7 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
             if(!isChecked){
                 fragment.items = items
                 itemView.setBackgroundResource(R.color.white_grey)
-
+                checked = this
                 isChecked = true
             }else{
                 fragment.items = null
@@ -86,6 +88,14 @@ class ItemsAdapter (val fragment : ItemsFragment) : RecyclerView.Adapter<ItemsAd
             }
 
         }
+
+        fun unchecked(){
+            itemView.setBackgroundResource(R.color.layout_grey)
+        }
+    }
+
+    companion object{
+        var checked : ItemsViewHolder? = null
     }
 
 }
