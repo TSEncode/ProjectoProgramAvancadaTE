@@ -7,6 +7,7 @@ import android.content.UriMatcher
 import android.database.Cursor
 import android.net.Uri
 import android.provider.BaseColumns
+import com.example.travelorganizer.models.ListTravel
 
 class TravelContentProvider : ContentProvider() {
 
@@ -133,6 +134,7 @@ class TravelContentProvider : ContentProvider() {
             URI_LISTS -> ListTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_TRAVEL ->TravelsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_LIST_TRAVEL -> ListTravelTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
+            URI_LIMITED_TRAVEL -> TravelsTable(db).query(columns, selection, argsSelections, null, null, "${TravelsTable.FIELD_DATE} DESC}", "3")
             URI_LIST_ITEM -> ListItemsTable(db).query(columns, selection, argsSelections, null, null, sortOrder)
             URI_SPECIFIC_ITEM -> ItemsTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
             URI_SPECIFIC_CATEGORY -> CategoriesTable(db).query(columns, "${BaseColumns._ID}=?", arrayOf("${id}"))
@@ -307,6 +309,7 @@ class TravelContentProvider : ContentProvider() {
         const val URI_SPECIFIC_LISTS = 301
         const val URI_TRAVEL = 400
         const val URI_SPECIFIC_TRAVEL = 401
+        const val URI_LIMITED_TRAVEL = 402
         const val URI_LIST_TRAVEL = 500
         const val URI_SPECIFIC_LIST_TRAVEL = 501
         const val URI_LIST_ITEM = 600
@@ -324,6 +327,7 @@ class TravelContentProvider : ContentProvider() {
         val LIST_ITEM_URL =Uri.withAppendedPath(BASE_URL, ListItemsTable.NAME)
         val LIST_TRAVEL_URL =Uri.withAppendedPath(BASE_URL, ListTravelTable.NAME)
         val LIST_GET_URL = Uri.withAppendedPath(ITEM_URL, URI_GET_LIST_ITEM.toString())
+        val TRAVEL_LIMIT_URL = Uri.withAppendedPath(ITEM_URL, URI_LIMITED_TRAVEL.toString())
 
         fun getUriMatcher() : UriMatcher {
             val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
@@ -334,6 +338,7 @@ class TravelContentProvider : ContentProvider() {
             uriMatcher.addURI(AUTHORITY, "${ItemsTable.NAME}/#", URI_SPECIFIC_ITEM)
             uriMatcher.addURI(AUTHORITY, TravelsTable.NAME, URI_TRAVEL)
             uriMatcher.addURI(AUTHORITY, "${TravelsTable.NAME}/#", URI_SPECIFIC_TRAVEL)
+            uriMatcher.addURI(AUTHORITY, "${TravelsTable.NAME}/#", URI_LIMITED_TRAVEL)
             uriMatcher.addURI(AUTHORITY, ListItemsTable.NAME, URI_LIST_ITEM)
             uriMatcher.addURI(AUTHORITY, "${ListItemsTable.NAME}/#", URI_SPECIFIC_LIST_ITEM)
             uriMatcher.addURI(AUTHORITY, ListTable.NAME, URI_LISTS)

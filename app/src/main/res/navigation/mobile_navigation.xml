@@ -152,5 +152,8 @@
         <argument
             android:name="travel"
             app:argType="com.example.travelorganizer.models.Travel" />
+        <action
+            android:id="@+id/action_travelBodyFragment_to_navigation_listBodyFragment"
+            app:destination="@id/navigation_listBodyFragment" />
     </fragment>
 </navigation>

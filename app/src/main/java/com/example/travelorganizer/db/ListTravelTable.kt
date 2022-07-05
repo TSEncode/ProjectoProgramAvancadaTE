@@ -23,6 +23,7 @@ class ListTravelTable (db: SQLiteDatabase) : TableModel(db, NAME){
         const val TABLE_LIST_REFERENCE = "list"
         const val TABLE_TRAVEL_REFERENCE = "travel"
 
+
         val ALL_FIELDS = arrayOf(
             FIELD_ID,
             FIELD_LIST_ID,

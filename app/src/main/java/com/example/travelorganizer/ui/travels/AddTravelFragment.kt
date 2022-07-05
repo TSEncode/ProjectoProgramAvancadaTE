@@ -24,6 +24,7 @@ import com.example.travelorganizer.db.CategoriesTable
 import com.example.travelorganizer.db.ListTable
 import com.example.travelorganizer.db.TravelContentProvider
 import com.example.travelorganizer.db.TravelsTable
+import com.example.travelorganizer.models.ListTravel
 import com.example.travelorganizer.models.Lists
 import com.example.travelorganizer.models.Travel
 import com.example.travelorganizer.ui.lists.ListsFragment
@@ -141,6 +142,8 @@ class AddTravelFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
             date
         )
 
+
+
         if(
             nameValidated &&
             budgetValidated &&
@@ -150,9 +153,23 @@ class AddTravelFragment : Fragment(), LoaderManager.LoaderCallbacks<Cursor> {
         ){
             val url = requireActivity().contentResolver.insert(TravelContentProvider.TRAVEL_URL, travel.toContentValues())
 
+
+
             if(url != null){
-                Toast.makeText(requireContext(), "Travel added successfully", Toast.LENGTH_LONG).show()
-                returnToTravels()
+
+
+                val travelRelation = ListTravel(
+                    url.lastPathSegment!!.toLong(),
+                    listId
+                )
+
+                val urlRelate = requireActivity().contentResolver.insert(TravelContentProvider.LIST_TRAVEL_URL, travelRelation.toContentValues() )
+                if(urlRelate != null ){
+                    Toast.makeText(requireContext(), "Travel added successfully", Toast.LENGTH_LONG).show()
+                    returnToTravels()
+                }else{
+                    Toast.makeText(requireContext(), "Erro: Travel don't added", Toast.LENGTH_LONG).show()
+                }
             }else{
                 Toast.makeText(requireContext(), "Erro: Travel don't added", Toast.LENGTH_LONG).show()
             }

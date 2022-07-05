@@ -50,15 +50,6 @@
                     app:layout_constraintTop_toTopOf="@+id/textViewBudget" />
 
                 <TextView
-                    android:id="@+id/textViewEuro"
-                    android:layout_width="15dp"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="12dp"
-                    android:text="@string/euro"
-                    app:layout_constraintStart_toEndOf="@+id/textViewBudgetValue"
-                    app:layout_constraintTop_toTopOf="@+id/textViewBudgetValue" />
-
-                <TextView
                     android:id="@+id/textViewLocal"
                     android:layout_width="75dp"
                     android:layout_height="wrap_content"
